@@ -1,8 +1,8 @@
-import { AboutTitle } from "./AboutTitle";
-import { LeftContent } from "./LeftContent";
-import { RightContent } from "./RightContent";
+import { AboutTitle } from "../AboutTitle/AboutTitle";
+import { LeftContent } from "./LeftContent/LeftContent";
+import { RightContent } from "./RightContent/RightContent";
 
-import styles from "./styles/MainAbout.module.scss"
+import styles from "./MainAbout.module.scss"
 
 const content = {
     'right': {

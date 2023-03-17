@@ -1,9 +1,9 @@
-import { AboutTitle } from './AboutTitle'
-import { RightContent } from './RightContent'
-import { LeftContent } from './LeftContent'
+import { AboutTitle } from './AboutTitle/AboutTitle'
+import { RightContent } from './MainAbout/RightContent/RightContent'
+import { LeftContent } from './MainAbout/LeftContent/LeftContent'
 
-import stylesAbout from './styles/MainAbout.module.scss'
-import stylesTitle from './styles/AboutTitle.module.scss'
+import stylesAbout from './MainAbout/MainAbout.module.scss'
+import stylesTitle from './AboutTitle/AboutTitle.module.scss'
 
 //TODO: Extract content to DB everywhere!
 const content = {

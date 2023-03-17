@@ -1,4 +1,4 @@
-import styles from "./styles/MainAbout.module.scss"
+import styles from "../MainAbout.module.scss"
 
 export const RightContent = ({
     imageUrl,

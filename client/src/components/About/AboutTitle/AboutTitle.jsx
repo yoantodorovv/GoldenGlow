@@ -1,4 +1,4 @@
-import styles from "./styles/AboutTitle.module.scss"
+import styles from "./AboutTitle.module.scss"
 
 export const AboutTitle = ({
     title,
