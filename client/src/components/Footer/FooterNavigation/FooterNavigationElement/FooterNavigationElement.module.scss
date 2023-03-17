@@ -1,0 +1,11 @@
+.footer-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    width: 33%;
+
+    .footer-titles {
+        margin-bottom: .5em;
+    }
+}

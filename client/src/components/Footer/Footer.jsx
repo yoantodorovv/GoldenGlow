@@ -1,4 +1,4 @@
-import { FooterNavigation } from "./FooterNavigation";
+import { FooterNavigation } from "./FooterNavigation/FooterNavigation";
 
 import styles from "./Footer.module.scss";
 

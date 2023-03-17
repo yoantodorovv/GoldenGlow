@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 
-import { FooterNavigationElement } from "./FooterNavigationElement";
+import { FooterNavigationElement } from "./FooterNavigationElement/FooterNavigationElement";
 
-import styles from "./Footer.module.scss";
+import styles from "./FooterNavigation.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 

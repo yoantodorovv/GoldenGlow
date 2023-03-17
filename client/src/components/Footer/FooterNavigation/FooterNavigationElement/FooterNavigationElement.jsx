@@ -1,4 +1,4 @@
-import styles from "./Footer.module.scss"
+import styles from "./FooterNavigationElement.module.scss"
 
 export const FooterNavigationElement = ({
     children,
