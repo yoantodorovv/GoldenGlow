@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-import styles from "./MainMenu.module.scss";
+import styles from "./HeroContainer.module.scss";
 
 export const HeroContainer = ({
     imageSrc,
