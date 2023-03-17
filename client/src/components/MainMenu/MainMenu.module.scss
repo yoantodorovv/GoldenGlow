@@ -1,0 +1,49 @@
+$white-primary: #dbcec3;
+$overlay-bg-color: #000000b4;
+
+.main-menu {
+    display: flex;
+    flex-direction: row nowrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    width: 50%;
+
+    .menu-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .2s ease-in;
+    background-color: $overlay-bg-color;
+
+    .overlay-text {
+        color: $white-primary;
+        font-size: 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}
+
+.container:hover .overlay {
+    opacity: 1;
+}
