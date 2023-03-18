@@ -8,6 +8,8 @@ export const Contact = () => {
                 <h1 className={styles['title']}>Contact Us</h1>
             </div>
 
+            
+
             <Map />
         </>
     );
