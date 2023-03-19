@@ -57,7 +57,7 @@ export const Login = () => {
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['image-wrapper']}>
-                <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
             </div>
             <form className={styles['form']}>
                 <div className={styles['title-wrapper']}>
