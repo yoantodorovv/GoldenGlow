@@ -2,8 +2,8 @@ import { HeroContainer } from "./HeroContainer/HeroContainer";
 
 import styles from "./MainMenu.module.scss"
 
-import manImageSrc from "./assets/manImage.jpeg";
-import womanImageSrc from "./assets/womanImage.jpeg";
+import manImageSrc from "../../../public/images/Home/manImage.jpeg";
+import womanImageSrc from "../../../public/images/Home/womanImage.jpeg";
 
 export const MainMenu = () => {
     return (

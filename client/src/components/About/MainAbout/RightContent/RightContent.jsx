@@ -1,7 +1,7 @@
 import styles from "../MainAbout.module.scss"
 
 export const RightContent = ({
-    imageUrl,
+    image,
     content
 }) => {
     return (
@@ -9,7 +9,7 @@ export const RightContent = ({
             <div className={`${styles['img-wrapper']} ${styles['right']}`}>
                 <img
                     className={`${styles['img']} ${styles['right']}`}
-                    src={imageUrl}
+                    src={image}
                     alt="Store image"
                 />
             </div>
