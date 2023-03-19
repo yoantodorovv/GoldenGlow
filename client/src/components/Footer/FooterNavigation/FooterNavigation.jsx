@@ -16,9 +16,9 @@ const routes = {
         'Men': '/catalog/men',
     },
     'profiles': {
-        'Login': '/login',
-        'Register': '/register',
-        'Logout': '/logout',
+        'Sign In': '/login',
+        'Sign Up': '/register',
+        'Sign Out': '/logout',
     }
 }
 

@@ -41,21 +41,21 @@ export const HeaderNavigation = () => {
                     <NavLink 
                         className={({isActive}) => isActive ? styles['nav-btn-li-link-selected'] : styles['nav-btn-li-link']} 
                         to="/login">
-                            Login
+                            Sign In
                     </NavLink>
                 </li>
                 <li className={styles['nav-btn-list-item']}>
                     <NavLink 
                         className={({isActive}) => isActive ? styles['nav-btn-li-link-selected'] : styles['nav-btn-li-link']} 
                         to="/register">
-                            Register
+                            Sign Up
                     </NavLink>
                 </li>
                 {/* <li className={styles['nav-btn-list-item']}>
                     <NavLink 
                         className={({isActive}) => isActive ? styles['nav-btn-li-link-selected'] : styles['nav-btn-li-link']} 
                         to="/logout">
-                            Logout
+                            Sign Out
                 </NavLink>
                 </li> */}
             </ul>
