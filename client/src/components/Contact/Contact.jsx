@@ -4,6 +4,7 @@ import { ContactForm } from "./ContactForm/ContactForm";
 import { Map } from "./Map/Map";
 
 import styles from "./Contact.module.scss"
+import contact from '../../../public/images/Contact/contact.png'
 
 export const Contact = () => {
     const [isLocate, setIsLocate] = useState(false);
@@ -19,7 +20,7 @@ export const Contact = () => {
 
             <div className={styles['main-content-wrapper']}>
                 <div className={styles['image-wrapper']}>
-                    <img src="https://images.unsplash.com/photo-1531450664978-9be7f46cb497?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" />
+                    <img src={contact} alt="Image of clothes" />
                 </div>
 
 

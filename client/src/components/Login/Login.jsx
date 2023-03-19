@@ -7,6 +7,7 @@ import styles from './Login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import login from '../../../public/images/Login/login.png'
 
 export const Login = () => {
     const [formValues, setFormValues] = useState({
@@ -57,7 +58,7 @@ export const Login = () => {
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['image-wrapper']}>
-                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
+                <img src={login} alt="Image of clothes" />
             </div>
             <form className={styles['form']}>
                 <div className={styles['title-wrapper']}>

@@ -7,6 +7,7 @@ import styles from './Register.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import register from '../../../public/images/Register/register.png'
 
 export const Register = () => {
     const [formValues, setFormValues] = useState({
@@ -69,7 +70,7 @@ export const Register = () => {
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['image-wrapper']}>
-                <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" alt="" />
+                <img src={register} alt="Image of clothes" />
             </div>
             <form className={styles['form']}>
                 <div className={styles['title-wrapper']}>
