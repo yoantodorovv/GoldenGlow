@@ -2,13 +2,42 @@ $white-primary-accent: #fff6ec;
 $check: #008000;
 $error: #ff0000;
 $dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+.general-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+
+    .title-wrapper {
+        margin-bottom: 2em;
+    }
+
+    .image-wrapper {
+        display: flex;
+        align-items: center;
+        width: 30%;
+    }
+
+    .image-wrapper img {
+        width: 100%;
+        height: 90vh;
+        object-fit: cover;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+}
 
 .form {
     display: flex;
     flex-flow: column nowrap;
     width: 30%;
-    height: 60vh;
-    padding: 5em;
+    height: 90vh;
+    padding: 3em 5em;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     background-color: $white-primary-accent;
@@ -17,7 +46,7 @@ $dark-color: #413d38;
 .input-item-wrapper {
     display: flex;
     flex-flow: column nowrap;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 
     .input-item-label {
         color: $dark-color;
@@ -48,4 +77,77 @@ $dark-color: #413d38;
     .icon-error {
         color: $error;
     }
+}
+
+.submit-btn {
+    color: $white-primary;
+    background-color: $brown-primary;
+    font-size: 15px;
+    width: 100%;
+    margin-top: 1em;
+    padding: 1em;
+    border: none;
+    border-radius: 25px;
+    transition: .15s ease-in;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background-color: $brown-secondary;
+    cursor: pointer;
+} 
+
+.submit-btn-disabled {
+    color: $white-primary;
+    background-color: $brown-secondary;
+    width: 100%;
+    margin-top: 1em;
+    padding: 1em;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.error {
+    color: $error;
+}
+
+.google-btn {
+    margin-top: 1em;
+    padding: 1em 1.5em;
+    background-color: $white-primary-accent;
+    border: 2px solid $brown-primary;
+    border-radius: 25px;
+    transition: .3s ease-in-out;
+}
+
+.google-btn:hover {
+    color: $white-primary-accent;
+    background-color: $brown-primary;
+    cursor: pointer;
+}
+
+.google-icon {
+    margin-right: 1em;
+}
+
+.login-btn-p {
+    margin-bottom: .5em;
+}
+
+.login-btn {
+    color: $brown-primary;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-btn {
+    margin-top: 3em;
+    color: $brown-primary;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-btn-icon {
+    margin-right: .5em;
 }

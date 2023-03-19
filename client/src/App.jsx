@@ -12,6 +12,8 @@ import { Login } from "./components/Login/Login"
 import { Register } from "./components/Register/Register"
 
 function App() {
+    //TODO: Attribute the photographers and Unsplash for the photos
+
     return (
         <div className="App">
             <Routes>
