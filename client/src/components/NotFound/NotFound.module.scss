@@ -1,3 +1,6 @@
+$brown-primary: #6c3d1f;
+$white-primary: #dbcec3;
+
 .wrapper {
     display: flex;
     justify-content: center;
@@ -14,5 +17,20 @@
     h2 {
         font-size: 50px;
         margin-bottom: .2em;
+    }
+
+    .btn {
+        margin-top: 1em;
+        padding: 1em 5em;
+        background-color: $white-primary;
+        border: 2px solid $brown-primary;
+        border-radius: 25px;
+        transition: .3s ease-in-out;
+    }
+    
+    .btn:hover {
+        color: $white-primary;
+        background-color: $brown-primary;
+        cursor: pointer;
     }
 }
