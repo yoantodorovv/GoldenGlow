@@ -1,0 +1,19 @@
+{
+    "pages": {
+        "Home": "/",
+        "About": "/about",
+        "Contact": "/contact",
+        "Catalog": "/catalog",
+        "Women": "/catalog/women",
+        "Men": "/catalog/men"
+    },
+    "profile": {
+        "public": {
+            "Sign In": "/login",
+            "Sign Up": "/register"
+        },
+        "private": {
+            "Sign Out": "/logout"
+        }
+    }
+}

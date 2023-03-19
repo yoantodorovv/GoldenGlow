@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import * as validate from './services/validatationService'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../services/firebaseService'
 
 import styles from './Register.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import register from '../../../public/images/Register/register.png'
+import { PopUp } from '../PopUp/PopUp'
 
 export const Register = () => {
     const [formValues, setFormValues] = useState({
@@ -29,6 +32,8 @@ export const Register = () => {
         password: false,
         repeatPassword: false,
     });
+    const [displayPopUp, setDisplayPopUp] = useState('');
+    const navigate = useNavigate();
 
     const isTouchedHandler = (e) =>
         setIsTouched(state => ({ ...state, [e.target.name]: true }));
@@ -60,19 +65,43 @@ export const Register = () => {
         return setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
-
     const onBlurHandler = (e) => {
         const validationError = formValuesValidate[e.target.name](e.target.value, formValues.password);
 
         return setValidateFormValues(state => ({ ...state, [e.target.name]: validationError }))
     }
 
+    const onFormSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const credentials = await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
+            
+            credentials !== null 
+            ? setDisplayPopUp('success')
+            : setDisplayPopUp('error')
+
+            setTimeout(() => {
+                setDisplayPopUp('');
+            }, 3000);
+            
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className={styles['general-wrapper']}>
+            {/* {
+                displayPopUp !== null
+                ? <PopUp type={displayPopUp} text="Successfully Signed Up!" />
+                : <PopUp type={displayPopUp} text="Invalid Sign Up!" />
+            } */}
             <div className={styles['image-wrapper']}>
                 <img src={register} alt="Image of clothes" />
             </div>
-            <form className={styles['form']}>
+            <form onSubmit={onFormSubmit} className={styles['form']}>
                 <div className={styles['title-wrapper']}>
                     <h1 className={styles['title']}>Sign Up</h1>
                 </div>

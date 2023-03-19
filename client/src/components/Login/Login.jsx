@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import * as validate from './services/validationService'
+import { signInWithEmailAndPassword } from '@firebase/auth'
+import { auth } from '../../services/firebaseService'
 
 import styles from './Login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import login from '../../../public/images/Login/login.png'
+import { PopUp } from '../PopUp/PopUp'
 
 export const Login = () => {
     const [formValues, setFormValues] = useState({
@@ -23,6 +26,8 @@ export const Login = () => {
         email: false,
         password: false,
     });
+    const [displayPopUp, setDisplayPopUp] = useState('');
+    const navigate = useNavigate();
 
     const isTouchedHandler = (e) =>
         setIsTouched(state => ({ ...state, [e.target.name]: true }));
@@ -48,19 +53,45 @@ export const Login = () => {
         return setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
-
     const onBlurHandler = (e) => {
         const validationError = formValuesValidate[e.target.name](e.target.value);
 
         return setValidateFormValues(state => ({ ...state, [e.target.name]: validationError }))
     }
 
+    const onFormSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await signInWithEmailAndPassword(auth, formValues.email, formValues.password);
+            
+            console.log(res);
+
+            res !== null 
+            ? setDisplayPopUp('success')
+            : setDisplayPopUp('error')
+
+            setTimeout(() => {
+                setDisplayPopUp('');
+            }, 3000);
+
+            navigate('/')
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className={styles['general-wrapper']}>
+            {/* {
+                displayPopUp !== null
+                ? <PopUp type={displayPopUp} text="Successfully Signed In!" />
+                : <PopUp type={displayPopUp} text="Invalid Sign In!" />
+            } */}
             <div className={styles['image-wrapper']}>
                 <img src={login} alt="Image of clothes" />
             </div>
-            <form className={styles['form']}>
+            <form onSubmit={onFormSubmit} className={styles['form']}>
                 <div className={styles['title-wrapper']}>
                     <h1 className={styles['title']}>Sign In</h1>
                 </div>
