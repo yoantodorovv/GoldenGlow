@@ -52,23 +52,59 @@ $white-primary: #dbcec3;
         color: $dark-color;
     }
 
-    .input-item {
-        padding: .5em;
-        background-color: $white-primary-accent;
-        border: none;
-        border-bottom: 1px solid $dark-color;
+    .input-wrapper {
+        width: 100%;
     }
+}
 
-    .input-item:focus {
-        border-bottom: 2px solid $dark-color;
-        outline: none;
-    }
+.input-item {
+    width: 100%;
+    padding: .5em;
+    background-color: $white-primary-accent;
+    border: none;
+    border-bottom: 1px solid $dark-color;
+}
+
+.input-item-pass {
+    width: 95%;
+    padding: .5em;
+    background-color: $white-primary-accent;
+    border: none;
+    border-bottom: 1px solid $dark-color;
+}
+
+.input-item:focus,
+.input-item-pass:focus {
+    border-bottom: 2px solid $dark-color;
+    outline: none;
+}
+
+.hide-password {
+    width: 5%;
+    background-color: transparent;
+    border: none;
 }
 
 .validate {
     position: relative;
     left: 95%;
-    bottom: 30%;
+    bottom: 23%;
+    width: fit-content;
+
+    .icon-check {
+        color: $check;
+    }
+
+    .icon-error {
+        color: $error;
+    }
+}
+
+.validate-password {
+    position: relative;
+    left: 90%;
+    bottom: 23%;
+    width: fit-content;
 
     .icon-check {
         color: $check;
