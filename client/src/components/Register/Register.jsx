@@ -1,9 +1,10 @@
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { auth, authGoogleProvider } from '../../services/firebaseService'
+import * as validate from './services/validatationService'
+import Swal from 'sweetalert2'
+
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
-import * as validate from './services/validatationService'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../services/firebaseService'
 
 import styles from './Register.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -86,14 +87,62 @@ export const Register = () => {
 
             navigate('/');
         } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                Swal.fire({
+                    title: 'Sign Up failed',
+                    text: 'The email address you entered is already registered. Please try another email address.',
+                    icon: 'error',
+                    confirmButtonText: 'Go Back',
+                    confirmButtonColor: '#6c3d1f',
+                    allowEnterKey: true,
+                })
+            } else {
+                Swal.fire({
+                    title: 'Sign Up failed',
+                    text: 'Sorry, we were unable to sign you up. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'Go Back',
+                    confirmButtonColor: '#6c3d1f',
+                    allowEnterKey: true,
+                })
+            }
+        }
+    }
+
+    const signInWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth, authGoogleProvider);
+            
             Swal.fire({
-                title: 'Sign Up failed',
-                text: 'Sorry, we were unable to sign you up. Please try again later.',
-                icon: 'error',
-                confirmButtonText: 'Go Back',
+                title: 'Sign Up successful',
+                text: 'Thank you for signing up!',
+                icon: 'success',
+                confirmButtonText: 'Ok',
                 confirmButtonColor: '#6c3d1f',
                 allowEnterKey: true,
-            })
+            });
+
+            navigate('/');
+        } catch (error) {
+            if (error.code === 'auth/account-exists-with-different-credential') {
+                Swal.fire({
+                    title: 'Sign Up failed',
+                    text: 'The email address you entered is already registered. Please try another email address.',
+                    icon: 'error',
+                    confirmButtonText: 'Go Back',
+                    confirmButtonColor: '#6c3d1f',
+                    allowEnterKey: true,
+                })
+            } else {
+                Swal.fire({
+                    title: 'Sign Up failed',
+                    text: 'Sorry, we were unable to sign you up. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'Go Back',
+                    confirmButtonColor: '#6c3d1f',
+                    allowEnterKey: true,
+                })
+            }
         }
     }
 
@@ -244,7 +293,11 @@ export const Register = () => {
 
                 <p className={styles['login-btn-p']}>Already have an account? <Link to="/login" className={styles['login-btn']}>Sign In</Link></p>
 
-                <button type='button' className={styles['google-btn']}>
+                <button 
+                    type='button' 
+                    onClick={signInWithGoogle}
+                    className={styles['google-btn']}
+                >
                     <FontAwesomeIcon icon={faGoogle} className={styles['google-icon']} size="lg" />
                     Continue with Google
                 </button>

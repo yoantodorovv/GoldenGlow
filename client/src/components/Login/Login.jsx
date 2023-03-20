@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import * as validate from './services/validationService'
-import { signInWithEmailAndPassword } from '@firebase/auth'
-import { auth } from '../../services/firebaseService'
+import { signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth'
+import { auth, authGoogleProvider } from '../../services/firebaseService'
 import Swal from 'sweetalert2'
 
 import styles from './Login.module.scss'
@@ -78,6 +78,32 @@ export const Login = () => {
                 title: 'Sign In failed',
                 text: 'Sorry, we were unable to sing you in. Please check your username and password and try again later.',
                 icon: 'error',
+                confirmButtonText: 'Go Back',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+        }
+    }
+
+    const signInWithGoogle = async () => {
+        try {
+            const res = await signInWithPopup(auth, authGoogleProvider);
+
+            Swal.fire({
+                title: 'Sign In successful',
+                text: `Welocome back, ${res.user.email}!`,
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            });
+
+            navigate('/')
+        } catch (error) {
+            Swal.fire({
+                title: 'Sign In failed',
+                text: 'Sorry, we were unable to sing you in. Please try again later.',
+                icon: 'error',  
                 confirmButtonText: 'Go Back',
                 confirmButtonColor: '#6c3d1f',
                 allowEnterKey: true,
@@ -165,7 +191,11 @@ export const Login = () => {
 
                 <p className={styles['register-btn-p']}>Don't have an account? <Link to="/register" className={styles['register-btn']}>Sign Up</Link></p>
 
-                <button type='button' className={styles['google-btn']}>
+                <button 
+                    type='button' 
+                    onClick={signInWithGoogle}
+                    className={styles['google-btn']}
+                >
                     <FontAwesomeIcon icon={faGoogle} className={styles['google-icon']} size="lg" />
                     Continue with Google
                 </button>
