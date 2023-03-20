@@ -4,14 +4,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import * as validate from './services/validationService'
 import { signInWithEmailAndPassword } from '@firebase/auth'
 import { auth } from '../../services/firebaseService'
+import Swal from 'sweetalert2'
 
 import styles from './Login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import login from '../../../public/images/Login/login.png'
-import { PopUp } from '../PopUp/PopUp'
-
 export const Login = () => {
     const [formValues, setFormValues] = useState({
         email: '',
@@ -26,7 +25,6 @@ export const Login = () => {
         email: false,
         password: false,
     });
-    const [displayPopUp, setDisplayPopUp] = useState('');
     const navigate = useNavigate();
 
     const isTouchedHandler = (e) =>
@@ -64,30 +62,31 @@ export const Login = () => {
 
         try {
             const res = await signInWithEmailAndPassword(auth, formValues.email, formValues.password);
-            
-            console.log(res);
 
-            res !== null 
-            ? setDisplayPopUp('success')
-            : setDisplayPopUp('error')
-
-            setTimeout(() => {
-                setDisplayPopUp('');
-            }, 3000);
+            Swal.fire({
+                title: 'Sign In successful',
+                text: `Welocome back, ${res.user.email}!`,
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            });
 
             navigate('/')
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                title: 'Sign In failed',
+                text: 'Sorry, we were unable to sing you in. Please check your username and password and try again later.',
+                icon: 'error',
+                confirmButtonText: 'Go Back',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
         }
     }
 
     return (
         <div className={styles['general-wrapper']}>
-            {/* {
-                displayPopUp !== null
-                ? <PopUp type={displayPopUp} text="Successfully Signed In!" />
-                : <PopUp type={displayPopUp} text="Invalid Sign In!" />
-            } */}
             <div className={styles['image-wrapper']}>
                 <img src={login} alt="Image of clothes" />
             </div>

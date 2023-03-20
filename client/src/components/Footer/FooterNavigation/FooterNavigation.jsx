@@ -1,5 +1,6 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../../services/firebaseService'
+import Swal from 'sweetalert2'
 
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -28,11 +29,31 @@ export const FooterNavigation = () => {
     }, []);
 
     const userSignOut = async () => {
-        await signOut(auth);
+        try {
+            await signOut(auth);
 
-        //TODO: Add PopUp
+            Swal.fire({
+                title: 'Sign Out successful!',
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                timer: 2000,
+                allowEnterKey: true,
+                showConfirmButton: false,
+            });
 
-        navigate('/');
+            navigate('/');
+        } catch (error) {
+            Swal.fire({
+                title: 'Sign Out failed! Please try again later!',
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 2000,
+                allowEnterKey: true,
+                showConfirmButton: false,
+            });
+        }
     }
 
     return (

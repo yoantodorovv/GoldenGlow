@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import register from '../../../public/images/Register/register.png'
-import { PopUp } from '../PopUp/PopUp'
 
 export const Register = () => {
     const [formValues, setFormValues] = useState({
@@ -32,7 +31,6 @@ export const Register = () => {
         password: false,
         repeatPassword: false,
     });
-    const [displayPopUp, setDisplayPopUp] = useState('');
     const navigate = useNavigate();
 
     const isTouchedHandler = (e) =>
@@ -75,29 +73,32 @@ export const Register = () => {
         e.preventDefault();
 
         try {
-            const credentials = await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
+            await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
             
-            credentials !== null 
-            ? setDisplayPopUp('success')
-            : setDisplayPopUp('error')
+            Swal.fire({
+                title: 'Sign Up successful',
+                text: 'Thank you for signing up!',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            });
 
-            setTimeout(() => {
-                setDisplayPopUp('');
-            }, 3000);
-            
             navigate('/');
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                title: 'Sign Up failed',
+                text: 'Sorry, we were unable to sign you up. Please try again later.',
+                icon: 'error',
+                confirmButtonText: 'Go Back',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
         }
     }
 
     return (
         <div className={styles['general-wrapper']}>
-            {/* {
-                displayPopUp !== null
-                ? <PopUp type={displayPopUp} text="Successfully Signed Up!" />
-                : <PopUp type={displayPopUp} text="Invalid Sign Up!" />
-            } */}
             <div className={styles['image-wrapper']}>
                 <img src={register} alt="Image of clothes" />
             </div>
