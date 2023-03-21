@@ -266,11 +266,6 @@ export const Register = () => {
                             onChange={onChangeHandler}
                             onBlur={onBlurHandler}
                         />
-                        {
-                            isTouched.password
-                                ? <AuthValidationIcon validation={validateFormValues.password} />
-                                : null
-                        }
                         <button type="button" onClick={passwordTypeHandler} className={styles['hide-password']}>
                             {
                                 passwordType === 'password'
@@ -278,6 +273,11 @@ export const Register = () => {
                                     : <FontAwesomeIcon icon={faEyeSlash} />
                             }
                         </button>
+                        {
+                            isTouched.password
+                                ? <AuthValidationIcon validation={validateFormValues.password} />
+                                : null
+                        }
                     </div>
                     {
                         isTouched.password
@@ -297,11 +297,6 @@ export const Register = () => {
                             onChange={onChangeHandler}
                             onBlur={onBlurHandler}
                         />
-                        {
-                            isTouched.repeatPassword
-                                ? <AuthValidationIcon validation={validateFormValues.repeatPassword} />
-                                : null
-                        }
                         <button type="button" onClick={repeatPasswordTypeHandler} className={styles['hide-password']}>
                             {
                                 repeatPasswordType === 'password'
@@ -309,6 +304,11 @@ export const Register = () => {
                                     : <FontAwesomeIcon icon={faEyeSlash} />
                             }
                         </button>
+                        {
+                            isTouched.repeatPassword
+                                ? <AuthValidationIcon validation={validateFormValues.repeatPassword} />
+                                : null
+                        }
                     </div>
                     {
                         isTouched.repeatPassword

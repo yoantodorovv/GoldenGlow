@@ -197,11 +197,6 @@ export const Login = () => {
                             onChange={onChangeHandler}
                             onBlur={onBlurHandler}
                         />
-                        {
-                            isTouched.password
-                                ? <AuthValidationIcon validation={validateFormValues.password} />
-                                : null
-                        }
                         <button type="button" onClick={passwordTypeHandler} className={styles['hide-password']}>
                             {
                                 passwordType === 'password'
@@ -209,6 +204,11 @@ export const Login = () => {
                                     : <FontAwesomeIcon icon={faEyeSlash} />
                             }
                         </button>
+                        {
+                            isTouched.password
+                                ? <AuthValidationIcon validation={validateFormValues.password} />
+                                : null
+                        }
                     </div>
                     {
                         isTouched.password
