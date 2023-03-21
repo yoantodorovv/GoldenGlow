@@ -1,5 +1,6 @@
 $brown-primary: #6c3d1f;
 $white-primary: #dbcec3;
+$white-primary-accent: #fff6ec;
 
 .nav {
     display: flex;
@@ -47,4 +48,36 @@ $white-primary: #dbcec3;
     height: 30px;
     width: 2px;
     background-color: $brown-primary;
+}
+
+.nav-icon-list-item-parent {
+    display: flex;
+    align-items: center;
+    padding: .7em 1em;
+    background-color: $white-primary-accent;
+    border: 1px solid $brown-primary;
+    border-radius: 25px;
+    transition: .2s ease-in;
+    text-decoration: none;
+
+    .nav-icon-list-item {
+        color: $brown-primary;
+        margin-right: .3em;
+    }
+
+    h3 {
+        color: #000;
+        text-decoration: none;
+    }
+}
+
+.nav-icon-list-item-parent:hover {
+    color: $white-primary-accent;
+    background-color: $brown-primary;
+    cursor: pointer;
+
+    .nav-icon-list-item {
+        color: $white-primary-accent;
+        cursor: pointer;
+    }
 }

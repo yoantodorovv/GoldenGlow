@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { auth } from '../../../services/firebaseService'
+
 import styles from './ContactForm.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +10,11 @@ export const ContactForm = ({
     formStyle,
     onLocateClick,
 }) => {
+
+    //TODO: Set up Firestore and store user and its properties
+    //TODO: Set innitial email and fullname values to user's if there is one logged in
+    console.log(auth.currentUser);
+
     const [formValues, setFormValues] = useState({
         fullName: '',
         email: '',

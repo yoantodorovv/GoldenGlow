@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../../services/firebaseService'
-import Swal from 'sweetalert2'
 
 import styles from "./HeaderNavigation.module.scss";
+import { HeaderProfile } from './HeaderProfile/HeaderProfile'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export const HeaderNavigation = () => {
     const [authUser, setAuthUser] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
             user
-            ? setAuthUser(user)
-            : setAuthUser(null)
+                ? setAuthUser(user)
+                : setAuthUser(null)
         })
 
         return () => {
@@ -23,35 +24,10 @@ export const HeaderNavigation = () => {
         }
     }, []);
 
-    const userSignOut = async () => {
-        try {
-            await signOut(auth);
 
-            Swal.fire({
-                title: 'Sign Out successful!',
-                icon: 'success',
-                toast: true,
-                position: 'top-end',
-                timer: 2000,
-                allowEnterKey: true,
-                showConfirmButton: false,
-            });
-
-            navigate('/');
-        } catch (error) {
-            Swal.fire({
-                title: 'Sign Out failed! Please try again later!',
-                icon: 'error',
-                toast: true,
-                position: 'top-end',
-                timer: 2000,
-                allowEnterKey: true,
-                showConfirmButton: false,
-            });
-        }
-    }
 
     //TODO: Extract sign out into profile drop down (image on top)
+    //TODO: Add Count on wishlist and shopping card (working and real)
     return (
         <nav className={styles['nav']}>
             <ul className={styles['nav-btn-list']}>
@@ -107,13 +83,28 @@ export const HeaderNavigation = () => {
                             </>
                         )
                         : (
-                            <li className={styles['nav-btn-list-item']}>
-                                <button
-                                    onClick={userSignOut}
-                                    className={styles['nav-btn-li-link']}>
-                                    Sign Out
-                                </button>
-                            </li>
+                            <>
+                                <li>
+                                    <Link
+                                        to="/catalog/wishlist"
+                                        className={styles['nav-icon-list-item-parent']}
+                                    >
+                                        <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faHeart} size="xl" />
+                                        <h3>1</h3>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link 
+                                        to='/catalog/shopping-cart'
+                                        className={styles['nav-icon-list-item-parent']}>
+                                        <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faCartShopping} size="xl" />
+                                        <h3>1</h3>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <HeaderProfile />
+                                </li>
+                            </>
                         )
                 }
             </ul>

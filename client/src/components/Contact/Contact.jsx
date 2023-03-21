@@ -22,8 +22,6 @@ export const Contact = () => {
                 <div className={styles['image-wrapper']}>
                     <img src={contact} alt="Image of clothes" />
                 </div>
-
-
                 {
                     !isLocate 
                     ?   <ContactForm onLocateClick={onLocateClick} formStyle="form-wrapper"/>

@@ -13,6 +13,9 @@
             "Sign Up": "/register"
         },
         "private": {
+            "View Profile": "/user",
+            "Purchase History": "/purchase-history",
+            "Settings": "/user/settings",
             "Sign Out": "/logout"
         }
     }

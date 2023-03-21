@@ -11,6 +11,11 @@ import { Catalog } from "./components/Catalog/Catalog"
 import { Login } from "./components/Login/Login"
 import { Register } from "./components/Register/Register"
 import { ResetPassword } from "./components/ResetPassword/ResetPassword"
+import { Profile } from "./components/Profile/Profile";
+import { Settings } from "./components/Settings/Settings";
+import { PurchaseHistory } from "./components/PurchaseHistory/PurchaseHistory";
+import { Wishlist } from "./components/Wishlist/Wishlist";
+import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
 
 function App() {
     //TODO: Attribute the photographers and Unsplash for the photos
@@ -22,6 +27,7 @@ function App() {
                     path="*" 
                     element={<NotFound />} 
                 />
+                //TODO: Change about to catalog
                 <Route 
                     path="/" 
                     element={
@@ -46,6 +52,7 @@ function App() {
                         </MainWrapper>
                     } 
                 />
+                //TODO: Finish
                 <Route 
                     path="/catalog" 
                     element={
@@ -54,6 +61,25 @@ function App() {
                         </MainWrapper>
                     } 
                 />
+                //TODO: Finish
+                <Route 
+                    path="/catalog/wishlist" 
+                    element={
+                        <MainWrapper>
+                            <Wishlist />
+                        </MainWrapper>
+                    } 
+                />
+                //TODO: Finish
+                <Route 
+                    path="/catalog/shopping-cart" 
+                    element={
+                        <MainWrapper>
+                            <ShoppingCart />
+                        </MainWrapper>
+                    } 
+                />
+                //TODO: Finish
                 <Route 
                     path="/catalog/women"
                     element={
@@ -62,6 +88,7 @@ function App() {
                         </MainWrapper>
                     } 
                 />
+                //TODO: Finish
                 <Route 
                     path="/catalog/men"
                     element={
@@ -69,6 +96,33 @@ function App() {
                             <MenCatalog />
                         </MainWrapper>
                     } 
+                />
+                //TODO: Finish
+                <Route 
+                    path="/user"
+                    element={
+                        <MainWrapper>
+                            <Profile />
+                        </MainWrapper>
+                    }
+                />
+                //TODO: Finish
+                <Route 
+                    path="/user/purchase-history"
+                    element={
+                        <MainWrapper>
+                            <PurchaseHistory />
+                        </MainWrapper>
+                    }
+                />
+                //TODO: Finish
+                <Route 
+                    path="/user/settings"
+                    element={
+                        <MainWrapper>
+                            <Settings />
+                        </MainWrapper>
+                    }
                 />
                 <Route 
                     path="/login"
