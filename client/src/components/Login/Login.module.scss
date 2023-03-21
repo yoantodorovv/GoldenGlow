@@ -1,10 +1,29 @@
 $white-primary-accent: #fff6ec;
-$check: #008000;
-$error: #ff0000;
 $dark-color: #413d38;
 $brown-primary: #6c3d1f;
 $brown-secondary: #8a5b40;
 $white-primary: #dbcec3;
+
+@mixin input-item($width) {
+    width: $width;
+    padding: .5em;
+    background-color: $white-primary-accent;
+    border: none;
+    border-bottom: 1px solid $dark-color;
+}
+
+@mixin submit-btn($bg-color) {
+    color: $white-primary;
+    background-color: $bg-color;
+    font-size: 15px;
+    width: 100%;
+    margin-top: 1em;
+    padding: 1em;
+    border: none;
+    border-radius: 25px;
+    transition: .15s ease-in;
+    font-weight: bold;
+}
 
 .general-wrapper {
     display: flex;
@@ -53,24 +72,18 @@ $white-primary: #dbcec3;
     }
 
     .input-wrapper {
+        display: flex;
+        align-items: center;
         width: 100%;
     }
 }
 
 .input-item {
-    width: 100%;
-    padding: .5em;
-    background-color: $white-primary-accent;
-    border: none;
-    border-bottom: 1px solid $dark-color;
+    @include input-item(100%);
 }
 
 .input-item-pass {
-    width: 95%;
-    padding: .5em;
-    background-color: $white-primary-accent;
-    border: none;
-    border-bottom: 1px solid $dark-color;
+    @include input-item(90%);
 }
 
 .input-item:focus,
@@ -81,51 +94,13 @@ $white-primary: #dbcec3;
 
 .hide-password {
     width: 5%;
+    padding: 0% .5em;
     background-color: transparent;
     border: none;
 }
 
-.validate {
-    position: relative;
-    left: 95%;
-    bottom: 23%;
-    width: fit-content;
-
-    .icon-check {
-        color: $check;
-    }
-
-    .icon-error {
-        color: $error;
-    }
-}
-
-.validate-password {
-    position: relative;
-    left: 90%;
-    bottom: 23%;
-    width: fit-content;
-
-    .icon-check {
-        color: $check;
-    }
-
-    .icon-error {
-        color: $error;
-    }
-}
-
 .submit-btn {
-    color: $white-primary;
-    background-color: $brown-primary;
-    font-size: 15px;
-    width: 100%;
-    margin-top: 1em;
-    padding: 1em;
-    border: none;
-    border-radius: 25px;
-    transition: .15s ease-in;
-    font-weight: bold;
+    @include submit-btn($brown-primary);
 }
 
 .submit-btn:hover {
@@ -134,18 +109,7 @@ $white-primary: #dbcec3;
 } 
 
 .submit-btn-disabled {
-    color: $white-primary;
-    background-color: $brown-secondary;
-    width: 100%;
-    margin-top: 1em;
-    padding: 1em;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
-}
-
-.error {
-    color: $error;
+    @include submit-btn($brown-secondary);
 }
 
 .google-btn {
@@ -155,6 +119,10 @@ $white-primary: #dbcec3;
     border: 2px solid $brown-primary;
     border-radius: 25px;
     transition: .3s ease-in-out;
+
+    .google-icon {
+        margin-right: 1em;
+    }
 }
 
 .google-btn:hover {
@@ -163,18 +131,14 @@ $white-primary: #dbcec3;
     cursor: pointer;
 }
 
-.google-icon {
-    margin-right: 1em;
-}
-
 .register-btn-p {
     margin-bottom: .5em;
-}
 
-.register-btn {
-    color: $brown-primary;
-    font-weight: bold;
-    text-decoration: none;
+    .register-btn {
+        color: $brown-primary;
+        font-weight: bold;
+        text-decoration: none;
+    }
 }
 
 .back-btn {
@@ -182,8 +146,8 @@ $white-primary: #dbcec3;
     color: $brown-primary;
     font-weight: bold;
     text-decoration: none;
-}
 
-.back-btn-icon {
-    margin-right: .5em;
+    .back-btn-icon {
+        margin-right: .5em;
+    }
 }

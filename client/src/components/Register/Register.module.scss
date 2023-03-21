@@ -6,6 +6,27 @@ $brown-primary: #6c3d1f;
 $brown-secondary: #8a5b40;
 $white-primary: #dbcec3;
 
+@mixin input-item($width) {
+    width: $width;
+    padding: .5em;
+    background-color: $white-primary-accent;
+    border: none;
+    border-bottom: 1px solid $dark-color;
+}
+
+@mixin submit-btn($bg-color) {
+    color: $white-primary;
+    background-color: $bg-color;
+    font-size: 15px;
+    width: 100%;
+    margin-top: 1em;
+    padding: 1em;
+    border: none;
+    border-radius: 25px;
+    transition: .15s ease-in;
+    font-weight: bold;
+}
+
 .general-wrapper {
     display: flex;
     justify-content: center;
@@ -52,17 +73,24 @@ $white-primary: #dbcec3;
         color: $dark-color;
     }
 
-    .input-item {
-        padding: .5em;
-        background-color: $white-primary-accent;
-        border: none;
-        border-bottom: 1px solid $dark-color;
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
     }
+}
 
-    .input-item:focus {
-        border-bottom: 2px solid $dark-color;
-        outline: none;
-    }
+.input-item {
+    @include input-item(100%);
+}
+
+.input-item-pass {
+    @include input-item(90%);
+}
+
+.input-item:focus {
+    border-bottom: 2px solid $dark-color;
+    outline: none;
 }
 
 .validate {
@@ -80,16 +108,7 @@ $white-primary: #dbcec3;
 }
 
 .submit-btn {
-    color: $white-primary;
-    background-color: $brown-primary;
-    font-size: 15px;
-    width: 100%;
-    margin-top: 1em;
-    padding: 1em;
-    border: none;
-    border-radius: 25px;
-    transition: .15s ease-in;
-    font-weight: bold;
+    @include submit-btn($brown-primary)
 }
 
 .submit-btn:hover {
@@ -98,14 +117,7 @@ $white-primary: #dbcec3;
 } 
 
 .submit-btn-disabled {
-    color: $white-primary;
-    background-color: $brown-secondary;
-    width: 100%;
-    margin-top: 1em;
-    padding: 1em;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
+    @include submit-btn($brown-secondary);
 }
 
 .error {
@@ -119,6 +131,10 @@ $white-primary: #dbcec3;
     border: 2px solid $brown-primary;
     border-radius: 25px;
     transition: .3s ease-in-out;
+
+    .google-icon {
+        margin-right: 1em;
+    }
 }
 
 .google-btn:hover {
@@ -127,18 +143,21 @@ $white-primary: #dbcec3;
     cursor: pointer;
 }
 
-.google-icon {
-    margin-right: 1em;
-}
-
 .login-btn-p {
     margin-bottom: .5em;
+
+    .login-btn {
+        color: $brown-primary;
+        font-weight: bold;
+        text-decoration: none;
+    }
 }
 
-.login-btn {
-    color: $brown-primary;
-    font-weight: bold;
-    text-decoration: none;
+.hide-password {
+    width: 5%;
+    padding: 0% .5em;
+    background-color: transparent;
+    border: none;
 }
 
 .back-btn {
@@ -146,8 +165,8 @@ $white-primary: #dbcec3;
     color: $brown-primary;
     font-weight: bold;
     text-decoration: none;
-}
 
-.back-btn-icon {
-    margin-right: .5em;
+    .back-btn-icon {
+        margin-right: .5em;
+    }
 }

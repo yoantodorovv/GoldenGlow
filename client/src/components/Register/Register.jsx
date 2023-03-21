@@ -3,12 +3,15 @@ import { auth, authGoogleProvider } from '../../services/firebaseService'
 import * as validate from './services/validatationService'
 import Swal from 'sweetalert2'
 
+import { AuthValidation } from '../AuthValidation/AuthValidation'
+import { AuthValidationIcon } from '../AuthValidationIcon/AuthValidationIcon'
+
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import styles from './Register.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeftLong, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import register from '../../../public/images/Register/register.png'
 
@@ -32,9 +35,11 @@ export const Register = () => {
         password: false,
         repeatPassword: false,
     });
+    const [passwordType, setPasswordType] = useState('password');
+    const [repeatPasswordType, setRepeatPasswordType] = useState('password');
     const navigate = useNavigate();
 
-    onAuthStateChanged(auth, function(user) {
+    onAuthStateChanged(auth, function (user) {
         if (user) {
             Swal.fire({
                 title: 'Oops...',
@@ -47,7 +52,7 @@ export const Register = () => {
 
             navigate('/');
         }
-      });
+    });
 
     if (auth.currentUser) {
         Swal.fire({
@@ -103,7 +108,7 @@ export const Register = () => {
 
         try {
             await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
-            
+
             Swal.fire({
                 title: 'Sign Up successful',
                 text: 'Thank you for signing up!',
@@ -140,7 +145,7 @@ export const Register = () => {
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, authGoogleProvider);
-            
+
             Swal.fire({
                 title: 'Sign Up successful',
                 text: 'Thank you for signing up!',
@@ -174,6 +179,24 @@ export const Register = () => {
         }
     }
 
+    const passwordTypeHandler = () => {
+        if (passwordType === 'password') {
+            setPasswordType('text')
+            return;
+        }
+
+        setPasswordType('password')
+    }
+
+    const repeatPasswordTypeHandler = () => {
+        if (repeatPasswordType === 'password') {
+            setRepeatPasswordType('text');
+            return;
+        }
+
+        setRepeatPasswordType('password');
+    }
+
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['image-wrapper']}>
@@ -185,144 +208,119 @@ export const Register = () => {
                 </div>
                 <div className={styles['input-item-wrapper']}>
                     <label htmlFor="fullName" className={styles['input-item-label']}>Full Name</label>
-                    <input
-                        className={styles['input-item']}
-                        type="text"
-                        name="fullName"
-                        id="fullName"
-                        value={formValues.fullName}
-                        onChange={onChangeHandler}
-                        onBlur={onBlurHandler}
-                    />
+                    <div className={styles['input-wrapper']}>
+                        <input
+                            className={styles['input-item']}
+                            type="text"
+                            name="fullName"
+                            id="fullName"
+                            value={formValues.fullName}
+                            onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
+                        />
+                        {
+                            isTouched.fullName
+                                ? <AuthValidationIcon validation={validateFormValues.fullName} />
+                                : null
+                        }
+                    </div>
                     {
                         isTouched.fullName
-                        ? (
-                            <>
-                                <div className={styles['validate']}>
-                                    {
-                                        validateFormValues.fullName == 'true'
-                                            ? <FontAwesomeIcon className={styles['icon-check']} icon={faCheck} />
-                                            : <FontAwesomeIcon className={styles['icon-error']} icon={faXmark} />
-                                    }
-                                </div>
-                                {
-                                    validateFormValues.fullName !== 'true'
-                                        ? <p className={styles['error']}>{validateFormValues.fullName}</p>
-                                        : null
-                                }
-                            </>
-                        )
-                        : null
+                            ? <AuthValidation text={validateFormValues.fullName} />
+                            : null
                     }
-
                 </div>
                 <div className={styles['input-item-wrapper']}>
                     <label htmlFor="email" className={styles['input-item-label']}>Email</label>
-                    <input
-                        className={styles['input-item']}
-                        type="text"
-                        name="email"
-                        id="email"
-                        value={formValues.email}
-                        onChange={onChangeHandler}
-                        onBlur={onBlurHandler}
-                    />
+                    <div className={styles['input-wrapper']}>
+                        <input
+                            className={styles['input-item']}
+                            type="text"
+                            name="email"
+                            id="email"
+                            value={formValues.email}
+                            onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
+                        />
+                        {
+                            isTouched.email
+                                ? <AuthValidationIcon validation={validateFormValues.email} />
+                                : null
+                        }
+                    </div>
                     {
                         isTouched.email
-                        ? (
-                            <>
-                                <div className={styles['validate']}>
-                                    {
-                                        validateFormValues.email == 'true'
-                                            ? <FontAwesomeIcon className={styles['icon-check']} icon={faCheck} />
-                                            : <FontAwesomeIcon className={styles['icon-error']} icon={faXmark} />
-                                    }
-                                </div>
-                                {
-                                    validateFormValues.email !== 'true'
-                                        ? <div className={styles['error']}>
-                                            <p>{validateFormValues.email}</p>
-                                        </div>
-                                        : null
-                                }
-                            </>
-                        )
-                        : null
+                            ? <AuthValidation text={validateFormValues.email} />
+                            : null
                     }
                 </div>
                 <div className={styles['input-item-wrapper']}>
                     <label htmlFor="password" className={styles['input-item-label']}>Password</label>
-                    <input
-                        className={styles['input-item']}
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={formValues.password}
-                        onChange={onChangeHandler}
-                        onBlur={onBlurHandler}
-                    />
+                    <div className={styles['input-wrapper']}>
+                        <input
+                            className={styles['input-item']}
+                            type={passwordType}
+                            name="password"
+                            id="password"
+                            value={formValues.password}
+                            onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
+                        />
+                        {
+                            isTouched.password
+                                ? <AuthValidationIcon validation={validateFormValues.password} />
+                                : null
+                        }
+                        <button type="button" onClick={passwordTypeHandler} className={styles['hide-password']}>
+                            {
+                                passwordType === 'password'
+                                    ? <FontAwesomeIcon icon={faEye} />
+                                    : <FontAwesomeIcon icon={faEyeSlash} />
+                            }
+                        </button>
+                    </div>
                     {
                         isTouched.password
-                        ? (
-                            <>
-                                <div className={styles['validate']}>
-                                    {
-                                        validateFormValues.password == 'true'
-                                            ? <FontAwesomeIcon className={styles['icon-check']} icon={faCheck} />
-                                            : <FontAwesomeIcon className={styles['icon-error']} icon={faXmark} />
-                                    }
-                                </div>
-                                {
-                                    validateFormValues.password !== 'true'
-                                        ? <div className={styles['error']}>
-                                            <p>{validateFormValues.password}</p>
-                                        </div>
-                                        : null
-                                }
-                            </>
-                        )
-                        : null
+                            ? <AuthValidation text={validateFormValues.password} />
+                            : null
                     }
                 </div>
                 <div className={styles['input-item-wrapper']}>
                     <label htmlFor="repeatPassword" className={styles['input-item-label']}>Repeat Password</label>
-                    <input
-                        className={styles['input-item']}
-                        type="password"
-                        name="repeatPassword"
-                        id="repeatPassword"
-                        value={formValues.repeatPassword}
-                        onChange={onChangeHandler}
-                        onBlur={onBlurHandler}
-                    />
+                    <div className={styles['input-wrapper']}>
+                        <input
+                            className={styles['input-item']}
+                            type={repeatPasswordType}
+                            name="repeatPassword"
+                            id="repeatPassword"
+                            value={formValues.repeatPassword}
+                            onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
+                        />
+                        {
+                            isTouched.repeatPassword
+                                ? <AuthValidationIcon validation={validateFormValues.repeatPassword} />
+                                : null
+                        }
+                        <button type="button" onClick={repeatPasswordTypeHandler} className={styles['hide-password']}>
+                            {
+                                repeatPasswordType === 'password'
+                                    ? <FontAwesomeIcon icon={faEye} />
+                                    : <FontAwesomeIcon icon={faEyeSlash} />
+                            }
+                        </button>
+                    </div>
                     {
                         isTouched.repeatPassword
-                        ? (
-                            <>
-                                <div className={styles['validate']}>
-                                    {
-                                        validateFormValues.repeatPassword == 'true'
-                                            ? <FontAwesomeIcon className={styles['icon-check']} icon={faCheck} />
-                                            : <FontAwesomeIcon className={styles['icon-error']} icon={faXmark} />
-                                    }
-                                </div>
-                                {
-                                    validateFormValues.repeatPassword !== 'true'
-                                        ? <div className={styles['error']}>
-                                            <p>{validateFormValues.repeatPassword}</p>
-                                        </div>
-                                        : null
-                                }
-                            </>
-                        )
+                        ? <AuthValidation text={validateFormValues.repeatPassword} />
                         : null
                     }
                 </div>
 
                 <p className={styles['login-btn-p']}>Already have an account? <Link to="/login" className={styles['login-btn']}>Sign In</Link></p>
 
-                <button 
-                    type='button' 
+                <button
+                    type='button'
                     onClick={signInWithGoogle}
                     className={styles['google-btn']}
                 >

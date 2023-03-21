@@ -6,11 +6,15 @@ import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 
 import { auth, authGoogleProvider } from '../../services/firebaseService'
 import Swal from 'sweetalert2'
 
+import { AuthValidation } from '../AuthValidation/AuthValidation'
+import { AuthValidationIcon } from '../AuthValidationIcon/AuthValidationIcon'
+
 import styles from './Login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faArrowLeftLong, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import login from '../../../public/images/Login/login.png'
+
 export const Login = () => {
     const [formValues, setFormValues] = useState({
         email: '',
@@ -28,7 +32,7 @@ export const Login = () => {
     const [passwordType, setPasswordType] = useState('password');
     const navigate = useNavigate();
 
-    onAuthStateChanged(auth, function(user) {
+    onAuthStateChanged(auth, function (user) {
         if (user) {
             Swal.fire({
                 title: 'Oops...',
@@ -41,7 +45,7 @@ export const Login = () => {
 
             navigate('/');
         }
-      });
+    });
 
     if (auth.currentUser) {
         Swal.fire({
@@ -159,35 +163,25 @@ export const Login = () => {
                 </div>
                 <div className={styles['input-item-wrapper']}>
                     <label htmlFor="email" className={styles['input-item-label']}>Email</label>
-                    <input
-                        className={styles['input-item']}
-                        type="text"
-                        name="email"
-                        id="email"
-                        value={formValues.email}
-                        onChange={onChangeHandler}
-                        onBlur={onBlurHandler}
-                    />
+                    <div className={styles['input-wrapper']}>
+                        <input
+                            className={styles['input-item']}
+                            type="text"
+                            name="email"
+                            id="email"
+                            value={formValues.email}
+                            onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
+                        />
+                        {
+                            isTouched.email 
+                            ? <AuthValidationIcon validation={validateFormValues.email} />
+                            : null
+                        }
+                    </div>
                     {
                         isTouched.email
-                            ? (
-                                <>
-                                    <div className={styles['validate']}>
-                                        {
-                                            validateFormValues.email == 'true'
-                                                ? <FontAwesomeIcon className={styles['icon-check']} icon={faCheck} />
-                                                : <FontAwesomeIcon className={styles['icon-error']} icon={faXmark} />
-                                        }
-                                    </div>
-                                    {
-                                        validateFormValues.email !== 'true'
-                                            ? <div className={styles['error']}>
-                                                <p>{validateFormValues.email}</p>
-                                            </div>
-                                            : null
-                                    }
-                                </>
-                            )
+                            ? <AuthValidation text={validateFormValues.email} />
                             : null
                     }
                 </div>
@@ -203,6 +197,11 @@ export const Login = () => {
                             onChange={onChangeHandler}
                             onBlur={onBlurHandler}
                         />
+                        {
+                            isTouched.password
+                                ? <AuthValidationIcon validation={validateFormValues.password} />
+                                : null
+                        }
                         <button type="button" onClick={passwordTypeHandler} className={styles['hide-password']}>
                             {
                                 passwordType === 'password'
@@ -213,24 +212,7 @@ export const Login = () => {
                     </div>
                     {
                         isTouched.password
-                            ? (
-                                <>
-                                    <div className={styles['validate-password']}>
-                                        {
-                                            validateFormValues.password == 'true'
-                                                ? <FontAwesomeIcon className={styles['icon-check']} icon={faCheck} />
-                                                : <FontAwesomeIcon className={styles['icon-error']} icon={faXmark} />
-                                        }
-                                    </div>
-                                    {
-                                        validateFormValues.password !== 'true'
-                                            ? <div className={styles['error']}>
-                                                <p>{validateFormValues.password}</p>
-                                            </div>
-                                            : null
-                                    }
-                                </>
-                            )
+                            ? <AuthValidation text={validateFormValues.password} />
                             : null
                     }
                 </div>
