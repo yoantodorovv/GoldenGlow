@@ -10,6 +10,7 @@ import { MenCatalog } from "./components/Catalog/MenCatalog/MenCatalog"
 import { Catalog } from "./components/Catalog/Catalog"
 import { Login } from "./components/Login/Login"
 import { Register } from "./components/Register/Register"
+import { ResetPassword } from "./components/ResetPassword/ResetPassword"
 
 function App() {
     //TODO: Attribute the photographers and Unsplash for the photos
@@ -73,6 +74,12 @@ function App() {
                     path="/login"
                     element={
                         <Login />
+                    }
+                />
+                <Route 
+                    path="/login/reset-password"
+                    element={
+                        <ResetPassword />
                     }
                 />
                 <Route 

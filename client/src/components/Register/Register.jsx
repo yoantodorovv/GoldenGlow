@@ -1,6 +1,6 @@
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { auth, authGoogleProvider } from '../../services/firebaseService'
-import * as validate from './services/validatationService'
+import * as validate from '../../services/validationService'
 import Swal from 'sweetalert2'
 
 import { AuthValidation } from '../AuthValidation/AuthValidation'

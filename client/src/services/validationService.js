@@ -3,7 +3,7 @@ export const fullName = (fullName) => {
         return 'true';
     }
 
-    return 'Name should be between 2 and 50 characters long';
+    return 'Name should be between 2 and 50 characters long!';
 }
 
 export const email = (email) => {
@@ -13,7 +13,7 @@ export const email = (email) => {
         return 'true';
     }
 
-    return 'Email address in invalid';
+    return 'Email address is invalid!';
 }
 
 export const password = (password) => {
@@ -34,7 +34,7 @@ export const repeatPassword = (repeatPassword, beforePassword) => {
     }
 
     if (repeatPassword !== beforePassword) {
-        return 'Repeat Password should match Password'
+        return 'Repeat Password should match Password!'
     }
 
     return 'true';

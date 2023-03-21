@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import * as validate from './services/validationService'
+import * as validate from '../../services/validationService'
 import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth'
 import { auth, authGoogleProvider } from '../../services/firebaseService'
 import Swal from 'sweetalert2'
@@ -11,7 +11,7 @@ import { AuthValidationIcon } from '../AuthValidationIcon/AuthValidationIcon'
 
 import styles from './Login.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faXmark, faArrowLeftLong, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeftLong, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import login from '../../../public/images/Login/login.png'
 
@@ -215,6 +215,12 @@ export const Login = () => {
                             ? <AuthValidation text={validateFormValues.password} />
                             : null
                     }
+                    <Link 
+                        to='/login/reset-password'
+                        className={styles['reset-password-btn']}
+                    >
+                        Forgot password?
+                    </Link>
                 </div>
 
                 <p className={styles['register-btn-p']}>Don't have an account? <Link to="/register" className={styles['register-btn']}>Sign Up</Link></p>

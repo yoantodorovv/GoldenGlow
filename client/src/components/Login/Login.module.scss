@@ -65,7 +65,7 @@ $white-primary: #dbcec3;
 .input-item-wrapper {
     display: flex;
     flex-flow: column nowrap;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 
     .input-item-label {
         color: $dark-color;
@@ -135,9 +135,13 @@ $white-primary: #dbcec3;
     margin-bottom: .5em;
 
     .register-btn {
-        color: $brown-primary;
+        color: $brown-secondary;
         font-weight: bold;
         text-decoration: none;
+    }
+
+    .register-btn:hover {
+        color: $brown-primary;
     }
 }
 
@@ -150,4 +154,18 @@ $white-primary: #dbcec3;
     .back-btn-icon {
         margin-right: .5em;
     }
+}
+
+.reset-password-btn {
+    width: fit-content;
+    margin: 1em 0em;
+    font-size: 15px;
+    color: $brown-secondary;
+    background-color: transparent;
+    border: none;
+}
+
+.reset-password-btn:hover {
+    cursor: pointer;
+    color: $brown-primary;
 }
