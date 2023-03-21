@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import * as validate from './services/validationService'
-import { signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth'
+import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth'
 import { auth, authGoogleProvider } from '../../services/firebaseService'
 import Swal from 'sweetalert2'
 
@@ -27,6 +27,34 @@ export const Login = () => {
     });
     const [passwordType, setPasswordType] = useState('password');
     const navigate = useNavigate();
+
+    onAuthStateChanged(auth, function(user) {
+        if (user) {
+            Swal.fire({
+                title: 'Oops...',
+                text: 'You are already signed in!.',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+
+            navigate('/');
+        }
+      });
+
+    if (auth.currentUser) {
+        Swal.fire({
+            title: 'Oops...',
+            text: 'You are already signed in!.',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#6c3d1f',
+            allowEnterKey: true,
+        })
+
+        navigate('/');
+    }
 
     const isTouchedHandler = (e) =>
         setIsTouched(state => ({ ...state, [e.target.name]: true }));

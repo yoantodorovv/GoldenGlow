@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { auth, authGoogleProvider } from '../../services/firebaseService'
 import * as validate from './services/validatationService'
 import Swal from 'sweetalert2'
@@ -33,6 +33,34 @@ export const Register = () => {
         repeatPassword: false,
     });
     const navigate = useNavigate();
+
+    onAuthStateChanged(auth, function(user) {
+        if (user) {
+            Swal.fire({
+                title: 'Oops...',
+                text: 'You are already signed up!.',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+
+            navigate('/');
+        }
+      });
+
+    if (auth.currentUser) {
+        Swal.fire({
+            title: 'Oops...',
+            text: 'You are already signed up!.',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#6c3d1f',
+            allowEnterKey: true,
+        })
+
+        navigate('/');
+    }
 
     const isTouchedHandler = (e) =>
         setIsTouched(state => ({ ...state, [e.target.name]: true }));
