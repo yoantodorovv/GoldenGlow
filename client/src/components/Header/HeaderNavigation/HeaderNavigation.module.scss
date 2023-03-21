@@ -55,10 +55,14 @@ $white-primary-accent: #fff6ec;
     align-items: center;
     padding: .7em 1em;
     background-color: $white-primary-accent;
-    border: 1px solid $brown-primary;
+    border: 2px solid $brown-primary;
     border-radius: 25px;
     transition: .2s ease-in;
     text-decoration: none;
+
+    .nav-icon-list-item-text {
+        margin-right: .7em;
+    }
 
     .nav-icon-list-item {
         color: $brown-primary;
@@ -79,5 +83,34 @@ $white-primary-accent: #fff6ec;
     .nav-icon-list-item {
         color: $white-primary-accent;
         cursor: pointer;
+    }
+
+    h3 {
+        color: $white-primary-accent;
+    }
+}
+
+.nav-icon-list-item-parent-selected {
+    display: flex;
+    align-items: center;
+    padding: .7em 1em;
+    background-color: $brown-primary;
+    border: 2px solid $brown-primary;
+    border-radius: 25px;
+    transition: .2s ease-in;
+    text-decoration: none;
+
+    .nav-icon-list-item-text {
+        margin-right: .7em;
+    }
+
+    .nav-icon-list-item {
+        color: $white-primary-accent;
+        margin-right: .3em;
+    }
+
+    h3 {
+        color: $white-primary-accent;
+        text-decoration: none;
     }
 }

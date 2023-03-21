@@ -85,21 +85,23 @@ export const HeaderNavigation = () => {
                         : (
                             <>
                                 <li>
-                                    <Link
+                                    <NavLink
                                         to="/catalog/wishlist"
-                                        className={styles['nav-icon-list-item-parent']}
+                                        className={({ isActive }) => isActive ? styles['nav-icon-list-item-parent-selected'] : styles['nav-icon-list-item-parent']}
                                     >
+                                        <h3 className={styles['nav-icon-list-item-text']}>Wishlist</h3>
                                         <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faHeart} size="xl" />
                                         <h3>1</h3>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link 
+                                    <NavLink 
                                         to='/catalog/shopping-cart'
-                                        className={styles['nav-icon-list-item-parent']}>
+                                        className={({ isActive }) => isActive ? styles['nav-icon-list-item-parent-selected'] : styles['nav-icon-list-item-parent']}>
+                                        <h3 className={styles['nav-icon-list-item-text']}>Your Cart</h3>
                                         <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faCartShopping} size="xl" />
                                         <h3>1</h3>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
                                     <HeaderProfile />
