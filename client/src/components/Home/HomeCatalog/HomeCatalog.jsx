@@ -7,10 +7,12 @@ import { Carousel } from '../../Carousel/Carousel';
 export const HomeCatalog = () => {
     return (
         <div className={styles['general-wrapper']}>
-            <HomeCatalogSectionPreview title="New Collection" className={styles['wrapper-element']}>
+            <HomeCatalogSectionPreview title="Most Popular" className={styles['wrapper-element']}>
                 <Carousel />
             </HomeCatalogSectionPreview>
-            <HomeCatalogSectionPreview title="Most Popular" className={styles['wrapper-element']}>
+            <div className={styles['separator']}></div>
+            <HomeCatalogSectionPreview title="New Collection" className={styles['wrapper-element']}>
+                //TODO: Add a box to the whole collection
                 <Carousel />
             </HomeCatalogSectionPreview>
         </div>

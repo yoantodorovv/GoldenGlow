@@ -1,10 +1,12 @@
 .preview-section {
     display: flex;
     flex-flow: column nowrap;
-    margin-bottom: 5em;
+    margin: 5em 0em;
 
     .preview-section-title h1 {
-        font-size: 39px;
+        font-family: 'Caveat', cursive;
+        font-size: 50px;
+        font-weight: bold;
         margin-bottom: 1em;
     }
 }

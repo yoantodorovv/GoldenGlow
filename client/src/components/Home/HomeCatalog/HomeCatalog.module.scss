@@ -1,4 +1,12 @@
+$white-primary-accent: #fff6ec;
+
 .general-wrapper {
     height: fit-content;
     margin: 5em 10em 0em;
+
+    .separator {
+        background-color: $white-primary-accent;
+        height: 1px;
+        width: 100%;
+    }
 }
