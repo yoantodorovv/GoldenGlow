@@ -14,7 +14,7 @@
         },
         "private": {
             "View Profile": "/user",
-            "Purchase History": "/purchase-history",
+            "Purchase History": "/user/purchase-history",
             "Settings": "/user/settings",
             "Sign Out": "/logout"
         }
