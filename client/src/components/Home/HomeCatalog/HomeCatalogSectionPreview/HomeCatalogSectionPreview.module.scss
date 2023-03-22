@@ -1,8 +1,10 @@
 .preview-section {
     display: flex;
     flex-flow: column nowrap;
+    margin-bottom: 5em;
 
     .preview-section-title h1 {
         font-size: 39px;
+        margin-bottom: 1em;
     }
 }

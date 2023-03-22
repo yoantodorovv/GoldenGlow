@@ -1,0 +1,85 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+.card-wrapper {
+    background-color: $white-primary-accent;
+    width: 20rem;
+    height: 50vh;
+    border: 1px solid $brown-primary;
+    border-radius: 25px;
+
+    .card-image-wrapper {
+        width: 100%;
+        height: 70%;
+        overflow: hidden;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+            border-top-right-radius: 25px;
+            border-top-left-radius: 25px;
+            border-bottom: 1px solid $brown-primary;
+        }
+    }
+
+    .card-content-wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: 30%;
+        padding: 1.5em 2em;
+
+        .card-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 100%;
+        }
+    }
+}
+
+.card-content-title {
+    font-size: 22px;
+    color: #000;
+    text-decoration: none;
+}
+
+.card-content-price p {
+    color: $dark-color;
+}
+
+.card-wishlist-btn {
+    position: relative;
+    bottom: 579%;
+    left: 30.25%;
+    background-color: transparent;
+    color: $brown-primary;
+    border: none;
+}
+
+.card-wishlist-btn:hover {
+    color: $brown-secondary;
+    cursor: pointer;
+}
+
+.card-buy-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $brown-primary;
+    padding: .7em;
+    color: $white-primary-accent;
+    border: none;
+    border-radius: 10px;
+}
+
+.card-buy-btn:hover {
+    cursor: pointer;
+    background-color: $brown-secondary;
+    color: $white-primary-accent;
+}
