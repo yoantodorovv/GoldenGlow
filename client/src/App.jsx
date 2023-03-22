@@ -63,7 +63,7 @@ function App() {
                 />
                 //TODO: Finish
                 <Route 
-                    path="/catalog/wishlist" 
+                    path="/user/wishlist" 
                     element={
                         <MainWrapper>
                             <Wishlist />
@@ -72,7 +72,7 @@ function App() {
                 />
                 //TODO: Finish
                 <Route 
-                    path="/catalog/shopping-cart" 
+                    path="/user/shopping-cart" 
                     element={
                         <MainWrapper>
                             <ShoppingCart />
