@@ -89,7 +89,7 @@ export const HeaderNavigation = () => {
                                         to="/user/wishlist"
                                         className={({ isActive }) => isActive ? styles['nav-icon-list-item-parent-selected'] : styles['nav-icon-list-item-parent']}
                                     >
-                                        <h3 className={styles['nav-icon-list-item-text']}>Wishlist</h3>
+                                        {/* <h3 className={styles['nav-icon-list-item-text']}>Wishlist</h3> */}
                                         <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faHeart} size="xl" />
                                         <h3>1</h3>
                                     </NavLink>
@@ -98,7 +98,7 @@ export const HeaderNavigation = () => {
                                     <NavLink 
                                         to='/user/shopping-cart'
                                         className={({ isActive }) => isActive ? styles['nav-icon-list-item-parent-selected'] : styles['nav-icon-list-item-parent']}>
-                                        <h3 className={styles['nav-icon-list-item-text']}>Your Cart</h3>
+                                        {/* <h3 className={styles['nav-icon-list-item-text']}>Your Cart</h3> */}
                                         <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faCartShopping} size="xl" />
                                         <h3>1</h3>
                                     </NavLink>
