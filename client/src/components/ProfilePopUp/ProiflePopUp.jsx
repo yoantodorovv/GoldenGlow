@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 import { signOut } from 'firebase/auth'
@@ -9,7 +8,6 @@ import styles from './ProfilePopUp.module.scss'
 
 
 export const ProfilePopUp = () => {
-    const navigate = useNavigate();
 
     const userSignOut = async () => {
         try {
@@ -24,8 +22,6 @@ export const ProfilePopUp = () => {
                 allowEnterKey: true,
                 showConfirmButton: false,
             });
-
-            navigate('/');
         } catch (error) {
             Swal.fire({
                 title: 'Sign Out failed! Please try again later!',
