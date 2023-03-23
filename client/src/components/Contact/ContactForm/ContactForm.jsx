@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../../services/firebaseService'
 
 import styles from './ContactForm.module.scss'
@@ -10,17 +11,27 @@ export const ContactForm = ({
     formStyle,
     onLocateClick,
 }) => {
-
-    //TODO: Set up Firestore and store user and its properties
-    //TODO: Set innitial email and fullname values to user's if there is one logged in
-    console.log(auth.currentUser);
-
     const [formValues, setFormValues] = useState({
         fullName: '',
         email: '',
         message: '',
         additionalDetails: '',
     });
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setFormValues(state => ({...state, email: user.email}));
+          } else {
+            setFormValues(state => ({...state, email: ''}));
+          }
+        });
+    
+        return unsubscribe;
+      }, [auth]);
+
+    //TODO: Set up Firestore and store user and its properties
+    //TODO: Set innitial email and fullname values to user's if there is one logged in
 
     const onChangeHandler = (e) => 
         setFormValues(state => ({...state, [e.target.name]: e.target.value}));
