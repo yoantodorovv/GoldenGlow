@@ -8,8 +8,8 @@ import womanImageSrc from "../../../public/images/Home/womanImage.jpeg";
 export const MainMenu = () => {
     return (
         <div className={styles['main-menu']}>
-            <HeroContainer imageSrc={womanImageSrc} containerText="Women" />
-            <HeroContainer imageSrc={manImageSrc} containerText="Men" />
+            <HeroContainer path="/catalog/women" imageSrc={womanImageSrc} containerText="Women" />
+            <HeroContainer path="/catalog/men" imageSrc={manImageSrc} containerText="Men" />
         </div>
     );
 }

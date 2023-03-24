@@ -21,9 +21,12 @@ export const ContactForm = ({
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
-            setFormValues(state => ({...state, email: user.email}));
+            setFormValues(state => 
+                    ({...state, 
+                    fullName: user?.displayName === null ? '' : user.displayName, 
+                    email: user.email}));
           } else {
-            setFormValues(state => ({...state, email: ''}));
+            setFormValues(state => ({...state, fullName: '',email: ''}));
           }
         });
     
@@ -31,7 +34,6 @@ export const ContactForm = ({
       }, [auth]);
 
     //TODO: Set up Firestore and store user and its properties
-    //TODO: Set innitial email and fullname values to user's if there is one logged in
 
     const onChangeHandler = (e) => 
         setFormValues(state => ({...state, [e.target.name]: e.target.value}));

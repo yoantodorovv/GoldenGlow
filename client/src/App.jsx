@@ -1,4 +1,4 @@
-import { Routes, Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 import { NotFound } from "./components/NotFound/NotFound"
 import { MainWrapper } from "./components/MainWrapper/MainWrapper"
@@ -23,91 +23,117 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route 
-                    path="*" 
-                    element={<NotFound />} 
+                <Route
+                    path="*"
+                    element={<NotFound />}
                 />
                 //TODO: Change about to catalog
-                <Route 
-                    path="/" 
+                <Route
+                    path="/"
                     element={
                         <MainWrapper>
                             <Home />
                         </MainWrapper>
-                    } 
+                    }
                 />
-                <Route 
-                    path="/about" 
+                <Route
+                    path="/about"
                     element={
                         <MainWrapper>
                             <About />
                         </MainWrapper>
-                    } 
+                    }
                 />
-                <Route 
-                    path="/contact" 
+                <Route
+                    path="/contact"
                     element={
                         <MainWrapper>
                             <Contact />
                         </MainWrapper>
-                    } 
+                    }
                 />
                 //TODO: Finish
-                <Route 
-                    path="/catalog" 
+                <Route
+                    path="/catalog"
                     element={
                         <MainWrapper>
                             <Catalog />
                         </MainWrapper>
-                    } 
+                    }
                 />
                 //TODO: Finish
-                <Route 
-                    path="/user/wishlist" 
-                    element={
-                        <MainWrapper>
-                            <Wishlist />
-                        </MainWrapper>
-                    } 
-                />
-                //TODO: Finish
-                <Route 
-                    path="/user/shopping-cart" 
-                    element={
-                        <MainWrapper>
-                            <ShoppingCart />
-                        </MainWrapper>
-                    } 
-                />
-                //TODO: Finish
-                <Route 
+                <Route
                     path="/catalog/women"
                     element={
                         <MainWrapper>
                             <WomenCatalog />
                         </MainWrapper>
-                    } 
+                    }
                 />
                 //TODO: Finish
-                <Route 
+                <Route
                     path="/catalog/men"
                     element={
                         <MainWrapper>
                             <MenCatalog />
                         </MainWrapper>
-                    } 
+                    }
                 />
+                {/* //TODO: Finish
+                <Route
+                    path="/catalog/elegant-everyday"
+                    element={
+                        <MainWrapper>
+                            <Catalog />
+                        </MainWrapper>
+                    }
+                />
+                <Route
+                    path="/catalog/elegant-everyday/women"
+                    element={
+                        <MainWrapper>
+                            <Catalog />
+                        </MainWrapper>
+                    }
+                />
+                <Route
+                    path="/catalog/elegant-everyday/men"
+                    element={
+                        <MainWrapper>
+                            <Catalog />
+                        </MainWrapper>
+                    }
+                /> */}
                 //TODO: Finish
-                <Route 
+                <Route
                     path="/user"
                     element={
                         <MainWrapper>
                             <Profile />
+
                         </MainWrapper>
                     }
                 />
                 //TODO: Finish
-                <Route 
+                <Route
+                    path="/user/wishlist"
+                    element={
+                        <MainWrapper>
+                            <Wishlist />
+                        </MainWrapper>
+                    }
+                />
+                //TODO: Finish
+                <Route
+                    path="/user/shopping-cart"
+                    element={
+                        <MainWrapper>
+                            <ShoppingCart />
+                        </MainWrapper>
+                    }
+                />
+                //TODO: Finish
+                <Route
                     path="/user/purchase-history"
                     element={
                         <MainWrapper>
@@ -116,7 +142,7 @@ function App() {
                     }
                 />
                 //TODO: Finish
-                <Route 
+                <Route
                     path="/user/settings"
                     element={
                         <MainWrapper>
@@ -124,19 +150,19 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                <Route 
+                <Route
                     path="/login"
                     element={
                         <Login />
                     }
                 />
-                <Route 
+                <Route
                     path="/login/reset-password"
                     element={
                         <ResetPassword />
                     }
                 />
-                <Route 
+                <Route
                     path="/register"
                     element={
                         <Register />

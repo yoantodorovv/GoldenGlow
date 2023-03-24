@@ -1,4 +1,4 @@
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth'
 import { auth, authGoogleProvider } from '../../services/firebaseService'
 import * as validate from '../../services/validationService'
 import Swal from 'sweetalert2'
@@ -108,6 +108,8 @@ export const Register = () => {
 
         try {
             await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
+            
+            console.log(auth.currentUser);
 
             Swal.fire({
                 title: 'Sign Up successful',
@@ -116,6 +118,10 @@ export const Register = () => {
                 confirmButtonText: 'Ok',
                 confirmButtonColor: '#6c3d1f',
                 allowEnterKey: true,
+            });
+
+            await updateProfile(auth.currentUser, {
+                displayName: formValues.fullName
             });
 
             navigate('/');

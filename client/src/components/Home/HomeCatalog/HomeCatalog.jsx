@@ -14,11 +14,11 @@ export const HomeCatalog = () => {
                 <Carousel />
             </HomeCatalogSectionPreview>
             <div className={styles['separator']}></div>
-            <HomeCatalogSectionPreview title="New Collection">
+            <HomeCatalogSectionPreview title="E-Veryday" subtitle="NEW COLLECTION">
                 <div className={styles['collection-container']}>
-                    <HeroContainer imageSrc={collectionWomen} containerText="Women" />
-                    <HeroContainer imageSrc={collectionBoth} containerText="Catalog" />
-                    <HeroContainer imageSrc={collectionMen} containerText="Men" />
+                    <HeroContainer path="/catalog/women" imageSrc={collectionWomen} containerText="Women" />
+                    <HeroContainer path="/catalog" imageSrc={collectionBoth} containerText="Catalog" />
+                    <HeroContainer path="/catalog/men" imageSrc={collectionMen} containerText="Men" />
                 </div>
                 <Carousel />
             </HomeCatalogSectionPreview>

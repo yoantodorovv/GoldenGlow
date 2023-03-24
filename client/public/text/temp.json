@@ -1,10 +1,9 @@
 [
     {   
         "id": 1,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Pleated skirt",
         "brand": "GoldenGlow",
+        "collection": "Elegant Everyday",
         "price": 24.99,
         "color": [
             "white",
@@ -30,10 +29,9 @@
     },
     {   
         "id": 2,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Long summer pleated dress",
         "brand": "GoldenGlow",
+        "collection": "Elegant Everyday",
         "price": 50.00,
         "color": [
             "light-yellow",
@@ -58,10 +56,9 @@
     },
     {   
         "id": 3,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Baggy pants",
         "brand": "GoldenGlow",
+        "collection": "Elegant Everyday",
         "price": 29.99,
         "color": [
             "white"
@@ -83,10 +80,9 @@
     },
     {   
         "id": 4,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Long classic dress",
         "brand": "GoldenGlow",
+        "collection": "Elegant Everyday",
         "price": 54.55,
         "color": [
             "light-brown",
@@ -112,10 +108,9 @@
     },
     {   
         "id": 5,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "3/4 Suit Jacket",
         "brand": "GoldenGlow",
+        "collection": "Elegant Everyday",
         "price": 65.00,
         "color": [
             "dark-brown"
@@ -136,10 +131,9 @@
     },
     {   
         "id": 6,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Denim skirt",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 25.99,
         "color": [
             "black"
@@ -163,10 +157,9 @@
     },
     {   
         "id": 7,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Oversized T-shirt",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 19.00,
         "color": [
             "white-brown stripes"
@@ -192,10 +185,9 @@
     },
     {   
         "id": 8,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Long sleeved shirt",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 25.00,
         "color": [
             "white"
@@ -218,10 +210,9 @@
     },    
     {   
         "id": 9,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Turtleneck blouse",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 23.99,
         "color": [
             "beige"
@@ -245,10 +236,9 @@
     },
     {   
         "id": 10,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Short sleeve oversized shirt",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 23.67,
         "color": [
             "light-green",
@@ -275,10 +265,9 @@
     },
     {   
         "id": 11,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Suit Jacket and Pants (set)",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 63.99,
         "color": [
             "violet"
@@ -301,10 +290,9 @@
     },
     {   
         "id": 12,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Charleston pants",
         "brand": "GoldenGlow",
+        "collection": "Businessworld",
         "price": 26.99,
         "color": [
             "maroon"
@@ -330,10 +318,9 @@
     },
     {   
         "id": 13,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Butterfly-chest T-shirt",
         "brand": "GoldenGlow",
+        "collection": "Casually Important",
         "price": 19.25,
         "color": [
             "violet"
@@ -359,10 +346,9 @@
     },
     {   
         "id": 14,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Open sholder blouse",
         "brand": "GoldenGlow",
+        "collection": "Casually Important",
         "price": 24.00,
         "color": [
             "white"
@@ -386,10 +372,9 @@
     },
     {   
         "id": 15,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Miniskirt",
         "brand": "GoldenGlow",
+        "collection": "Casually Important",
         "price": 20.20,
         "color": [
             "light-blue"
@@ -415,10 +400,9 @@
     },
     {   
         "id": 16,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Long summer dress",
         "brand": "GoldenGlow",
+        "collection": "Casually Important",
         "price": 30.00,
         "color": [
             "black and white"
@@ -441,10 +425,9 @@
     },
     {   
         "id": 17,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Slim T-shirt",
         "brand": "GoldenGlow",
+        "collection": "Casually Important",
         "price": 19.00,
         "color": [
             "white"
@@ -468,10 +451,9 @@
     },
     {   
         "id": 18,
-        "_avgRating": 0,
-        "_ratingsCount": 0,
         "product-name": "Cone skirt",
         "brand": "GoldenGlow",
+        "collection": "Casually Important",
         "price": 24.00,
         "color": [
             "dark-blue"
