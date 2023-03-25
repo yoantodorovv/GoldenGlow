@@ -1,15 +1,17 @@
+import { FIREBASE_CONFING } from "../secret";
+
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCeRYP4Py6Dk19qOXFPd5NzN6ORL28cjHc",
-  authDomain: "goldenglow.firebaseapp.com",
-  projectId: "goldenglow",
-  storageBucket: "goldenglow.appspot.com",
-  messagingSenderId: "860105988392",
-  appId: "1:860105988392:web:d186efbe7926078918581d",
-  measurementId: "G-T75W8KC720"
+  apiKey: FIREBASE_CONFING.apiKey,
+  authDomain: FIREBASE_CONFING.authDomain,
+  projectId: FIREBASE_CONFING.projectId,
+  storageBucket: FIREBASE_CONFING.storageBucket,
+  messagingSenderId: FIREBASE_CONFING.messagingSenderId,
+  appId: FIREBASE_CONFING.appId,
+  measurementId: FIREBASE_CONFING.measurementId
 };
 
 const app = initializeApp(firebaseConfig);
