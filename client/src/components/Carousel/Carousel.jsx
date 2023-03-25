@@ -8,8 +8,6 @@ import { Card } from '../Card/Card';
 export const Carousel = ({
     products,
 }) => {
-    console.log(products);
-
     const settings = {
         dots: false,
         infinite: true,

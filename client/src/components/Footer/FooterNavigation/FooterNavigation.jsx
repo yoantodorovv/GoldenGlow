@@ -9,8 +9,9 @@ import { FooterNavigationElement } from "./FooterNavigationElement/FooterNavigat
 
 import styles from "./FooterNavigation.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 import * as text from '../../../../public/text/Footer/FooterText.json'
+import * as socials from './assets/socialMediaUrls';
 
 export const FooterNavigation = () => {
     const [authUser, setAuthUser] = useState(null);
@@ -56,6 +57,12 @@ export const FooterNavigation = () => {
         }
     }
 
+    const handleSocialsClick = (e, url) => {
+        e.preventDefault();
+
+        window.open(url, "_blank");
+    }
+
     return (
         <div className={styles['footer-nav']}>
             <FooterNavigationElement title="Pages">
@@ -76,44 +83,50 @@ export const FooterNavigation = () => {
                 <div className={styles['options-wrapper']}>
                     {
                         authUser
-                        ? (
-                            Object.entries(text.profile.private).map(x => {
-                                if (x[1] === '/logout') {
-                                    return <button
-                                        key={`${x[0]}-${x[1]}`}
-                                        onClick={userSignOut}
-                                        className={styles['footer-options']}
-                                    >
-                                        {x[0]}
-                                    </button>
-                                }
-
-                                return <NavLink
-                                    key={`${x[0]}-${x[1]}`}
-                                    to={x[1]}
-                                    className={({ isActive }) => isActive ? styles['footer-options-selected'] : styles['footer-options']}>
-                                    {x[0]}
-                                </NavLink>
-                            })
-                        )
-                        : (
-                            Object.entries(text.profile.public)
-                                .map(x =>   <NavLink
+                            ? (
+                                Object.entries(text.profile.private).map(x => {
+                                    if (x[1] === '/logout') {
+                                        return <button
                                             key={`${x[0]}-${x[1]}`}
-                                            to={x[1]}
-                                            className={({ isActive }) => isActive ? styles['footer-options-selected'] : styles['footer-options']}>
+                                            onClick={userSignOut}
+                                            className={styles['footer-options']}
+                                        >
                                             {x[0]}
-                                        </NavLink>
+                                        </button>
+                                    }
+
+                                    return <NavLink
+                                        key={`${x[0]}-${x[1]}`}
+                                        to={x[1]}
+                                        className={({ isActive }) => isActive ? styles['footer-options-selected'] : styles['footer-options']}>
+                                        {x[0]}
+                                    </NavLink>
+                                })
+                            )
+                            : (
+                                Object.entries(text.profile.public)
+                                    .map(x => <NavLink
+                                        key={`${x[0]}-${x[1]}`}
+                                        to={x[1]}
+                                        className={({ isActive }) => isActive ? styles['footer-options-selected'] : styles['footer-options']}>
+                                        {x[0]}
+                                    </NavLink>
                                     )
-                        )
+                            )
                     }
                 </div>
             </FooterNavigationElement>
             <FooterNavigationElement title="Follow Us On">
                 <div className={styles['icon-wrapper']}>
-                    <FontAwesomeIcon className={styles['icon']} icon={faInstagram} size="2x" />
-                    <FontAwesomeIcon className={styles['icon']} icon={faTwitter} size="2x" />
-                    <FontAwesomeIcon className={styles['icon']} icon={faFacebook} size="2x" />
+                    <a href={socials.linkedInUrl}  onClick={() => handleSocialsClick(socials.linkedInUrl)} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon className={styles['icon']} icon={faLinkedinIn} size="2x" />
+                    </a>
+                    <a href={socials.gitHubInUrl}  onClick={() => handleSocialsClick(socials.gitHubInUrl)} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon className={styles['icon']} icon={faGithub} size="2x" />
+                    </a>
+                    <a href={socials.instagramInUrl}  onClick={() => handleSocialsClick(socials.instagramInUrl)} target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon className={styles['icon']} icon={faInstagram} size="2x" />
+                    </a>
                 </div>
             </FooterNavigationElement>
         </div>
