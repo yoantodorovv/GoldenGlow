@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import * as validate from '../../services/validationService'
 import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth'
-import { auth, authGoogleProvider } from '../../services/firebaseService'
+import { doc, setDoc } from '@firebase/firestore'
+import { auth, db, authGoogleProvider } from '../../services/firebaseService'
 import Swal from 'sweetalert2'
 
 import { AuthValidation } from '../AuthValidation/AuthValidation'
@@ -137,12 +138,6 @@ export const Login = () => {
                 confirmButtonText: 'Ok',
                 confirmButtonColor: '#6c3d1f',
                 allowEnterKey: true,
-            });
-
-            await setDoc(doc(db, 'users', auth.currentUser.uid), {
-                fullName: auth.currentUser.displayName,
-                email: auth.currentUser.email,
-                photoUrl: auth.currentUser.photoURL
             });
 
             navigate('/')
