@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react';
+
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../../services/firebaseService';
+
 import { HomeCatalogSectionPreview } from './HomeCatalogSectionPreview/HomeCatalogSectionPreview';
 import { HeroContainer } from '../../MainMenu/HeroContainer/HeroContainer'
 
@@ -8,10 +13,30 @@ import styles from './HomeCatalog.module.scss'
 import { Carousel } from '../../Carousel/Carousel';
 
 export const HomeCatalog = () => {
+    const [mostPopularProducts, setMostPopularProducts] = useState([]);
+    const [collectionProducts, setCollectionProducts] = useState([]);
+
+    useEffect(() => {
+        const productsCollectionRef = collection(db, 'products');
+        const collectionQuery = query(productsCollectionRef, where('collection', '==', 'Elegant Everyday'));
+
+        getDocs(productsCollectionRef)
+            .then(data => setMostPopularProducts(data.docs.map(doc => ({...doc.data(), id: doc.id}))))
+            .catch(err => {
+                console.log(err);
+            });
+
+        getDocs(collectionQuery)
+            .then(data => setCollectionProducts(data.docs.map(doc => ({...doc.data(), id: doc.id}))))
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
+
     return (
         <div className={styles['general-wrapper']}>
             <HomeCatalogSectionPreview title="Most Popular">
-                <Carousel />
+                <Carousel products={mostPopularProducts} />
             </HomeCatalogSectionPreview>
             <div className={styles['separator']}></div>
             <HomeCatalogSectionPreview title="E-Veryday" subtitle="NEW COLLECTION">
@@ -20,7 +45,7 @@ export const HomeCatalog = () => {
                     <HeroContainer path="/catalog" imageSrc={collectionBoth} containerText="Catalog" />
                     <HeroContainer path="/catalog/men" imageSrc={collectionMen} containerText="Men" />
                 </div>
-                <Carousel />
+                <Carousel products={collectionProducts} />
             </HomeCatalogSectionPreview>
         </div>
     );

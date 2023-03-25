@@ -4,11 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 import styles from './Card.module.scss'
 
-export const Card = () => {
-    const id = '1';
-
-    //TODO: Implement Addition to Firestore (db)
-
+export const Card = ({
+    product
+}) => {
     const addToCartHandler = () => {
 
     }
@@ -20,16 +18,16 @@ export const Card = () => {
     return (
         <div className={styles['card-wrapper']}>
             <div className={styles['card-image-wrapper']}>
-                <img src="https://source.unsplash.com/random/1600x900?apple" />
+                <img src={product.images[0]} />
             </div>
             <div className={styles['card-content-wrapper']}>
                 <div className={styles['card-content-title-wrapper']}>
-                    <Link to={`/catalog/${id}`} className={styles['card-content-title']}>Name</Link>
+                    <Link to={`/catalog/${product.id}`} className={styles['card-content-title']}>{product.name}</Link>
                 </div>
                 <div className={styles['card-content']}>
                     <div className={styles['card-content-price']}>
                         <p>Price:</p>
-                        <h1>BGN 200</h1>
+                        <h1>BGN {product.price}</h1>
                     </div>
                     <button
                         type='button'

@@ -16,10 +16,10 @@ import { Settings } from "./components/Settings/Settings";
 import { PurchaseHistory } from "./components/PurchaseHistory/PurchaseHistory";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
+import { SeedDb } from "./seeder/ProductsSeeder"
 
 function App() {
     //TODO: Attribute the photographers and Unsplash for the photos
-
     return (
         <div className="App">
             <Routes>

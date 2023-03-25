@@ -2,11 +2,14 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from './Carousel.module.scss'
 
 import { Card } from '../Card/Card';
 
-export const Carousel = () => {
+export const Carousel = ({
+    products,
+}) => {
+    console.log(products);
+
     const settings = {
         dots: false,
         infinite: true,
@@ -15,14 +18,9 @@ export const Carousel = () => {
         slidesToScroll: 1,
     };
 
-    //TODO: Render actual collection
     return (
         <Slider {...settings}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {products.map(x => <Card key={x.id} product={x} />)}
         </Slider>
     );
 }
