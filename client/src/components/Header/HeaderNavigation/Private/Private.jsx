@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { collection, getDocs, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '../../../../services/firebaseService'
 
 import { HeaderUserNav } from "../HeaderUserNav/HeaderUserNav";
@@ -12,32 +12,8 @@ export const Private = () => {
     const wishlistCollectionRef = collection(db, `users/${auth.currentUser.uid}/wishlist`);
     const cartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
 
-    useEffect(() => {
-        getDocs(wishlistCollectionRef)
-            .then(data => {
-                const filteredData = data.docs.map(doc => ({ ...doc.data() }));
-
-                setWishlistCount(filteredData.count);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
-        getDocs(cartCollectionRef)
-            .then(data => {
-                const filteredData = data.docs.map(doc => ({ ...doc.data() }));
-
-                setCartCount(filteredData.count);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }, []);
-
-    //TODO: Continie when having made a collection
-    onSnapshot(wishlistCollectionRef, doc => {
-        // console.log(doc);
-    })
+    onSnapshot(wishlistCollectionRef, doc => setWishlistCount(doc.docs.length))
+    onSnapshot(cartCollectionRef, doc => setCartCount(doc.docs.length))
 
     return (
         <>
