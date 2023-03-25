@@ -1,18 +1,31 @@
-import { Link } from 'react-router-dom'
+import { auth } from '../../services/firebaseService';
+
+import { Link, useNavigate } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 import styles from './Card.module.scss'
+import Swal from 'sweetalert2';
 
 export const Card = ({
     product
 }) => {
-    const addToCartHandler = () => {
+    const navigate = useNavigate();
 
+    const addToCartHandler = () => {
+        if (auth?.currentUser === null) {
+            navigate('/login');
+        }
+
+        console.log('working!');
     }
 
     const addToWishlistHandler = () => {
-        
+        if (auth?.currentUser === null) {
+            navigate('/login');
+        }
+
+        console.log('working!');
     }
 
     return (

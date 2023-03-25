@@ -26,7 +26,6 @@ function App() {
                     path="*"
                     element={<NotFound />}
                 />
-                //TODO: Change about to catalog
                 <Route
                     path="/"
                     element={

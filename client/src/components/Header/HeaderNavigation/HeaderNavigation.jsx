@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../../../services/firebaseService'
+import { collection, addDoc } from 'firebase/firestore'
+import { auth, db } from '../../../services/firebaseService'
 
 import styles from "./HeaderNavigation.module.scss";
 import { HeaderProfile } from './HeaderProfile/HeaderProfile'
@@ -23,11 +24,11 @@ export const HeaderNavigation = () => {
             listen();
         }
     }, []);
+    
+    const userRef = collection('users').doc(auth.currentUser.uid);
 
 
 
-    //TODO: Extract sign out into profile drop down (image on top)
-    //TODO: Add Count on wishlist and shopping card (working and real)
     return (
         <nav className={styles['nav']}>
             <ul className={styles['nav-btn-list']}>
@@ -89,7 +90,6 @@ export const HeaderNavigation = () => {
                                         to="/user/wishlist"
                                         className={({ isActive }) => isActive ? styles['nav-icon-list-item-parent-selected'] : styles['nav-icon-list-item-parent']}
                                     >
-                                        {/* <h3 className={styles['nav-icon-list-item-text']}>Wishlist</h3> */}
                                         <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faHeart} size="xl" />
                                         <h3>1</h3>
                                     </NavLink>
@@ -98,7 +98,6 @@ export const HeaderNavigation = () => {
                                     <NavLink 
                                         to='/user/shopping-cart'
                                         className={({ isActive }) => isActive ? styles['nav-icon-list-item-parent-selected'] : styles['nav-icon-list-item-parent']}>
-                                        {/* <h3 className={styles['nav-icon-list-item-text']}>Your Cart</h3> */}
                                         <FontAwesomeIcon className={styles['nav-icon-list-item']} icon={faCartShopping} size="xl" />
                                         <h3>1</h3>
                                     </NavLink>
