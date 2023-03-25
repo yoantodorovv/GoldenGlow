@@ -139,6 +139,12 @@ export const Login = () => {
                 allowEnterKey: true,
             });
 
+            await setDoc(doc(db, 'users', auth.currentUser.uid), {
+                fullName: auth.currentUser.displayName,
+                email: auth.currentUser.email,
+                photoUrl: auth.currentUser.photoURL
+            });
+
             navigate('/')
         } catch (error) {
             Swal.fire({
