@@ -109,9 +109,6 @@ export const Register = () => {
 
         try {
             await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
-            
-            console.log(auth.currentUser);
-            console.log(auth.currentUser.uid);
 
             Swal.fire({
                 title: 'Sign Up successful',
@@ -122,7 +119,10 @@ export const Register = () => {
                 allowEnterKey: true,
             });
 
-            await setDoc(doc(db, 'users', auth.currentUser.uid), );
+            await setDoc(doc(db, 'users', auth.currentUser.uid), {
+                fullName: formValues.fullName,
+                email: formValues.email,
+            });
 
             await updateProfile(auth.currentUser, {
                 displayName: formValues.fullName
