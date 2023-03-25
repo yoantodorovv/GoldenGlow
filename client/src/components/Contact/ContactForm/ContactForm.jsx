@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../../../services/firebaseService'
+import { addDoc, collection  } from 'firebase/firestore'
+import { auth, db } from '../../../services/firebaseService'
 
+import Swal from 'sweetalert2'
 import styles from './ContactForm.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
@@ -33,16 +35,50 @@ export const ContactForm = ({
         return unsubscribe;
       }, [auth]);
 
-    //TODO: Set up Firestore and store user and its properties
-
     const onChangeHandler = (e) => 
         setFormValues(state => ({...state, [e.target.name]: e.target.value}));
         
     //TODO: Make validation for email and make them necessary
 
+    const onFormSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const contactSubmissionsRef = collection(db, 'contactSubmissions');
+
+            await addDoc(contactSubmissionsRef, {
+                _uid: auth?.currentUser?.uid ? auth?.currentUser?.uid : '',
+                fullName: formValues.fullName,
+                email: formValues.email,
+                message: formValues.message,
+                additionalDetails: formValues.additionalDetails,
+            });
+
+            Swal.fire({
+                title: 'Message successfully sent!',
+                text: `We'll get back to you as soon as possible!`,
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            });
+        } catch (error) {
+            console.log(error);
+
+            Swal.fire({
+                title: 'Something went wrong!',
+                text: 'Sorry, we were unable to sent the message. Please try again later.',
+                icon: 'error',
+                confirmButtonText: 'Go Back',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+        }
+    }
+
     return (
         <div className={styles[formStyle]}>
-            <form>
+            <form onSubmit={onFormSubmit}>
                 <div className={styles['input-item-wrapper']}>
                     <label htmlFor="fullName" className={styles['input-item-label']}>Full Name *</label>
                     <input
