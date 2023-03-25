@@ -165,6 +165,12 @@ export const Register = () => {
                 allowEnterKey: true,
             });
 
+            await setDoc(doc(db, 'users', auth.currentUser.uid), {
+                fullName: auth.currentUser.displayName,
+                email: auth.currentUser.email,
+                photoUrl: auth.currentUser.photoURL
+            });
+
             navigate('/');
         } catch (error) {
             if (error.code === 'auth/account-exists-with-different-credential') {
