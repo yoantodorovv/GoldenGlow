@@ -38,8 +38,7 @@ export const FooterNavigation = () => {
                 icon: 'success',
                 toast: true,
                 position: 'top-end',
-                timer: 2000,
-                allowEnterKey: true,
+                timer: 1500,
                 showConfirmButton: false,
             });
 
@@ -50,8 +49,7 @@ export const FooterNavigation = () => {
                 icon: 'error',
                 toast: true,
                 position: 'top-end',
-                timer: 2000,
-                allowEnterKey: true,
+                timer: 1500,
                 showConfirmButton: false,
             });
         }

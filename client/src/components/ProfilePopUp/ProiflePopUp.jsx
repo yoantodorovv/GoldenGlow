@@ -18,8 +18,7 @@ export const ProfilePopUp = () => {
                 icon: 'success',
                 toast: true,
                 position: 'top-end',
-                timer: 2000,
-                allowEnterKey: true,
+                timer: 1500,
                 showConfirmButton: false,
             });
         } catch (error) {
@@ -28,9 +27,7 @@ export const ProfilePopUp = () => {
                 icon: 'error',
                 toast: true,
                 position: 'top-end',
-                timer: 2000,
-                allowEnterKey: true,
-                showConfirmButton: false,
+                timer: 1500,
             });
         }
     }

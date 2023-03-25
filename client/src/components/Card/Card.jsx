@@ -1,5 +1,7 @@
-import { auth } from '../../services/firebaseService';
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { auth, db } from '../../services/firebaseService';
 
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,22 +12,100 @@ import Swal from 'sweetalert2';
 export const Card = ({
     product
 }) => {
+    const [currentProduct, setCurrentProduct] = useState(null);
     const navigate = useNavigate();
 
-    const addToCartHandler = () => {
-        if (auth?.currentUser === null) {
+    const addToCartHandler = async () => {
+        if (auth.currentUser === null) {
             navigate('/login');
+
+            return;
         }
 
-        console.log('working!');
+        const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
+
+        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.id))
+
+        const queryResultCollection = await getDocs(cartQuery);
+
+        if (queryResultCollection.docs.length > 0) {
+            queryResultCollection.docs.forEach(x => {
+                const updateProd = async () => {
+                    await updateDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id), {
+                        quantity: x.data().quantity + 1,
+                        totalPrice: x.data().totalPrice + product.price
+                    });
+                }
+    
+                updateProd();
+            })
+
+            Swal.fire({
+                title: `Successfully added ${product.name} to your Shopping Cart again!`,
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+
+            return;
+        }
+
+        await addDoc(usersCartCollectionRef, {
+            productId: product.id,
+            quantity: 1,
+            totalPrice: product.price
+        });
+
+        Swal.fire({
+            title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Shopping Cart!`,
+            icon: 'success',
+            toast: true,
+            position: 'top-end',
+            timer: 3000,
+            showConfirmButton: false,
+        });
     }
 
-    const addToWishlistHandler = () => {
+    const addToWishlistHandler = async () => {
         if (auth?.currentUser === null) {
             navigate('/login');
+
+            return;
         }
 
-        console.log('working!');
+        const usersWishlistCollectionRef = collection(db, `users/${auth.currentUser.uid}/wishlist`);
+
+        const cartQuery = query(usersWishlistCollectionRef, where('productId', '==', product.id))
+
+        const queryResultCollection = await getDocs(cartQuery);
+
+        if (queryResultCollection.docs.length > 0) {
+            Swal.fire({
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} is already added to your Wishlist!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+
+            return;
+        }
+
+        await addDoc(usersWishlistCollectionRef, {
+            productId: product.id,
+        });
+
+        Swal.fire({
+            title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Wishlist!`,
+            icon: 'success',
+            toast: true,
+            position: 'top-end',
+            timer: 3000,
+            showConfirmButton: false,
+        });
     }
 
     return (
