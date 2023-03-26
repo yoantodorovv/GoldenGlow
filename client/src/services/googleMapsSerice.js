@@ -1,4 +1,4 @@
-import { GOOGLE_MAPS_API_KEY} from '../secret';
+import { GOOGLE_MAPS_API_KEY } from '../secret';
 
 export const key = GOOGLE_MAPS_API_KEY;
 export const zoom = 13;
