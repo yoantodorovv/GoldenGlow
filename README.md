@@ -21,7 +21,7 @@ GoldenGlow Boutique offers the following features:
 - Contact GoldenGlow elite support team
 
 ## Installation
-1. Clone this repository to your machine:
+**1.** Clone this repository to your machine:
 
 ```bash
 git clone https://github.com/yoantodorovv/GoldenGlow.git
