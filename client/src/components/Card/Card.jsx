@@ -55,7 +55,8 @@ export const Card = ({
         await addDoc(usersCartCollectionRef, {
             productId: product.id,
             quantity: 1,
-            totalPrice: product.price
+            totalPrice: product.price,
+            innitialPrice: product.price
         });
 
         Swal.fire({

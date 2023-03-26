@@ -1,0 +1,99 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+.product {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+    margin: 1em 0em;
+    padding: 1em;
+    border-bottom: 2px solid $white-primary-accent;
+    transition: .3s ease-in;
+
+    .product-image {
+        height: 100%;
+        width: 20%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .product-title-wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        width: 30%;
+        padding-left: 3em;
+
+        p {
+            width: fit-content;
+            color: $dark-color;
+        }
+
+        h3 {
+            width: fit-content;
+        }
+    }
+
+    .product-quantity-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 20%;
+
+        button.decrement {
+            color: $dark-color;
+            font-size: 20px;
+            padding: 0em .5em;
+            background-color: transparent;
+            border: none;
+        }
+
+        button.decrement:hover {
+            color: #000;
+            cursor: pointer;
+        }
+
+        h3 {
+            margin: 0em .5em;
+        }
+
+        button.increment {
+            color: $dark-color;
+            font-size: 20px;
+            padding: 0em .5em;
+            background-color: transparent;
+            border: none;
+        }
+
+        button.increment:hover {
+            color: #000;
+            cursor: pointer;
+        }
+    }
+
+    .product-price-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 20%;
+    }
+
+    .product-remove-btn {
+        width: 10%;
+        color: $dark-color;
+        background-color: transparent;
+        padding: .5em 1em;
+        border: none;
+    }
+
+    .product-remove-btn:hover {
+        color: #000;
+        cursor: pointer;
+    }
+}
+
+.product:hover {
+    background-color: $white-primary-accent;
+}
