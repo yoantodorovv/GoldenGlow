@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../services/firebaseService";
 
 import styles from './ProductListItem.module.scss'
@@ -22,13 +22,15 @@ export const ProductListItem = ({
         description: '',
         color: [],
         size: [],
-        images: [],
+        images: ['', ''],
         material: {},
     });
     const [quantityCount, setQuantityCount] = useState(product.quantity);
     const [totalPrice, setTotalPrice] = useState(product.totalPrice);
     const productRef = doc(db, 'products', product.productId);
     const userProductRef = doc(db, `users/${auth.currentUser.uid}/cart`, product.id);
+
+    console.log(product);
 
     useEffect(() => {
         getDoc(productRef)
@@ -66,10 +68,10 @@ export const ProductListItem = ({
 
     return (
         <div className={styles['product']}>
-            <img src={queryProduct.images[0]} className={styles['product-image']} />
+            <img src={queryProduct?.images[0]} className={styles['product-image']} />
             <div className={styles['product-title-wrapper']}>
-                <p>{queryProduct.category.charAt(0).toUpperCase() + queryProduct.category.slice(1)}</p>
-                <h3>{queryProduct.name}</h3>
+                <p>{queryProduct?.category.charAt(0).toUpperCase() + queryProduct?.category.slice(1)}</p>
+                <h3>{queryProduct?.name}</h3>
             </div>
             <div className={styles['product-quantity-wrapper']}>
                 <button 

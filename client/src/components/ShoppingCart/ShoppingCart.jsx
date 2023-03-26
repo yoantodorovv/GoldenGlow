@@ -74,6 +74,7 @@ export const ShoppingCart = () => {
     const onCheckout = () => {
 
     }
+    
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['wrapper']}>
