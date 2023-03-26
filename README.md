@@ -3,12 +3,12 @@
 GoldenGlow Boutique is an e-commerce single-page application (SPA) built with React and Firebase. It allows users to browse a selection of elegant clothing and add items to their cart.
 
 ## Table of Contents
-- Features
-- Installation
-- Usage
-- Technology Used
-- APIs
-- License
+- [Features](https://github.com/yoantodorovv/GoldenGlow#features)
+- [Installation]((https://github.com/yoantodorovv/GoldenGlow#installation))
+- [Usage](https://github.com/yoantodorovv/GoldenGlow#usage)
+- [Technology Used](https://github.com/yoantodorovv/GoldenGlow#technology-used)
+- [APIs](https://github.com/yoantodorovv/GoldenGlow#apis)
+- [License](https://github.com/yoantodorovv/GoldenGlow#license)
 
 ## Features
 GoldenGlow Boutique offers the following features:
