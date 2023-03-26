@@ -56,6 +56,8 @@ npm install
        ```
        The app should now be running on [http://localhost:5173](http://localhost:5173) in your web browser.
 
+       **Note:** You need to be in the **client** folder, in order to successfully run the development script.
+
        **Note:** Before the app can be used to display store location information, you'll need to obtain a **Google Maps API key**. Once you have your API key, you can replace the `key` constant in `src/services/googleMapsService.js`:
 
        ```javascript
