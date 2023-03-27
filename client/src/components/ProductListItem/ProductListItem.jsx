@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../services/firebaseService";
 
 import styles from './ProductListItem.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 export const ProductListItem = ({
     onPriceChange,
@@ -29,8 +30,6 @@ export const ProductListItem = ({
     const [totalPrice, setTotalPrice] = useState(product.totalPrice);
     const productRef = doc(db, 'products', product.productId);
     const userProductRef = doc(db, `users/${auth.currentUser.uid}/cart`, product.id);
-
-    console.log(product);
 
     useEffect(() => {
         getDoc(productRef)
@@ -68,6 +67,12 @@ export const ProductListItem = ({
 
     return (
         <div className={styles['product']}>
+            <Link
+                to={`/catalog/${product.productId}`}
+                className={styles['product-link']}
+            >
+                <FontAwesomeIcon className={styles['product-link-icon']} icon={faUpRightFromSquare} size="lg" />
+            </Link>
             <img src={queryProduct?.images[0]} className={styles['product-image']} />
             <div className={styles['product-title-wrapper']}>
                 <p>{queryProduct?.category.charAt(0).toUpperCase() + queryProduct?.category.slice(1)}</p>

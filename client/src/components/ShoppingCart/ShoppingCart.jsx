@@ -113,6 +113,7 @@ export const ShoppingCart = () => {
                     <h1>Payment Details</h1>
                 </div>
                 <div className={styles['payment-content-wrapper']}>
+                    
                 </div>
                 <div className={styles['total-price-wrapper']}>
                     <p>Total Cost:</p>

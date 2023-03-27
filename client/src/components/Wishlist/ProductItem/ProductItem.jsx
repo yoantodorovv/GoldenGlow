@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { collection, doc, getDoc, getDocs, addDoc, query, where } from "firebase/firestore";
 import { auth, db } from "../../../services/firebaseService";
@@ -7,7 +7,7 @@ import { auth, db } from "../../../services/firebaseService";
 import Swal from "sweetalert2";
 import styles from './ProductItem.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faCartShopping, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 export const ProductItem = ({
     product,
@@ -91,6 +91,12 @@ export const ProductItem = ({
 
     return (
         <div className={styles['product']}>
+            <Link
+                to={`/catalog/${product.productId}`}
+                className={styles['product-link']}
+            >
+                <FontAwesomeIcon className={styles['product-link-icon']} icon={faUpRightFromSquare} size="lg" />
+            </Link>
             <img src={queryProduct.images[0]} className={styles['product-image']} />
             <div className={styles['product-title-wrapper']}>
                 <p>{queryProduct.category.charAt(0).toUpperCase() + queryProduct.category.slice(1)}</p>

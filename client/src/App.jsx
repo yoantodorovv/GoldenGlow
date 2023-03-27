@@ -16,6 +16,7 @@ import { Settings } from "./components/Settings/Settings";
 import { PurchaseHistory } from "./components/PurchaseHistory/PurchaseHistory";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
+import { Product } from "./components/Product/Product"
 
 function App() {
     //TODO: Attribute the photographers and Unsplash for the photos
@@ -77,31 +78,31 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                {/* //TODO: Finish
+                //TODO: Finish
                 <Route
-                    path="/catalog/elegant-everyday"
+                    path="/catalog/:productId"
                     element={
                         <MainWrapper>
-                            <Catalog />
+                            <Product />
                         </MainWrapper>
                     }
                 />
                 <Route
-                    path="/catalog/elegant-everyday/women"
+                    path="/catalog/:collection"
                     element={
                         <MainWrapper>
-                            <Catalog />
+                            <>collection</>
                         </MainWrapper>
                     }
                 />
                 <Route
-                    path="/catalog/elegant-everyday/men"
+                    path="/catalog/:category"
                     element={
                         <MainWrapper>
-                            <Catalog />
+                            <>category</>
                         </MainWrapper>
                     }
-                /> */}
+                />
                 //TODO: Finish
                 <Route
                     path="/user"
@@ -112,7 +113,6 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                //TODO: Finish
                 <Route
                     path="/user/wishlist"
                     element={
@@ -121,7 +121,6 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                //TODO: Finish
                 <Route
                     path="/user/shopping-cart"
                     element={

@@ -1,0 +1,28 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+
+.wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    padding: 5rem 10rem;
+
+    .path-wrapper {
+        display: flex;
+        align-items: center;
+
+        .link {
+            text-decoration: none;
+            color: $dark-color;
+        }
+
+        .path-text {
+            color: $dark-color;
+            margin-left: .5em;
+            font-size: 35px;
+        }
+        
+    }
+}

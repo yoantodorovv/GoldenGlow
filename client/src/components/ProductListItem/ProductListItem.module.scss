@@ -14,6 +14,14 @@ $white-primary: #dbcec3;
     border-bottom: 2px solid $white-primary-accent;
     transition: .3s ease-in;
 
+    .product-link {
+        color: $brown-secondary;
+    }
+
+    .product-link-icon:hover {
+        color: $brown-primary;
+    }
+
     .product-image {
         height: 100%;
         width: 20%;
