@@ -9,7 +9,7 @@ import { ProductItem } from './ProductItem/ProductItem'
 import styles from './Wishlist.module.scss'
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export const Wishlist = () => {
     const [wishlistProducts, setWishlistProducts] = useState([]);
@@ -64,7 +64,15 @@ export const Wishlist = () => {
                 </div>
                 <div className={styles['content-wrapper']}>
                     <div className={styles['products-wrapper']}>
-                        {wishlistProducts.map(x => <ProductItem key={x.productId} product={x} onRemoveProduct={onRemoveProduct} />)}
+                        {   wishlistProducts.length > 0
+                            ? wishlistProducts.map(x => <ProductItem key={x.productId} product={x} onRemoveProduct={onRemoveProduct} />)
+                            : (
+                                <div className={styles['empty-wrapper']}>
+                                    <FontAwesomeIcon className={styles['empty-icon']} icon={faHeart} size="3x" />
+                                    <h1 className={styles['empty-text']}>Wishlist is empty!</h1>
+                                </div>
+                            )
+                        }
                     </div>
                     <div className={styles['total-wrapper']}>
                         <Link

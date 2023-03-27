@@ -64,6 +64,23 @@ $brown-secondary: #8a5b40;
     }
 }
 
+.empty-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 3em 0em;
+
+
+    .empty-text {
+        font-size: 35px;
+        color: #8d8780;
+    }
+    
+    .empty-icon {
+        margin-right: .5em;
+        color: #8d8780;
+    }
+}
+
 .payment-wrapper {
     position: sticky;
     left: 70%;

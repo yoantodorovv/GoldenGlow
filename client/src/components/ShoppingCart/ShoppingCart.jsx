@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { collection, deleteDoc, getDocs, doc, onSnapshot } from 'firebase/firestore'
+import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore'
 import { auth, db } from '../../services/firebaseService'
 
 import { ProductListItem } from '../ProductListItem/ProductListItem'
@@ -9,7 +9,7 @@ import { ProductListItem } from '../ProductListItem/ProductListItem'
 import styles from './ShoppingCart.module.scss'
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 export const ShoppingCart = () => {
     const [cartProducts, setCartProducts] = useState([]);
@@ -26,9 +26,9 @@ export const ShoppingCart = () => {
 
         const data = await getDocs(userCartCollectionRef);
 
-        setCartProducts(data.docs.map(doc => ({...doc.data(), id: doc.id})))
+        setCartProducts(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
 
-        setTotalPrice(0) 
+        setTotalPrice(0)
 
         data.docs.forEach(doc => {
             setTotalPrice(state => state += doc.data().totalPrice);
@@ -67,14 +67,14 @@ export const ShoppingCart = () => {
 
     const onPriceChange = (type, addedSum) => {
         type === 'increment'
-        ? setTotalPrice(state => state + addedSum)
-        : setTotalPrice(state => state - addedSum)
+            ? setTotalPrice(state => state + addedSum)
+            : setTotalPrice(state => state - addedSum)
     }
 
     const onCheckout = () => {
 
     }
-    
+
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['wrapper']}>
@@ -83,7 +83,15 @@ export const ShoppingCart = () => {
                 </div>
                 <div className={styles['content-wrapper']}>
                     <div className={styles['products-wrapper']}>
-                        {cartProducts.map(x => <ProductListItem key={x.productId} onPriceChange={onPriceChange}  product={x} onRemoveProduct={onRemoveProduct} />)}
+                        {cartProducts.length > 0
+                            ? cartProducts.map(x => <ProductListItem key={x.productId} onPriceChange={onPriceChange} product={x} onRemoveProduct={onRemoveProduct} />)
+                            : (
+                                <div className={styles['empty-wrapper']}>
+                                    <FontAwesomeIcon className={styles['empty-icon']} icon={faCartShopping} size="3x" />
+                                    <h1 className={styles['empty-text']}>Shopping Cart is empty!</h1>
+                                </div>
+                            )
+                        }
                     </div>
                     <div className={styles['total-wrapper']}>
                         <Link

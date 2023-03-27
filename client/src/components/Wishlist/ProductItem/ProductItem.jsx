@@ -26,7 +26,6 @@ export const ProductItem = ({
         images: [],
         material: {},
     });
-    const [addedToCart, setAddedToCart] = useState(false);
     const productRef = doc(db, 'products', product.productId);
     const navigate = useNavigate();
 
@@ -41,22 +40,26 @@ export const ProductItem = ({
     }, []);
 
     const onAddToCart = async () => {
-        if (addedToCart) {
+        const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
 
-            //TODO: If contains not if addedToCart
+        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.productId))
+
+        const queryResultCollection = await getDocs(cartQuery);
+
+        console.log(queryResultCollection);
+
+        if (queryResultCollection.docs.length > 0) {
             Swal.fire({
-                title: `Sorry, ${queryProduct.name} is already added to your Shopping Cart!`,
+                title: `${queryProduct.name.charAt(0).toUpperCase() + queryProduct.name.slice(1)} is already added to your Shopping Cart again!`,
                 icon: 'error',
                 toast: true,
                 position: 'top-end',
-                timer: 3000,
+                timer: 1500,
                 showConfirmButton: false,
             });
 
             return;
         }
-
-        const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
 
         try {
             await addDoc(usersCartCollectionRef, {
@@ -65,9 +68,7 @@ export const ProductItem = ({
                 totalPrice: queryProduct.price,
                 innitialPrice: queryProduct.price
             });
-    
-            setAddedToCart(true);
-    
+
             Swal.fire({
                 title: `${queryProduct.name.charAt(0).toUpperCase() + queryProduct.name.slice(1)} successfully added to your Shopping Cart!`,
                 icon: 'success',
