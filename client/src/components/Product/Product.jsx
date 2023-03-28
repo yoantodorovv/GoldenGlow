@@ -56,6 +56,8 @@ export const Product = () => {
 
     }
 
+    const setCurrentColorHandler = (color) => setCurrentColor(color);
+
     return (
         <div className={styles['wrapper']}>
             <section className={styles['path-wrapper']}>
@@ -103,7 +105,7 @@ export const Product = () => {
                     <div className={styles['color-wrapper']}>
                         {/* TODO: Finish color */}
                         <p>{currentColor}</p>
-                        <ColorCarousel colorList={product?.color} />
+                        <ColorCarousel colorList={product?.color} setCurrentColorHandler={setCurrentColorHandler} />
                     </div>
                     <div className={styles['size-wrapper']}>
                         {/* TODO: Finish size */}
@@ -137,7 +139,7 @@ export const Product = () => {
                             Add To Wishlist
                         </button>
                     </div>
-                    <div className={styles['text-wrapper']}>
+                    {/* <div className={styles['text-wrapper']}>
                         <p>DETAILS</p>
                         <div className={styles['details-wrapper']}>
                             <div className={styles['detail-wrapper']}>
@@ -161,7 +163,7 @@ export const Product = () => {
                     <div className={styles['text-wrapper']}>
                         <p>DESCRIPTION</p>
                         <p>{product?.description}</p>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </div>

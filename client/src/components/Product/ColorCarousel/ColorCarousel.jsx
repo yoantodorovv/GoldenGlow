@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import styles from './ColorCarousel.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 export const ColorCarousel = ({
-    colorList
+    colorList,
+    setCurrentColorHandler
 }) => {
     const [colorsState, setColorsState] = useState({});
 
@@ -23,6 +22,10 @@ export const ColorCarousel = ({
         }, {}))
 
         setColorsState(state => ({ ...state, [color]: true }))
+
+        const displayColor = color.charAt(0).toUpperCase() + color.slice(1);
+
+        setCurrentColorHandler(displayColor);
     }
 
     // TODO: Finish (extract color to diff component)
@@ -37,13 +40,9 @@ export const ColorCarousel = ({
                         key={x}
                         type='button'
                         onClick={() => onColorClick(x)}
-                        className={styles['btn']}
+                        style={{backgroundColor: x}}
+                        className={colorsState[x] ? styles['btn-active'] :  styles['btn']}
                     >
-                        {
-                            colorsState[x]
-                                ? <FontAwesomeIcon className={styles['btn-icon']} icon={faCheck} size="1x" />
-                                : ''
-                        }
                     </button>
                 )
             })}

@@ -1,16 +1,29 @@
 .carousel-wrapper {
     width: 100%;
     height: fit-content;
+    padding: .5em 0em;
 
     .btn {
         padding: 1.3em;
+        margin-right: .5em;
         border-radius: 25px;
         border: 1px solid #000;
 
         .btn-icon {
-            bottom: 29.5%;
-            right: 40.25%;
-            position: absolute;
+            position: relative;
+            color: #000;
+        }
+    }
+
+    .btn-active {
+        border: 2px solid #000;
+        margin-right: .5em;
+        padding: 1.3em;
+        border-radius: 25px;
+        outline: #fff;
+
+        .btn-icon {
+            position: relative;
             color: #000;
         }
     }
