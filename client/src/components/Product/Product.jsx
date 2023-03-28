@@ -12,6 +12,7 @@ import { faHouse, faCartShopping, faHeart, faRecycle, faVenusMars } from '@forta
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ColorCarousel } from './ColorCarousel/ColorCarousel';
+import { SizeCarousel } from './SizeCarousel/SizeCarousel';
 
 export const Product = () => {
     const [product, setProduct] = useState({
@@ -28,6 +29,7 @@ export const Product = () => {
         material: {},
     });
     const [currentColor, setCurrentColor] = useState('Select Color');
+    const [currentSize, setCurrentSize] = useState('Select Size');
     const { productId } = useParams();
     const productRef = doc(db, 'products', productId);
 
@@ -57,6 +59,8 @@ export const Product = () => {
     }
 
     const setCurrentColorHandler = (color) => setCurrentColor(color);
+
+    const setCurrentSizeHandler = (size) => setCurrentSize(size);
 
     return (
         <div className={styles['wrapper']}>
@@ -104,17 +108,24 @@ export const Product = () => {
                     </div>
                     <div className={styles['color-wrapper']}>
                         {/* TODO: Finish color */}
-                        <p>{currentColor}</p>
+                        <p>
+                            {
+                                currentColor === 'Select Color'
+                                ? currentColor
+                                : `Color: ${currentColor}`
+                            }
+                        </p>
                         <ColorCarousel colorList={product?.color} setCurrentColorHandler={setCurrentColorHandler} />
                     </div>
                     <div className={styles['size-wrapper']}>
-                        {/* TODO: Finish size */}
-                        <p>Select Size</p>
-                        {/* {product?.size.map(x => {
-                            return (
-                                <div className={styles['size-element-wrapper']}></div>
-                            )
-                        })} */}
+                        <p>
+                            {
+                                currentSize === 'Select Size'
+                                ? currentSize
+                                : `Size: ${currentSize}`
+                            }
+                        </p>
+                        <SizeCarousel sizeList={product?.size} setCurrentSizeHandler={setCurrentSizeHandler} />
                     </div>
                     <div className={styles['checkout-wrapper']}>
                         <div className={styles['price-wrapper']}>

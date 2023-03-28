@@ -28,13 +28,9 @@ export const ColorCarousel = ({
         setCurrentColorHandler(displayColor);
     }
 
-    // TODO: Finish (extract color to diff component)
     return (
         <div className={styles['carousel-wrapper']}>
             {colorList.map(x => {
-                console.log(x);
-                console.log(colorsState[x]);
-
                 return (
                     <button
                         key={x}
