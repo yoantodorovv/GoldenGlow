@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import Slider from 'react-slick';
 
-import { db } from '../../services/firebaseService';
-import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../services/firebaseService';
+import { collection, doc, getDoc, getDocs, addDoc, query, where } from 'firebase/firestore';
 
 import Swal from 'sweetalert2';
 import styles from './Product.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faCartShopping, faHeart, faRecycle, faVenusMars } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ColorCarousel } from './ColorCarousel/ColorCarousel';
@@ -32,6 +32,7 @@ export const Product = () => {
     const [currentSize, setCurrentSize] = useState('Select Size');
     const { productId } = useParams();
     const productRef = doc(db, 'products', productId);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getDoc(productRef)
@@ -42,7 +43,7 @@ export const Product = () => {
     const carouselSettings = {
         dots: true,
         infinite: true,
-        speed: 1500,
+        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: true,
@@ -50,12 +51,96 @@ export const Product = () => {
         autoplay: true,
     };
 
-    const onAddToCartClick = () => {
+    const onAddToCart = async () => {
+        if (auth.currentUser === null) {
+            return navigate('/login');
+        }
 
+        const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
+
+        const cartQuery = query(usersCartCollectionRef, where('productId', '==', productId))
+
+        const queryResultCollection = await getDocs(cartQuery);
+
+        console.log(queryResultCollection);
+
+        if (queryResultCollection.docs.length > 0) {
+            Swal.fire({
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} is already added to your Shopping Cart!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 1000,
+                showConfirmButton: false,
+            });
+
+            return;
+        }
+
+        try {
+            await addDoc(usersCartCollectionRef, {
+                productId: productId,
+                quantity: 1,
+                totalPrice: product.price,
+                innitialPrice: product.price
+            });
+
+            Swal.fire({
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Shopping Cart!`,
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        } catch (error) {
+            Swal.fire({
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} couldn't be added to your Shopping Cart!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        }
     }
 
-    const onAddToWishlistClick = () => {
+    const onAddToWishlist = async () => {
+        if (auth?.currentUser === null) {
+            return navigate('/login');
+        }
 
+        const usersWishlistCollectionRef = collection(db, `users/${auth.currentUser.uid}/wishlist`);
+
+        const cartQuery = query(usersWishlistCollectionRef, where('productId', '==', productId))
+
+        const queryResultCollection = await getDocs(cartQuery);
+
+        if (queryResultCollection.docs.length > 0) {
+            Swal.fire({
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} is already added to your Wishlist!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+
+            return;
+        }
+
+        await addDoc(usersWishlistCollectionRef, {
+            productId: productId,
+        });
+
+        Swal.fire({
+            title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Wishlist!`,
+            icon: 'success',
+            toast: true,
+            position: 'top-end',
+            timer: 3000,
+            showConfirmButton: false,
+        });
     }
 
     const setCurrentColorHandler = (color) => setCurrentColor(color);
@@ -107,7 +192,6 @@ export const Product = () => {
                         <h2>{product?.category.charAt(0).toUpperCase() + product?.category.slice(1)}</h2>
                     </div>
                     <div className={styles['color-wrapper']}>
-                        {/* TODO: Finish color */}
                         <p>
                             {
                                 currentColor === 'Select Color'
@@ -133,7 +217,7 @@ export const Product = () => {
                         </div>
                         <button
                             type='button'
-                            onClick={onAddToCartClick}
+                            onClick={onAddToCart}
                             className={styles['add-to-cart-btn']}
                         >
                             Add to Cart
@@ -143,7 +227,7 @@ export const Product = () => {
                     <div className={styles['add-to-wish-btn-wrapper']}>
                         <button
                             type='button'
-                            onClick={onAddToWishlistClick}
+                            onClick={onAddToWishlist}
                             className={styles['add-to-wish-btn']}
                         >
                             <FontAwesomeIcon className={styles['add-to-cart-btn-icon']} icon={faHeart} size="1x" />
