@@ -134,6 +134,23 @@ $brown-secondary: #8a5b40;
                 color: #6c3d1f;
             }
         }
+    }
+}
+
+.general-details-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 5em;
+
+    .text-wrapper {
+        width: 20%;
+        margin: 0em 0em 1em 3em;
+
+        p {
+            margin-bottom: .2em;
+            color: $brown-primary;
+        }
 
         .detail-wrapper {
             display: flex;
@@ -147,6 +164,20 @@ $brown-secondary: #8a5b40;
             p.detail {
                 color: $dark-color;
             }
+        }
+        
+    }
+
+    
+
+    .description {
+        width: 80%;
+        margin-bottom: 1em;
+        border-right: 1px solid $brown-primary;
+
+        p:first-of-type {
+            margin-bottom: .2em;
+            color: $brown-primary;
         }
     }
 }

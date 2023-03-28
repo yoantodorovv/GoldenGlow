@@ -8,7 +8,7 @@ import { collection, doc, getDoc, getDocs, addDoc, query, where } from 'firebase
 import Swal from 'sweetalert2';
 import styles from './Product.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faCartShopping, faHeart, faRecycle, faVenusMars } from '@fortawesome/free-solid-svg-icons'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ColorCarousel } from './ColorCarousel/ColorCarousel';
@@ -195,8 +195,8 @@ export const Product = () => {
                         <p>
                             {
                                 currentColor === 'Select Color'
-                                ? currentColor
-                                : `Color: ${currentColor}`
+                                    ? currentColor
+                                    : `Color: ${currentColor}`
                             }
                         </p>
                         <ColorCarousel colorList={product?.color} setCurrentColorHandler={setCurrentColorHandler} />
@@ -205,8 +205,8 @@ export const Product = () => {
                         <p>
                             {
                                 currentSize === 'Select Size'
-                                ? currentSize
-                                : `Size: ${currentSize}`
+                                    ? currentSize
+                                    : `Size: ${currentSize}`
                             }
                         </p>
                         <SizeCarousel sizeList={product?.size} setCurrentSizeHandler={setCurrentSizeHandler} />
@@ -234,31 +234,33 @@ export const Product = () => {
                             Add To Wishlist
                         </button>
                     </div>
-                    {/* <div className={styles['text-wrapper']}>
-                        <p>DETAILS</p>
-                        <div className={styles['details-wrapper']}>
-                            <div className={styles['detail-wrapper']}>
-                                <FontAwesomeIcon className={styles['details-icon']} icon={faRecycle} size="1x" />
-                                <div>
-                                    {Array.from(product?.material).map(x => (
-                                        <p key={x} className={styles['detail']}>{x}</p>
-                                    ))}
-                                </div>
+                </div>
+            </section>
+            <section className={styles['general-details-wrapper']}>
+                <div className={styles['description']}>
+                    <p>DESCRIPTION</p>
+                    <p>{product?.description}</p>
+                </div>
+                <div className={styles['text-wrapper']}>
+                    <p>DETAILS</p>
+                    <div className={styles['details-wrapper']}>
+                        <div className={styles['detail-wrapper']}>
+                            <FontAwesomeIcon className={styles['details-icon']} icon={faRecycle} size="1x" />
+                            <div>
+                                {Array.from(product?.material).map(x => (
+                                    <p key={x} className={styles['detail']}>{x}</p>
+                                ))}
                             </div>
-                            <div className={styles['detail-wrapper']}>
-                                <FontAwesomeIcon className={styles['details-icon']} icon={faVenusMars} size="1x" />
-                                <div>
-                                    <p className={styles['detail']}>
-                                        {product?.gender}
-                                    </p>
-                                </div>
+                        </div>
+                        <div className={styles['detail-wrapper']}>
+                            <FontAwesomeIcon className={styles['details-icon']} icon={faVenusMars} size="1x" />
+                            <div>
+                                <p className={styles['detail']}>
+                                    {product?.gender}
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div className={styles['text-wrapper']}>
-                        <p>DESCRIPTION</p>
-                        <p>{product?.description}</p>
-                    </div> */}
                 </div>
             </section>
         </div>
