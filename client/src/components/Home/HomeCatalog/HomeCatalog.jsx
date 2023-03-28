@@ -36,7 +36,7 @@ export const HomeCatalog = () => {
     return (
         <div className={styles['general-wrapper']}>
             <HomeCatalogSectionPreview title="Most Popular">
-                <Carousel products={mostPopularProducts} />
+                <Carousel products={mostPopularProducts} slidesToShow={4} />
             </HomeCatalogSectionPreview>
             <div className={styles['separator']}></div>
             <HomeCatalogSectionPreview title="E-Veryday" subtitle="NEW COLLECTION">
@@ -45,7 +45,7 @@ export const HomeCatalog = () => {
                     <HeroContainer path="/catalog" imageSrc={collectionBoth} containerText="Catalog" />
                     <HeroContainer path="/catalog/men" imageSrc={collectionMen} containerText="Men" />
                 </div>
-                <Carousel products={collectionProducts} />
+                <Carousel products={collectionProducts} slidesToShow={4} />
             </HomeCatalogSectionPreview>
         </div>
     );

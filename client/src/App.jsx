@@ -88,18 +88,18 @@ function App() {
                     }
                 />
                 <Route
-                    path="/catalog/:collection"
+                    path="/catalog/collections/:collection"
                     element={
                         <MainWrapper>
-                            <>collection</>
+                            <h1>Collection</h1>
                         </MainWrapper>
                     }
                 />
                 <Route
-                    path="/catalog/:category"
+                    path="/catalog/categories/:category"
                     element={
                         <MainWrapper>
-                            <>category</>
+                            <h1>Category</h1>
                         </MainWrapper>
                     }
                 />

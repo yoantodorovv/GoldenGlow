@@ -1,0 +1,17 @@
+.carousel-wrapper {
+    width: 100%;
+    height: fit-content;
+
+    .btn {
+        padding: 1.3em;
+        border-radius: 25px;
+        border: 1px solid #000;
+
+        .btn-icon {
+            bottom: 29.5%;
+            right: 40.25%;
+            position: absolute;
+            color: #000;
+        }
+    }
+}
