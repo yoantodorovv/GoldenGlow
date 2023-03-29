@@ -1,7 +1,6 @@
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { auth, db } from '../../services/firebaseService';
 
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +11,6 @@ import Swal from 'sweetalert2';
 export const Card = ({
     product
 }) => {
-    const [currentProduct, setCurrentProduct] = useState(null);
     const navigate = useNavigate();
 
     const addToCartHandler = async () => {
