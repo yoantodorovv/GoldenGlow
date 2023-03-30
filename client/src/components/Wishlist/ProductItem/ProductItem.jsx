@@ -41,14 +41,11 @@ export const ProductItem = ({
 
     const onAddToCart = async () => {
         const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
+        const specificProductRef = doc(db, `users/${auth.currentUser.uid}/cart`, product.productId);
 
-        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.productId))
+        const specificProductResult = await getDoc(specificProductRef);
 
-        const queryResultCollection = await getDocs(cartQuery);
-
-        console.log(queryResultCollection);
-
-        if (queryResultCollection.docs.length > 0) {
+        if (specificProductResult.exists) {
             Swal.fire({
                 title: `${queryProduct.name.charAt(0).toUpperCase() + queryProduct.name.slice(1)} is already added to your Shopping Cart again!`,
                 icon: 'error',

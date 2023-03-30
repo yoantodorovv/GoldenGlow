@@ -5,8 +5,6 @@ import { MainWrapper } from "./components/MainWrapper/MainWrapper"
 import { Home } from "./components/Home/Home"
 import { About } from "./components/About/About"
 import { Contact } from "./components/Contact/Contact"
-import { WomenCatalog } from "./components/Catalog/WomenCatalog/WomenCatalog"
-import { MenCatalog } from "./components/Catalog/MenCatalog/MenCatalog"
 import { Catalog } from "./components/Catalog/Catalog"
 import { Login } from "./components/Login/Login"
 import { Register } from "./components/Register/Register"
@@ -65,7 +63,7 @@ function App() {
                     path="/catalog/women"
                     element={
                         <MainWrapper>
-                            <WomenCatalog />
+                            <Catalog />
                         </MainWrapper>
                     }
                 />
@@ -74,7 +72,7 @@ function App() {
                     path="/catalog/men"
                     element={
                         <MainWrapper>
-                            <MenCatalog />
+                            <Catalog />
                         </MainWrapper>
                     }
                 />

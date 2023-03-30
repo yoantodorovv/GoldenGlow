@@ -30,7 +30,7 @@ $white-primary-accent: #fff6ec;
 
 .nav-btn-li-link:hover {
     background-color: $brown-primary;
-    color: $white-primary;
+    color: $white-primary-accent;
     padding: .3em 1em;
 }
 
@@ -41,7 +41,7 @@ $white-primary-accent: #fff6ec;
     border: 2px solid $brown-primary;
     font-size: 20px;
     text-decoration: none;
-    color: $white-primary;
+    color: $white-primary-accent;
 }
 
 .v-line {

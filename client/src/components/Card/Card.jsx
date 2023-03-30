@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { auth, db } from '../../services/firebaseService';
 
 import { Link, useNavigate } from 'react-router-dom'
@@ -21,22 +21,18 @@ export const Card = ({
         }
 
         const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
+        const specificProductRef = doc(db, `users/${auth.currentUser.uid}/cart`, product.id);
 
-        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.id))
+        const specificProductResult = await getDoc(specificProductRef);
 
-        const queryResultCollection = await getDocs(cartQuery);
+        if (specificProductResult.exists) {
 
-        if (queryResultCollection.docs.length > 0) {
-            queryResultCollection.docs.forEach(x => {
-                const updateProd = async () => {
-                    await updateDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id), {
-                        quantity: x.data().quantity + 1,
-                        totalPrice: x.data().totalPrice + product.price
-                    });
-                }
-    
-                updateProd();
-            })
+            console.log('read');
+            
+            await updateDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id), {
+                quantity: x.data().quantity + 1,
+                totalPrice: x.data().totalPrice + product.price
+            });
 
             Swal.fire({
                 title: `Successfully added ${product.name} to your Shopping Cart again!`,
@@ -49,6 +45,8 @@ export const Card = ({
 
             return;
         }
+
+        console.log('collection-read');
 
         await addDoc(usersCartCollectionRef, {
             productId: product.id,
@@ -75,12 +73,14 @@ export const Card = ({
         }
 
         const usersWishlistCollectionRef = collection(db, `users/${auth.currentUser.uid}/wishlist`);
+        const specificProductRef = doc(db, `users/${auth.currentUser.uid}/wishlist`, product.id)
 
-        const cartQuery = query(usersWishlistCollectionRef, where('productId', '==', product.id))
+        const specificProductResult = await getDoc(specificProductRef);
 
-        const queryResultCollection = await getDocs(cartQuery);
+        if (specificProductResult.exists) {
 
-        if (queryResultCollection.docs.length > 0) {
+            console.log('read');
+
             Swal.fire({
                 title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} is already added to your Wishlist!`,
                 icon: 'error',
@@ -92,6 +92,8 @@ export const Card = ({
 
             return;
         }
+
+        console.log('collection-read');
 
         await addDoc(usersWishlistCollectionRef, {
             productId: product.id,
