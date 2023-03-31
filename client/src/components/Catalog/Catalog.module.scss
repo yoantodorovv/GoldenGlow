@@ -1,0 +1,25 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+.general-wrapper {
+    display: flex;
+    width: 100%;
+
+    .catalog-wrapper {
+        width: 85%;
+        padding: 3em 5em;
+    }
+
+    .catalog-title-wrapper {
+        margin-bottom: 2em;
+    }
+
+    .catalog {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: row wrap;
+    }
+}

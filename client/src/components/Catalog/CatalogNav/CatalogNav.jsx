@@ -30,19 +30,19 @@ export const CatalogNav = ({
     const onGenderClick = (e) => {
         onGenderRemove();
 
-        setGender(state => ({...state, [e.target.name]: true}));
+        setGender(state => ({ ...state, [e.target.name]: true }));
     }
 
-    const onGenderRemove = () => 
+    const onGenderRemove = () =>
         setGender({ Men: false, Women: false });
 
     const onCollectionClick = (e) => {
         onCollectionRemove();
 
-        setCollection(state => ({...state, [e.target.name]: true}));
+        setCollection(state => ({ ...state, [e.target.name]: true }));
     }
 
-    const onCollectionRemove = () => 
+    const onCollectionRemove = () =>
         setCollection({
             ElegantEveryday: false,
             CasuallyImportant: false,
@@ -52,10 +52,10 @@ export const CatalogNav = ({
     const onCategoryClick = (e) => {
         onCategoryRemove();
 
-        setCategory(state => ({...state, [e.target.name]: true}));
+        setCategory(state => ({ ...state, [e.target.name]: true }));
     }
-        
-    const onCategoryRemove = () => 
+
+    const onCategoryRemove = () =>
         setCategory({
             Skirt: false,
             Dress: false,
@@ -207,13 +207,14 @@ export const CatalogNav = ({
                 </div>
             </section>
             <div className={styles['filter-wrapper']}>
-                <section className={styles['color-wrapper']}>
+                <h1 className={styles['title']}>Filter By:</h1>
+                <section className={styles['selection-wrapper']}>
+                    {/* TODO: Logic first */}
+                </section>
+                <section className={styles['selection-wrapper']}>
 
                 </section>
-                <section className={styles['size-wrapper']}>
-
-                </section>
-                <section className={styles['price-wrapper']}>
+                <section className={styles['selection-wrapper']}>
 
                 </section>
             </div>

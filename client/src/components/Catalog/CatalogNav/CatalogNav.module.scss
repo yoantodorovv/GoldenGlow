@@ -70,6 +70,18 @@ $white-primary: #dbcec3;
     border-bottom: 1px solid $dark-color;
 }
 
+.filter-wrapper {
+    margin-bottom: 1em;
+
+    .title {
+        font-size: 20px;
+    }
+
+    .selection-wrapper:last-of-type {
+        border: none;
+    }
+}
+
 .btn-wrapper {
     display: flex;
     justify-content: space-between;

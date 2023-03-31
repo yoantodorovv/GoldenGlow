@@ -8,6 +8,7 @@ $white-primary: #dbcec3;
     background-color: $white-primary-accent;
     width: 20rem;
     height: 50vh;
+    margin: 1em 0em;
     border: 1px solid $brown-primary;
     border-radius: 25px;
 
@@ -51,8 +52,14 @@ $white-primary: #dbcec3;
     text-decoration: none;
 }
 
-.card-content-price p {
-    color: $dark-color;
+.card-content-price {
+    p {
+        color: $dark-color;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
 }
 
 .card-wishlist-btn {
