@@ -4,6 +4,15 @@ $brown-primary: #6c3d1f;
 $brown-secondary: #8a5b40;
 $white-primary: #dbcec3;
 
+@mixin Options-btn($color) {
+    margin-bottom: .5em;
+    color: $color;
+    font-weight: bold;
+    background-color: transparent;
+    text-align: start;
+    border: none;
+}
+
 .catalog-navigation-wrapper {
     width: 15%;
     padding: 3em;
@@ -42,12 +51,11 @@ $white-primary: #dbcec3;
         padding-left: 1em;
 
         .options-btn {
-            margin-bottom: .5em;
-            color: $dark-color;
-            font-weight: bold;
-            background-color: transparent;
-            text-align: start;
-            border: none;
+            @include Options-btn($dark-color);
+        }
+
+        .options-btn-active {
+            @include Options-btn($brown-primary);
         }
 
         .options-btn:hover {
@@ -55,6 +63,11 @@ $white-primary: #dbcec3;
             color: $brown-primary;
         }
     }
+}
+
+.selection-wrapper:last-of-type {
+    margin-bottom: 1em;
+    border-bottom: 1px solid $dark-color;
 }
 
 .btn-wrapper {

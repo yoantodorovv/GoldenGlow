@@ -28,14 +28,19 @@ export const Catalog = () => {
         //     });
     });
 
-    
+    const onApplyFilters = () => {
+        
+    }
 
+    const onDiscardFilters = () => {
+
+    }
 
     return (
         <div className={styles['general-wrapper']}>
-            <CatalogNav
-                // onOptionClick={onGenderOptionClick}
-                // onGenderRemove={onGenderRemove}
+            <CatalogNav 
+                onApplyFilters={onApplyFilters}
+                onDiscardFilters={onDiscardFilters}
             />
             <div className={styles['catalog-wrapper']}>
                 <div className={styles['catalog-title-wrapper']}>
