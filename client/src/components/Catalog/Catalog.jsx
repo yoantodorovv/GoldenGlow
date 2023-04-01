@@ -13,14 +13,20 @@ import Swal from 'sweetalert2';
 
 import tempProducts from '../../../public/text/temp.json'
 
+
 export const Catalog = () => {
     const [products, setProducts] = useState([]);
     const [displayProducts, setDisplayProducts] = useState([]);
+    const [isFiltered, setIsFitered] = useState({
+        gender: false,
+        collection: false,
+        category: false,
+    });
 
     const productsRef = collection(db, 'products');
 
     useEffect(() => {
-        console.log('collection-read');
+        console.log('rerender');
 
         // getDocs(productsRef)
         //     .then(data => {
@@ -32,17 +38,19 @@ export const Catalog = () => {
         setDisplayProducts(tempProducts.map(x => ({...x})))
     }, []);
 
+
     const onApplyFilters = () => {
-        
+
     }
 
     const onDiscardFilters = () => {
-        
+
     }
 
     return (
         <div className={styles['general-wrapper']}>
             <CatalogNav 
+                onApplySection={onApplySection}
                 onApplyFilters={onApplyFilters}
                 onDiscardFilters={onDiscardFilters}
             />
@@ -53,7 +61,7 @@ export const Catalog = () => {
                 <div className={styles['catalog']}>
                     {
                         displayProducts.length !== 0
-                        ? products.map(x => <Card key={x.id} product={x} />)
+                        ? displayProducts.map(x => <Card key={x.id} product={x} />)
                         : <></>
                     }
                 </div>

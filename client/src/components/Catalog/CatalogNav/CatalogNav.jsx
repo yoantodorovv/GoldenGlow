@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 export const CatalogNav = ({
+    onApplySection,
     onApplyFilters,
     onDiscardFilters,
 }) => {
@@ -29,6 +30,7 @@ export const CatalogNav = ({
 
     const onGenderClick = (e) => {
         onGenderRemove();
+        onApplySection(e.target.name);
 
         setGender(state => ({ ...state, [e.target.name]: true }));
     }
@@ -38,6 +40,7 @@ export const CatalogNav = ({
 
     const onCollectionClick = (e) => {
         onCollectionRemove();
+        onApplySection(e.target.name);
 
         setCollection(state => ({ ...state, [e.target.name]: true }));
     }
@@ -51,6 +54,7 @@ export const CatalogNav = ({
 
     const onCategoryClick = (e) => {
         onCategoryRemove();
+        onApplySection(e.target.name);
 
         setCategory(state => ({ ...state, [e.target.name]: true }));
     }
