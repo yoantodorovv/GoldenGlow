@@ -14,7 +14,9 @@ GoldenGlow Boutique is an e-commerce single-page application (SPA) built with Re
 GoldenGlow Boutique offers the following features:
 
 - Browse and search for elegant clothing products
+- Filter products by gender, collection and category
 - Add products to a shopping cart and wishlist
+- Order a product
 - View order history and details
 - Sign Up with a Google account or with email and password
 - Manage your profile once you have signed up
