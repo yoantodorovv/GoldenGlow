@@ -23,3 +23,11 @@ $white-primary: #dbcec3;
         flex-flow: row wrap;
     }
 }
+
+.filters-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $white-primary-accent;
+}

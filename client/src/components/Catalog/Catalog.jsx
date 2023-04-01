@@ -7,11 +7,10 @@ import { Card } from '../Card/Card'
 import { CatalogFilter } from './CatalogFilter/CatalogFilter';
 
 import styles from './Catalog.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2';
 
 import tempProducts from '../../../public/text/temp.json'
+import { FilterTag } from './FilterTag/FilterTag';
 
 export const Catalog = () => {
     const initialFilters = {
@@ -29,8 +28,6 @@ export const Catalog = () => {
     const productsRef = collection(db, 'products');
 
     useEffect(() => {
-        console.log('rerender');
-
         getDocs(productsRef)
             .then(data => {
                 setProducts(data.docs.map(x => ({ ...x.data(), id: x.id })))
@@ -72,8 +69,8 @@ export const Catalog = () => {
                 <div className={styles['catalog-title-wrapper']}>
                     <h1>All Products</h1>
                 </div>
-                {Object.values(filters).some((value) => Boolean(value)) && (
-                    <p>Filtering by: {Object.entries(filters).map(([key, value]) => `${key}: ${value}`).join(', ')}</p>
+                {Object.values(filters).some(value => Boolean(value)) && (
+                    <div className={styles['filters-wrapper']}>{Object.entries(filters).map(([key, value]) => <FilterTag key={key} value={value} />)}</div>
                 )}
                 <div className={styles['catalog']}>
                     {
