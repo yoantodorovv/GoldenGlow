@@ -1,0 +1,126 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+@mixin input($borderRadius) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: .5em;
+    background-color: transparent;
+    appearance: none;
+    color: #000;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #000;
+    border-radius: $borderRadius;
+}
+
+@mixin inputBefore($borderRadius) {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: $borderRadius;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em $brown-primary;
+}
+
+.catalog-navigation-wrapper {
+    width: 15%;
+    padding: 3em;
+    border-right: 1px solid $dark-color;
+}
+
+.selection-wrapper {
+    margin-bottom: .5em;
+
+    .title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: .5em;
+
+        h1 {
+            font-size: 20px;
+        }
+    }
+
+    .options-wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        padding-left: 1em;
+
+        .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: .5em;
+            color: $dark-color;
+            font-weight: bold;
+            background-color: transparent;
+            text-align: start;
+            border: none;
+
+            input[type="radio"] {
+                @include input(50%);
+            }
+
+            input[type="radio"]::before {
+                @include inputBefore(50%);
+            }
+
+            input[type="radio"]:checked:before {
+                transform: scale(1);
+            }
+
+            input[type="checkbox"] {
+                @include input(0.15em);
+            }
+
+            input[type="checkbox"]::before {
+                @include inputBefore(0%);
+            }
+
+            input[type="checkbox"]:checked::before {
+                transform: scale(1);
+            }
+        }
+
+        .option:hover {
+            cursor: pointer;
+            color: $brown-primary;
+        }
+    }
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .discard-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        padding: .5em 0em;
+        color: $brown-primary;
+        background-color: $white-primary-accent;
+        border: 1px solid $brown-primary;
+        border-radius: 10px;
+        transition: .2s ease-in-out;
+
+        h3 {
+            margin-right: 0.5em;
+        }
+    }
+
+    .discard-btn:hover {
+        cursor: pointer;
+        color: $white-primary-accent;
+        background-color: $brown-primary;
+    }
+}
