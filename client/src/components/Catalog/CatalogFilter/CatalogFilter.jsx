@@ -19,11 +19,12 @@ export const CatalogFilter = ({
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [isChecked, setIsChecked] = useState(initialCheckboxState);
+    const [rangeValue, setRangeValue] = useState(0);
 
     const handleCheckboxChange = (e) => {
         const { name, value, checked } = e.target;
 
-        setIsChecked(state => ({...state, [value]: checked}));
+        setIsChecked(state => ({ ...state, [value]: checked }));
 
         const newFilters = checked
             ? [...filters[name], value]
@@ -36,11 +37,17 @@ export const CatalogFilter = ({
         handleFilterChange('category', e.target.value);
     };
 
+    const handleRangeChange = (e) => {
+        setRangeValue(e.target.value);
+        handleFilterChange('price', e.target.value)
+    }
+
     const onSubmitClick = (e) => {
         e.preventDefault();
-        
+
         setIsChecked(initialCheckboxState);
         setSelectedCategory('');
+        setRangeValue(0);
         handleResetClick();
     }
 
@@ -188,6 +195,25 @@ export const CatalogFilter = ({
                             />
                             Dresses
                         </label>
+                    </div>
+                </div>
+
+                <div className={styles['selection-wrapper']}>
+                    <div className={styles['title-wrapper']}>
+                        <h1>Price</h1>
+                    </div>
+                    <div className={styles['options-wrapper']}>
+                        <h4 className={styles['price-range']}>Greater than:</h4>
+                        <h4>BGN {Number(rangeValue).toFixed(2)}</h4>
+                        <input
+                            type="range"
+                            name="category"
+                            min="0"
+                            max="100"
+                            value={rangeValue}
+                            onChange={handleRangeChange}
+                        />
+                        <h5></h5>
                     </div>
                 </div>
 

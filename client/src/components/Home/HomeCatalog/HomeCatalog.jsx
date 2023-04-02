@@ -18,10 +18,14 @@ export const HomeCatalog = () => {
 
     useEffect(() => {
         const productsCollectionRef = collection(db, 'products');
+        const mostPopularQuery = query(productsCollectionRef, limit(5));
         const collectionQuery = query(productsCollectionRef, where('collection', '==', 'Elegant Everyday'));
 
-        getDocs(productsCollectionRef)
-            .then(data => setMostPopularProducts(data.docs.map(doc => ({...doc.data(), id: doc.id}))))
+        getDocs(mostPopularQuery)
+            .then(data => {
+                console.log(data);
+                setMostPopularProducts(data.docs.map(doc => ({...doc.data(), id: doc.id})))
+            })
             .catch(err => {
                 console.log(err);
             });

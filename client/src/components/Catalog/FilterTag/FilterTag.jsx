@@ -4,12 +4,15 @@ import styles from './FilterTag.module.scss'
 
 export const FilterTag = ({
     value,
+    name
 }) => {
     const [isArray, setIsArray] = useState(false);
     const [doDisplay, setDoDisplay] = useState(false);
 
     useEffect(() => {
-        if (value !== undefined && value !== '') {
+        console.log(name);
+
+        if (value !== undefined && value !== '' && name !== 'price') {
             setDoDisplay(true);
 
             if (Array.isArray(value)) {

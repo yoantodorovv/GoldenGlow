@@ -1,34 +1,32 @@
 import { useEffect, useState, useMemo } from 'react';
 
 import { db } from '../../services/firebaseService';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, limit, startAfter } from 'firebase/firestore';
 
 import { Card } from '../Card/Card'
 import { CatalogFilter } from './CatalogFilter/CatalogFilter';
+import { FilterTag } from './FilterTag/FilterTag';
 
 import styles from './Catalog.module.scss'
-import Swal from 'sweetalert2';
 
 import tempProducts from '../../../public/text/temp.json'
-import { FilterTag } from './FilterTag/FilterTag';
 
 export const Catalog = () => {
     const initialFilters = {
         gender: [],
         collection: [],
         category: '',
-        // price: '',
-        // size: '',
-        // color: '',
+        price: '',
     };
 
     const [products, setProducts] = useState([]);
     const [filters, setFilters] = useState(initialFilters);
 
     const productsRef = collection(db, 'products');
+    const productsQuery = query(productsRef, limit(9));
 
     useEffect(() => {
-        getDocs(productsRef)
+        getDocs(productsQuery)
             .then(data => {
                 setProducts(data.docs.map(x => ({ ...x.data(), id: x.id })))
             });
@@ -50,6 +48,10 @@ export const Catalog = () => {
                 return false;
             }
 
+            if (filters.price && product.price < filters.price) {
+                return false;
+            }
+
             return true;
         })
     }
@@ -68,15 +70,14 @@ export const Catalog = () => {
             <div className={styles['catalog-wrapper']}>
                 <div className={styles['catalog-title-wrapper']}>
                     <h1>All Products</h1>
+                    <span className={styles['catalog-title-count']}>({filteredProducts.length})</span>
                 </div>
                 {Object.values(filters).some(value => Boolean(value)) && (
-                    <div className={styles['filters-wrapper']}>{Object.entries(filters).map(([key, value]) => <FilterTag key={key} value={value} />)}</div>
+                    <div className={styles['filters-wrapper']}>{Object.entries(filters).map(([key, value]) => <FilterTag key={key} name={key} value={value} />)}</div>
                 )}
                 <div className={styles['catalog']}>
                     {
-                        filteredProducts.length !== 0
-                            ? filteredProducts.map(x => <Card key={x.id} product={x} />)
-                            : <></>
+                        filteredProducts.map(x => <Card key={x.id} product={x} />)
                     }
                 </div>
                 <div className={styles['catalog-pagination-path']}>

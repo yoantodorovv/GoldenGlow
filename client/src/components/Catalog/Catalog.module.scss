@@ -1,8 +1,5 @@
 $white-primary-accent: #fff6ec;
 $dark-color: #413d38;
-$brown-primary: #6c3d1f;
-$brown-secondary: #8a5b40;
-$white-primary: #dbcec3;
 
 .general-wrapper {
     display: flex;
@@ -10,17 +7,27 @@ $white-primary: #dbcec3;
 
     .catalog-wrapper {
         width: 85%;
-        padding: 3em 5em;
+        padding: 5em 10em;
     }
 
     .catalog-title-wrapper {
+        display: flex;
+        align-items: center;
         margin-bottom: 2em;
+
+        .catalog-title-count {
+            margin-left: .5em;
+            font-weight: lighter;
+            font-size: 25px;
+            color: $dark-color;
+        }
     }
 
     .catalog {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-flow: row wrap;
+        width: 100%;
     }
 }
 
