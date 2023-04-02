@@ -9,24 +9,44 @@ export const CatalogFilter = ({
     handleFilterChange,
     handleResetClick,
 }) => {
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const initialCheckboxState = {
+        men: false,
+        women: false,
+        'Elegant Everyday': false,
+        'Businessworld': false,
+        'Casually Important': false,
+    };
 
-    const handleCheckboxChange = (event) => {
-        const { name, value, checked } = event.target;
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [isChecked, setIsChecked] = useState(initialCheckboxState);
+
+    const handleCheckboxChange = (e) => {
+        const { name, value, checked } = e.target;
+
+        setIsChecked(state => ({...state, [value]: checked}));
+
         const newFilters = checked
             ? [...filters[name], value]
             : filters[name].filter((v) => v !== value);
         handleFilterChange(name, newFilters);
     };
 
-    const handleCategoryChange = (event) => {
-        setSelectedCategory(event.target.value);
-        handleFilterChange('category', event.target.value);
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+        handleFilterChange('category', e.target.value);
     };
+
+    const onSubmitClick = (e) => {
+        e.preventDefault();
+        
+        setIsChecked(initialCheckboxState);
+        setSelectedCategory('');
+        handleResetClick();
+    }
 
     return (
         <div className={styles['catalog-navigation-wrapper']}>
-            <form>
+            <form onSubmit={onSubmitClick}>
                 <div className={styles['selection-wrapper']}>
                     <div className={styles['title-wrapper']}>
                         <h1>Gender</h1>
@@ -37,6 +57,7 @@ export const CatalogFilter = ({
                                 type="checkbox"
                                 name="gender"
                                 value="men"
+                                checked={isChecked.men}
                                 onChange={handleCheckboxChange}
                             />
                             Men
@@ -46,6 +67,7 @@ export const CatalogFilter = ({
                                 type="checkbox"
                                 name="gender"
                                 value="women"
+                                checked={isChecked.women}
                                 onChange={handleCheckboxChange}
                             />
                             Women
@@ -63,6 +85,7 @@ export const CatalogFilter = ({
                                 type="checkbox"
                                 name="collection"
                                 value="Elegant Everyday"
+                                checked={isChecked['Elegant Everyday']}
                                 onChange={handleCheckboxChange}
                             />
                             Elegant Everyday
@@ -72,6 +95,7 @@ export const CatalogFilter = ({
                                 type="checkbox"
                                 name="collection"
                                 value="Businessworld"
+                                checked={isChecked['Businessworld']}
                                 onChange={handleCheckboxChange}
                             />
                             Businessworld
@@ -81,6 +105,7 @@ export const CatalogFilter = ({
                                 type="checkbox"
                                 name="collection"
                                 value="Casually Important"
+                                checked={isChecked['Casually Important']}
                                 onChange={handleCheckboxChange}
                             />
                             Casually Important
@@ -168,8 +193,7 @@ export const CatalogFilter = ({
 
                 <div className={styles['btn-wrapper']}>
                     <button
-                        type='reset'
-                        onClick={handleResetClick}
+                        type='submit'
                         className={styles['discard-btn']}
                     >
                         <h3>Discard</h3>
