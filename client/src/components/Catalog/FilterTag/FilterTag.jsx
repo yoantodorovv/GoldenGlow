@@ -10,8 +10,6 @@ export const FilterTag = ({
     const [doDisplay, setDoDisplay] = useState(false);
 
     useEffect(() => {
-        console.log(name);
-
         if (value !== undefined && value !== '' && name !== 'price') {
             setDoDisplay(true);
 

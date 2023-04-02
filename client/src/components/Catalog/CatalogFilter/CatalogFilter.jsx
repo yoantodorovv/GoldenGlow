@@ -19,7 +19,7 @@ export const CatalogFilter = ({
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [isChecked, setIsChecked] = useState(initialCheckboxState);
-    const [rangeValue, setRangeValue] = useState(0);
+    const [rangeValue, setRangeValue] = useState(100);
 
     const handleCheckboxChange = (e) => {
         const { name, value, checked } = e.target;
@@ -47,7 +47,7 @@ export const CatalogFilter = ({
 
         setIsChecked(initialCheckboxState);
         setSelectedCategory('');
-        setRangeValue(0);
+        setRangeValue(100);
         handleResetClick();
     }
 
@@ -203,7 +203,7 @@ export const CatalogFilter = ({
                         <h1>Price</h1>
                     </div>
                     <div className={styles['options-wrapper']}>
-                        <h4 className={styles['price-range']}>Greater than:</h4>
+                        <h4 className={styles['price-range']}>Less than:</h4>
                         <h4>BGN {Number(rangeValue).toFixed(2)}</h4>
                         <input
                             type="range"

@@ -48,7 +48,7 @@ export const Catalog = () => {
                 return false;
             }
 
-            if (filters.price && product.price < filters.price) {
+            if (filters.price && product.price > filters.price) {
                 return false;
             }
 
@@ -62,8 +62,9 @@ export const Catalog = () => {
         setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
     };
 
-    const handleResetClick = () => setFilters(initialFilters);
-
+    const handleResetClick = () => {
+        setFilters(initialFilters);
+    }
     return (
         <div className={styles['general-wrapper']}>
             <CatalogFilter filters={filters} handleFilterChange={handleFilterChange} handleResetClick={handleResetClick} />

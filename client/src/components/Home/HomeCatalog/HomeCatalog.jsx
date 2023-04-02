@@ -23,7 +23,6 @@ export const HomeCatalog = () => {
 
         getDocs(mostPopularQuery)
             .then(data => {
-                console.log(data);
                 setMostPopularProducts(data.docs.map(doc => ({...doc.data(), id: doc.id})))
             })
             .catch(err => {
