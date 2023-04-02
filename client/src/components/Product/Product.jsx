@@ -153,11 +153,8 @@ export const Product = () => {
                 <Link to="/catalog" className={styles['link']}>
                     <FontAwesomeIcon className={styles['path-icon']} icon={faHouse} size="lg" />
                 </Link>
-                <Link to={`/catalog/collections/${product?.collection}`} className={styles['link']}>
+                <Link to={`/catalog/${product?.collection}`} className={styles['link']}>
                     <h1 className={styles['path-text']}>{` / ${product?.collection}`}</h1>
-                </Link>
-                <Link to={`/catalog/categories/${product?.category}`} className={styles['link']}>
-                    <h1 className={styles['path-text']}>{` / ${product?.category.charAt(0).toUpperCase() + product?.category.slice(1)}`}</h1>
                 </Link>
                 <h1 className={styles['path-text']}>{`/ ${product?.name}`}</h1>
             </section>

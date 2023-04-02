@@ -45,7 +45,7 @@ export const HomeCatalog = () => {
             <HomeCatalogSectionPreview title="E-Veryday" subtitle="NEW COLLECTION">
                 <div className={styles['collection-container']}>
                     <HeroContainer path="/catalog/women" imageSrc={collectionWomen} containerText="Women" />
-                    <HeroContainer path="/catalog" imageSrc={collectionBoth} containerText="Catalog" />
+                    <HeroContainer path="/catalog/Elegant Everyday" imageSrc={collectionBoth} containerText="Catalog" />
                     <HeroContainer path="/catalog/men" imageSrc={collectionMen} containerText="Men" />
                 </div>
                 <Carousel products={collectionProducts} slidesToShow={4} />

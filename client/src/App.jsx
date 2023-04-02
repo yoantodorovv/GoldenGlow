@@ -49,7 +49,6 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                //TODO: Finish
                 <Route
                     path="/catalog"
                     element={
@@ -58,46 +57,19 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                //TODO: Finish
                 <Route
-                    path="/catalog/women"
+                    path="/catalog/:filter"
                     element={
                         <MainWrapper>
                             <Catalog />
                         </MainWrapper>
                     }
                 />
-                //TODO: Finish
                 <Route
-                    path="/catalog/men"
-                    element={
-                        <MainWrapper>
-                            <Catalog />
-                        </MainWrapper>
-                    }
-                />
-                //TODO: Finish
-                <Route
-                    path="/catalog/:productId"
+                    path="/catalog/:collection/:productId"
                     element={
                         <MainWrapper>
                             <Product />
-                        </MainWrapper>
-                    }
-                />
-                <Route
-                    path="/catalog/collections/:collection"
-                    element={
-                        <MainWrapper>
-                            <h1>Collection</h1>
-                        </MainWrapper>
-                    }
-                />
-                <Route
-                    path="/catalog/categories/:category"
-                    element={
-                        <MainWrapper>
-                            <h1>Category</h1>
                         </MainWrapper>
                     }
                 />

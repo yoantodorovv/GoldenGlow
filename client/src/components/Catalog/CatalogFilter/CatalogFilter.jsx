@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import styles from './CatalogFilter.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export const CatalogFilter = ({
     filters,
+    filter,
     handleFilterChange,
     handleResetClick,
 }) => {
@@ -21,9 +22,34 @@ export const CatalogFilter = ({
     const [isChecked, setIsChecked] = useState(initialCheckboxState);
     const [rangeValue, setRangeValue] = useState(100);
 
-    const handleCheckboxChange = (e) => {
-        const { name, value, checked } = e.target;
+    useEffect(() => {
+        switch (filter) {
+            case 'women':
+                setIsChecked(state => ({ ...state, women: true }));
+                handleCheckboxChange('gender', 'women', true);
+                break;
+            case 'men':
+                setIsChecked(state => ({ ...state, men: true }));
+                handleCheckboxChange('gender', 'men', true);
+                break;
+            case 'Elegant Everyday':
+                setIsChecked(state => ({ ...state, ['Elegant Everyday']: true }));
+                handleCheckboxChange('collection', 'Elegant Everyday', true);
+                break;
+            case 'Businessworld':
+                setIsChecked(state => ({ ...state, ['Businessworld']: true }));
+                handleCheckboxChange('collection', 'Businessworld', true);
+                break;
+            case 'Casually Important':
+                setIsChecked(state => ({ ...state, ['Casually Important']: true }));
+                handleCheckboxChange('collection', 'Casually Important', true);
+                break;
+            default:
+                break;
+        }
+    }, []);
 
+    const handleCheckboxChange = (name, value, checked) => {
         setIsChecked(state => ({ ...state, [value]: checked }));
 
         const newFilters = checked
@@ -65,7 +91,7 @@ export const CatalogFilter = ({
                                 name="gender"
                                 value="men"
                                 checked={isChecked.men}
-                                onChange={handleCheckboxChange}
+                                onChange={(e) => handleCheckboxChange(e.target.name, e.target.value, e.target.checked)}
                             />
                             Men
                         </label>
@@ -75,7 +101,7 @@ export const CatalogFilter = ({
                                 name="gender"
                                 value="women"
                                 checked={isChecked.women}
-                                onChange={handleCheckboxChange}
+                                onChange={(e) => handleCheckboxChange(e.target.name, e.target.value, e.target.checked)}
                             />
                             Women
                         </label>
@@ -93,7 +119,7 @@ export const CatalogFilter = ({
                                 name="collection"
                                 value="Elegant Everyday"
                                 checked={isChecked['Elegant Everyday']}
-                                onChange={handleCheckboxChange}
+                                onChange={(e) => handleCheckboxChange(e.target.name, e.target.value, e.target.checked)}
                             />
                             Elegant Everyday
                         </label>
@@ -103,7 +129,7 @@ export const CatalogFilter = ({
                                 name="collection"
                                 value="Businessworld"
                                 checked={isChecked['Businessworld']}
-                                onChange={handleCheckboxChange}
+                                onChange={(e) => handleCheckboxChange(e.target.name, e.target.value, e.target.checked)}
                             />
                             Businessworld
                         </label>
@@ -113,7 +139,7 @@ export const CatalogFilter = ({
                                 name="collection"
                                 value="Casually Important"
                                 checked={isChecked['Casually Important']}
-                                onChange={handleCheckboxChange}
+                                onChange={(e) => handleCheckboxChange(e.target.name, e.target.value, e.target.checked)}
                             />
                             Casually Important
                         </label>

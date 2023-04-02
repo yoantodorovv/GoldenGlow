@@ -26,8 +26,6 @@ export const Card = ({
         try {
             const queryResultCollection = await getDocs(cartQuery);
 
-            console.log(product);
-
             if (queryResultCollection.docs.length > 0) {
 
                 queryResultCollection.docs.forEach(x => {
@@ -127,7 +125,7 @@ export const Card = ({
             </div>
             <div className={styles['card-content-wrapper']}>
                 <div className={styles['card-content-title-wrapper']}>
-                    <Link to={`/catalog/${product.id}`} className={styles['card-content-title']}>{product.name}</Link>
+                    <Link to={`/catalog/${product.collection}/${product.id}`} className={styles['card-content-title']}>{product.name}</Link>
                 </div>
                 <div className={styles['card-content']}>
                     <div className={styles['card-content-price']}>

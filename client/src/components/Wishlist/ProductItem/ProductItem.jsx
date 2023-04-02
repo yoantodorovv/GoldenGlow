@@ -90,7 +90,7 @@ export const ProductItem = ({
     return (
         <div className={styles['product']}>
             <Link
-                to={`/catalog/${product.productId}`}
+                to={`/catalog/${product.collection}/${product.productId}`}
                 className={styles['product-link']}
             >
                 <FontAwesomeIcon className={styles['product-link-icon']} icon={faUpRightFromSquare} size="lg" />
