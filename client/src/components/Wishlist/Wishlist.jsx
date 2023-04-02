@@ -22,7 +22,6 @@ export const Wishlist = () => {
     const userCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/wishlist`);
 
     const getProducts = async () => {
-console.log('collection-read');
         
         const data = await getDocs(userCartCollectionRef);
 

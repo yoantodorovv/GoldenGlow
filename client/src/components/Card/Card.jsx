@@ -21,48 +21,63 @@ export const Card = ({
         }
 
         const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
-        const specificProductRef = doc(db, `users/${auth.currentUser.uid}/cart`, product.id);
+        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.id));
+        
+        try {
+            const queryResultCollection = await getDocs(cartQuery);
 
-        const specificProductResult = await getDoc(specificProductRef);
+            console.log(product);
 
-        if (specificProductResult.exists) {
+            if (queryResultCollection.docs.length > 0) {
 
-            console.log('read');
-            
-            await updateDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id), {
-                quantity: x.data().quantity + 1,
-                totalPrice: x.data().totalPrice + product.price
+                queryResultCollection.docs.forEach(x => {
+                    const updateExistingDoc = async () => {
+                        await updateDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id), {
+                            quantity: x.data().quantity + 1,
+                            totalPrice: x.data().totalPrice + product.price
+                        });
+                    }
+
+                    updateExistingDoc();
+                })
+
+                Swal.fire({
+                    title: `Successfully added ${product.name} to your Shopping Cart again!`,
+                    icon: 'success',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+
+                return;
+            }
+
+            await addDoc(usersCartCollectionRef, {
+                productId: product.id,
+                quantity: 1,
+                totalPrice: product.price,
+                innitialPrice: product.price
             });
 
             Swal.fire({
-                title: `Successfully added ${product.name} to your Shopping Cart again!`,
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Shopping Cart!`,
                 icon: 'success',
                 toast: true,
                 position: 'top-end',
-                timer: 3000,
+                timer: 1500,
                 showConfirmButton: false,
             });
-
-            return;
+        } catch (err) {
+            Swal.fire({
+                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} couldn't be added to your Shopping Cart!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 1500,
+                showConfirmButton: false,
+            });
         }
-
-        console.log('collection-read');
-
-        await addDoc(usersCartCollectionRef, {
-            productId: product.id,
-            quantity: 1,
-            totalPrice: product.price,
-            innitialPrice: product.price
-        });
-
-        Swal.fire({
-            title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Shopping Cart!`,
-            icon: 'success',
-            toast: true,
-            position: 'top-end',
-            timer: 3000,
-            showConfirmButton: false,
-        });
     }
 
     const addToWishlistHandler = async () => {
@@ -73,27 +88,23 @@ export const Card = ({
         }
 
         const usersWishlistCollectionRef = collection(db, `users/${auth.currentUser.uid}/wishlist`);
-        const specificProductRef = doc(db, `users/${auth.currentUser.uid}/wishlist`, product.id)
+        const cartQuery = query(usersWishlistCollectionRef, where('productId', '==', product.id))
 
-        const specificProductResult = await getDoc(specificProductRef);
+        const queryResultCollection = await getDocs(cartQuery);
 
-        if (specificProductResult.exists) {
-
-            console.log('read');
+        if (queryResultCollection.docs.length > 0) {
 
             Swal.fire({
                 title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} is already added to your Wishlist!`,
                 icon: 'error',
                 toast: true,
                 position: 'top-end',
-                timer: 3000,
+                timer: 1500,
                 showConfirmButton: false,
             });
 
             return;
         }
-
-        console.log('collection-read');
 
         await addDoc(usersWishlistCollectionRef, {
             productId: product.id,

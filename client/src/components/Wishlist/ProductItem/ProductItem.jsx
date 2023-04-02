@@ -41,24 +41,25 @@ export const ProductItem = ({
 
     const onAddToCart = async () => {
         const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
-        const specificProductRef = doc(db, `users/${auth.currentUser.uid}/cart`, product.productId);
-
-        const specificProductResult = await getDoc(specificProductRef);
-
-        if (specificProductResult.exists) {
-            Swal.fire({
-                title: `${queryProduct.name.charAt(0).toUpperCase() + queryProduct.name.slice(1)} is already added to your Shopping Cart again!`,
-                icon: 'error',
-                toast: true,
-                position: 'top-end',
-                timer: 1500,
-                showConfirmButton: false,
-            });
-
-            return;
-        }
+        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.productId))
 
         try {
+            const queryResultCollection = await getDocs(cartQuery);
+
+            if (queryResultCollection.docs.length > 0) {
+                Swal.fire({
+                    title: `${queryProduct.name.charAt(0).toUpperCase() + queryProduct.name.slice(1)} is already added to your Shopping Cart!`,
+                    icon: 'error',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+
+                return;
+            }
+
+
             await addDoc(usersCartCollectionRef, {
                 productId: product.productId,
                 quantity: 1,
