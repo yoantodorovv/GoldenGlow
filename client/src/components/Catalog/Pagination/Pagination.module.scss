@@ -1,0 +1,83 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+@mixin pageLinkBtn() {
+    height: 4em;
+    width: 10em;
+    padding: 1em;
+    color: $white-primary-accent;
+    background-color: $brown-secondary;
+    font-weight: bold;
+    border: none;
+    transition: .2s ease-in-out;
+}
+
+.catalog {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.catalog-pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+
+    .catalog-pagination {
+        display: flex;
+        list-style: none;
+
+        .left {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            .page-link-btn {
+                @include pageLinkBtn();
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+        }
+
+        .right {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+            .page-link-btn {
+                @include pageLinkBtn();
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        }
+
+        .page-link-btn:hover {
+            cursor: pointer;
+            background-color: $brown-primary;
+        }
+
+        .page-item-btn {
+            height: 4em;
+            width: 3em;
+            padding: 1em;
+            background-color: $white-primary-accent;
+            font-weight: bold;
+            border: none;
+            transition: .2s ease-in-out;
+        }
+
+        .page-item-btn:hover {
+            cursor: pointer;
+            color: $white-primary-accent;
+            background-color: $brown-primary;
+        }
+
+        .active {
+            color: $white-primary-accent;
+            background-color: $brown-primary;
+        }
+    }
+}

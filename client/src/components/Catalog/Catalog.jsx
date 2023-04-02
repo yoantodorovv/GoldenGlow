@@ -10,6 +10,7 @@ import { FilterTag } from './FilterTag/FilterTag';
 import styles from './Catalog.module.scss'
 
 import tempProducts from '../../../public/text/temp.json'
+import { Pagination } from './Pagination/Paginatation';
 
 export const Catalog = () => {
     const initialFilters = {
@@ -23,10 +24,9 @@ export const Catalog = () => {
     const [filters, setFilters] = useState(initialFilters);
 
     const productsRef = collection(db, 'products');
-    const productsQuery = query(productsRef, limit(9));
 
     useEffect(() => {
-        getDocs(productsQuery)
+        getDocs(productsRef)
             .then(data => {
                 setProducts(data.docs.map(x => ({ ...x.data(), id: x.id })))
             });
@@ -76,14 +76,7 @@ export const Catalog = () => {
                 {Object.values(filters).some(value => Boolean(value)) && (
                     <div className={styles['filters-wrapper']}>{Object.entries(filters).map(([key, value]) => <FilterTag key={key} name={key} value={value} />)}</div>
                 )}
-                <div className={styles['catalog']}>
-                    {
-                        filteredProducts.map(x => <Card key={x.id} product={x} />)
-                    }
-                </div>
-                <div className={styles['catalog-pagination-path']}>
-
-                </div>
+                <Pagination filteredProducts={filteredProducts}/>
             </div>
         </div>
     );
