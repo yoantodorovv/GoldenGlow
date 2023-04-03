@@ -14,7 +14,7 @@ $white-primary: #dbcec3;
     input {
         color: $white-primary-accent;
         font-weight: bold;
-        font-size: 17px;
+        font-size: 18px;
         padding: .5em 0em;
         background-color: transparent;
         border: none;
@@ -38,11 +38,13 @@ $white-primary: #dbcec3;
         margin-right: 3em;
 
         input {
-            width: 3.3em;
+            text-align: center;
+            width: 35%;
         }
     }
 
     .cvv input {
-        width: 2.2em;
+        text-align: center;
+        width: 25%;
     }
 }
