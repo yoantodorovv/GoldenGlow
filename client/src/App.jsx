@@ -11,7 +11,7 @@ import { Register } from "./components/Register/Register"
 import { ResetPassword } from "./components/ResetPassword/ResetPassword"
 import { Profile } from "./components/Profile/Profile";
 import { Settings } from "./components/Settings/Settings";
-import { PurchaseHistory } from "./components/PurchaseHistory/PurchaseHistory";
+import { OrderHistory } from "./components/OrderHistory/OrderHistory";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
 import { Product } from "./components/Product/Product"
@@ -75,11 +75,10 @@ function App() {
                 />
                 //TODO: Finish
                 <Route
-                    path="/user"
+                    path="/user/profile"
                     element={
                         <MainWrapper>
                             <Profile />
-
                         </MainWrapper>
                     }
                 />
@@ -101,10 +100,10 @@ function App() {
                 />
                 //TODO: Finish
                 <Route
-                    path="/user/purchase-history"
+                    path="/user/order-history"
                     element={
                         <MainWrapper>
-                            <PurchaseHistory />
+                            <OrderHistory />
                         </MainWrapper>
                     }
                 />

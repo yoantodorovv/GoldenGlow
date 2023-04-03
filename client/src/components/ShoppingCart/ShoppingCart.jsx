@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore'
+import { collection, deleteDoc, getDocs, doc, addDoc } from 'firebase/firestore'
 import { auth, db } from '../../services/firebaseService'
 
 import { ProductListItem } from '../ProductListItem/ProductListItem'
@@ -29,9 +29,6 @@ export const ShoppingCart = () => {
     const userCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
 
     const getProducts = async () => {
-
-        console.log('collection-read');
-
         const data = await getDocs(userCartCollectionRef);
 
         setCartProducts(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
@@ -79,10 +76,6 @@ export const ShoppingCart = () => {
             : setTotalPrice(state => state - addedSum)
     }
 
-    const onCheckout = () => {
-
-    }
-
     const handleMethodChange = (e) => {
         setIsChecked({
             CreditCard: false,
@@ -91,6 +84,44 @@ export const ShoppingCart = () => {
 
         setIsChecked(state => ({ ...state, [e.target.value]: true }))
     };
+
+    const onCheckout = async () => {
+        try {
+            const ordersRef = collection(db, "orders");
+
+            await addDoc(ordersRef, {
+                userId: auth.currentUser.uid,
+                items: cartProducts,
+                itemsCount: cartProducts.length,
+                totalPrice: totalPrice,
+                paymentMethod: 'creditCard',
+                orderedAt: new Date(),
+            });
+
+            Swal.fire({
+                title: 'Order Confirmed',
+                text: 'Thank you for your order!',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+
+            cartProducts.forEach(async x => await deleteDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id)));
+            setCartProducts([]);
+
+            navigate('/user/order-history');
+        } catch (error) {
+            Swal.fire({
+                title: 'Oops... Something went wrong',
+                text: 'We could NOT place your order! Please try again or contact out supprt team.',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+        }
+    }
 
     return (
         <div className={styles['general-wrapper']}>
