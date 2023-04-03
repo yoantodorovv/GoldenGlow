@@ -10,8 +10,6 @@ import { Pagination } from './Pagination/Paginatation';
 
 import styles from './Catalog.module.scss'
 
-import tempProducts from '../../../public/text/temp.json'
-
 export const Catalog = () => {
     const initialFilters = {
         gender: [],
@@ -30,8 +28,6 @@ export const Catalog = () => {
             .then(data => {
                 setProducts(data.docs.map(x => ({ ...x.data(), id: x.id })))
             });
-
-        // setProducts(tempProducts.map(x => ({...x})));
     }, []);
 
     const applyFilters = () => {
