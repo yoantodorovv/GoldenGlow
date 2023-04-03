@@ -5,15 +5,21 @@ import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore'
 import { auth, db } from '../../services/firebaseService'
 
 import { ProductListItem } from '../ProductListItem/ProductListItem'
+import { CreditCardForm } from './CreditCardForm/CreditCardForm'
 
 import styles from './ShoppingCart.module.scss'
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCartShopping, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 
 export const ShoppingCart = () => {
     const [cartProducts, setCartProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isChecked, setIsChecked] = useState({
+        CreditCard: true,
+        PayPal: false,
+    });
     const navigate = useNavigate();
 
     if (auth.currentUser === null) {
@@ -77,6 +83,15 @@ export const ShoppingCart = () => {
 
     }
 
+    const handleMethodChange = (e) => {
+        setIsChecked({
+            CreditCard: false,
+            PayPal: false,
+        });
+
+        setIsChecked(state => ({ ...state, [e.target.value]: true }))
+    };
+
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['wrapper']}>
@@ -111,23 +126,56 @@ export const ShoppingCart = () => {
                 </div>
             </div>
             <div className={styles['payment-wrapper']}>
-                <div className={styles['payment-title-wrapper']}>
-                    <h1>Payment Details</h1>
-                </div>
-                <div className={styles['payment-content-wrapper']}>
-                    
-                </div>
-                <div className={styles['total-price-wrapper']}>
-                    <p>Total Cost:</p>
-                    <h2>BGN {totalPrice.toFixed(2)}</h2>
-                </div>
-                <button
-                    type='button'
-                    onClick={onCheckout}
-                    className={styles['payment-btn']}
-                >
-                    Continue to Checkout
-                </button>
+                <form>
+                    <div className={styles['payment-title-wrapper']}>
+                        <h1>Payment Details</h1>
+                    </div>
+                    <div className={styles['payment-content-wrapper']}>
+                        <div className={styles['payment-method']}>
+                            <p>Payment Method</p>
+                            <label className={styles['payment-option']}>
+                                <input
+                                    type="radio"
+                                    name="method"
+                                    value="CreditCard"
+                                    checked={isChecked.CreditCard}
+                                    onChange={handleMethodChange}
+                                />
+                                <FontAwesomeIcon className={styles['payment-option-icon']} icon={faCreditCard} size="1x" />
+                                Credit Card
+                            </label>
+                            <label className={styles['payment-option']}>
+                                <input
+                                    type="radio"
+                                    name="method"
+                                    value="PayPal"
+                                    checked={isChecked.PayPal}
+                                    onChange={handleMethodChange}
+                                />
+                                <FontAwesomeIcon className={styles['payment-option-icon']} icon={faPaypal} size="1x" />
+                                PayPal
+                            </label>
+                        </div>
+                        <div className={styles['payment-information']}>
+                            {
+                                isChecked.CreditCard
+                                    ? <CreditCardForm displayName={auth.currentUser.displayName} />
+                                    : <></>
+                            }
+                        </div>
+                    </div>
+                    <div className={styles['total-price-wrapper']}>
+                        <p>Total Cost:</p>
+                        <h2>BGN {totalPrice.toFixed(2)}</h2>
+                    </div>
+                    <button
+                        type='button'
+                        onClick={onCheckout}
+                        className={styles['payment-btn']}
+                    >
+                        Continue to Checkout
+                    </button>
+                </form>
             </div>
         </div>
     );

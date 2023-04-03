@@ -1,0 +1,48 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+.payment-information-option {
+    margin-top: 1.5em;
+
+    h4 {
+        font-size: 18px;
+    }
+
+    input {
+        color: $white-primary-accent;
+        font-weight: bold;
+        font-size: 17px;
+        padding: .5em 0em;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $white-primary-accent;
+    }
+
+    input::placeholder {
+        color: $white-primary;
+    }
+
+    input:focus {
+        outline: none;
+    }
+}
+
+.payment-information-option-subwrapper {
+    display: flex;
+    justify-content: flex-start;
+
+    .date {
+        margin-right: 3em;
+
+        input {
+            width: 3.3em;
+        }
+    }
+
+    .cvv input {
+        width: 2.2em;
+    }
+}
