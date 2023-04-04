@@ -43,8 +43,10 @@ export const ShoppingCart = () => {
     }
 
     useEffect(() => {
+        console.log('get');
+
         getProducts();
-    }, []);
+    }, [totalPrice]);
 
     const onRemoveProduct = async (productId) => {
         try {
@@ -91,6 +93,8 @@ export const ShoppingCart = () => {
         try {
             const ordersRef = collection(db, "orders");
 
+            console.log(cartProducts);
+
             await addDoc(ordersRef, {
                 userId: auth.currentUser.uid,
                 items: cartProducts,
@@ -126,12 +130,17 @@ export const ShoppingCart = () => {
     }
 
     const onCreatePayPalOrder = (data, actions) => {
+        const value = (totalPrice * 0.511292).toFixed(2);
+
+        console.log(totalPrice.toFixed(2));
+        console.log(value);
+
         return actions.order.create({
             purchase_units: [
                 {
                     amount: {
-                        value: totalPrice,
-                        currency_code: "BGN",
+                        value: value,
+                        currency_code: "EUR",
                     },
                 },
             ],
@@ -244,10 +253,14 @@ export const ShoppingCart = () => {
                                 <PayPalScriptProvider
                                     options={{
                                         "client-id": PAYPAL_CLIENT_ID,
+                                        currency: "EUR",
+                                        components: "buttons",
+                                        intent: "capture",
+                                        "vault": true,
                                     }}
                                 >
                                     <PayPalButtons
-                                        style={styles['payment-btn']}
+                                        className={styles['payment-btn']}
                                         createOrder={onCreatePayPalOrder}
                                         onApprove={onApprovePayPalOrder}
                                         onError={(error) => console.log(error)}
