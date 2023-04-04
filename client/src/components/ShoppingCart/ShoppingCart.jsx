@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 
 import { collection, deleteDoc, getDocs, doc, addDoc } from 'firebase/firestore'
 import { auth, db } from '../../services/firebaseService'
+import { PAYPAL_CLIENT_ID } from '../../secret'
 
 import { ProductListItem } from '../ProductListItem/ProductListItem'
 import { CreditCardForm } from './CreditCardForm/CreditCardForm'
@@ -123,6 +125,34 @@ export const ShoppingCart = () => {
         }
     }
 
+    const onCreatePayPalOrder = (data, actions) => {
+        return actions.order.create({
+            purchase_units: [
+                {
+                    amount: {
+                        value: totalPrice,
+                        currency_code: "BGN",
+                    },
+                },
+            ],
+        });
+    }
+
+    const onApprovePayPalOrder = (data, actions) => {
+        return actions.order.capture().then((details) => {
+            console.log(details);
+
+            Swal.fire({
+                title: 'Order Confirmed',
+                text: 'Thank you for your order!',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#6c3d1f',
+                allowEnterKey: true,
+            })
+        });
+    }
+
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['wrapper']}>
@@ -199,13 +229,32 @@ export const ShoppingCart = () => {
                         <p>Total Cost:</p>
                         <h2>BGN {totalPrice.toFixed(2)}</h2>
                     </div>
-                    <button
-                        type='button'
-                        onClick={onCheckout}
-                        className={styles['payment-btn']}
-                    >
-                        Continue to Checkout
-                    </button>
+                    {
+                        isChecked.CreditCard
+                            ? (
+                                <button
+                                    type='button'
+                                    onClick={onCheckout}
+                                    className={styles['payment-btn']}
+                                >
+                                    Continue to Checkout
+                                </button>
+                            )
+                            : (
+                                <PayPalScriptProvider
+                                    options={{
+                                        "client-id": PAYPAL_CLIENT_ID,
+                                    }}
+                                >
+                                    <PayPalButtons
+                                        style={styles['payment-btn']}
+                                        createOrder={onCreatePayPalOrder}
+                                        onApprove={onApprovePayPalOrder}
+                                        onError={(error) => console.log(error)}
+                                    />
+                                </PayPalScriptProvider>
+                            )
+                    }
                 </form>
             </div>
         </div>
