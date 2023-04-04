@@ -41,14 +41,6 @@ export const ProfilePopUp = () => {
                 <li className={styles['list-item']}>
                     <NavLink
                         className={({ isActive }) => isActive ? styles['list-item-selected'] : styles['list-item-link']}
-                        to="/user/profile"
-                    >
-                        View Profile
-                    </NavLink>
-                </li>
-                <li className={styles['list-item']}>
-                    <NavLink
-                        className={({ isActive }) => isActive ? styles['list-item-selected'] : styles['list-item-link']}
                         to="/user/order-history"
                     >
                         Order History

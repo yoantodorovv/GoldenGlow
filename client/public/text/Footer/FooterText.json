@@ -13,8 +13,7 @@
             "Sign Up": "/register"
         },
         "private": {
-            "View Profile": "/user",
-            "Purchase History": "/user/purchase-history",
+            "Order History": "/user/order-history",
             "Settings": "/user/settings",
             "Sign Out": "/logout"
         }

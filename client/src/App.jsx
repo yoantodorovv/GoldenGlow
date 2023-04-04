@@ -9,7 +9,6 @@ import { Catalog } from "./components/Catalog/Catalog"
 import { Login } from "./components/Login/Login"
 import { Register } from "./components/Register/Register"
 import { ResetPassword } from "./components/ResetPassword/ResetPassword"
-import { Profile } from "./components/Profile/Profile";
 import { Settings } from "./components/Settings/Settings";
 import { OrderHistory } from "./components/OrderHistory/OrderHistory";
 import { Wishlist } from "./components/Wishlist/Wishlist";
@@ -70,15 +69,6 @@ function App() {
                     element={
                         <MainWrapper>
                             <Product />
-                        </MainWrapper>
-                    }
-                />
-                //TODO: Finish
-                <Route
-                    path="/user/profile"
-                    element={
-                        <MainWrapper>
-                            <Profile />
                         </MainWrapper>
                     }
                 />
