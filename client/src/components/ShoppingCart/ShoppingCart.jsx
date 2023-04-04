@@ -132,7 +132,7 @@ export const ShoppingCart = () => {
                 <div className={styles['content-wrapper']}>
                     <div className={styles['products-wrapper']}>
                         {cartProducts.length > 0
-                            ? cartProducts.map(x => <ProductListItem key={x.productId} onPriceChange={onPriceChange} product={x} onRemoveProduct={onRemoveProduct} />)
+                            ? cartProducts.map(x => <ProductListItem key={`${x.productId}-${x.size}-${x.color}`} onPriceChange={onPriceChange} product={x} onRemoveProduct={onRemoveProduct} />)
                             : (
                                 <div className={styles['empty-wrapper']}>
                                     <FontAwesomeIcon className={styles['empty-icon']} icon={faCartShopping} size="3x" />
@@ -190,7 +190,7 @@ export const ShoppingCart = () => {
                         <div className={styles['payment-information']}>
                             {
                                 isChecked.CreditCard
-                                    ? <CreditCardForm displayName={auth.currentUser.displayName} />
+                                    ? <CreditCardForm />
                                     : <></>
                             }
                         </div>

@@ -77,6 +77,8 @@ export const ProductListItem = ({
             <div className={styles['product-title-wrapper']}>
                 <p>{queryProduct?.category.charAt(0).toUpperCase() + queryProduct?.category.slice(1)}</p>
                 <h3>{queryProduct?.name}</h3>
+                <p>Color: {product.color}</p>
+                <p>Size: {product.size}</p>
             </div>
             <div className={styles['product-quantity-wrapper']}>
                 <button 

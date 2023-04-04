@@ -59,10 +59,11 @@ $white-primary: #dbcec3;
         width: 20%;
         color: $white-primary-accent;
         background-color: $brown-secondary;
-        padding: 1em .5em;
+        padding: .5em .5em;
         border-radius: 10px;
         border: none;
         transition: .2s ease-in;
+        text-decoration: none;
     }
 
     .add-to-cart-btn:hover {

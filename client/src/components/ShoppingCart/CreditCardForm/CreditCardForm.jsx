@@ -2,9 +2,7 @@ import { useState } from 'react';
 
 import styles from './CreditCardForm.module.scss'
 
-export const CreditCardForm = ({
-    displayName
-}) => {
+export const CreditCardForm = () => {
     const [number, setNumber] = useState('');
     const [name, setName] = useState('');
     const [expiry, setExpiry] = useState('');

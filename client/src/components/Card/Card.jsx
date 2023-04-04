@@ -13,71 +13,6 @@ export const Card = ({
 }) => {
     const navigate = useNavigate();
 
-    const addToCartHandler = async () => {
-        if (auth.currentUser === null) {
-            navigate('/login');
-
-            return;
-        }
-
-        const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
-        const cartQuery = query(usersCartCollectionRef, where('productId', '==', product.id));
-        
-        try {
-            const queryResultCollection = await getDocs(cartQuery);
-
-            if (queryResultCollection.docs.length > 0) {
-
-                queryResultCollection.docs.forEach(x => {
-                    const updateExistingDoc = async () => {
-                        await updateDoc(doc(db, `users/${auth.currentUser.uid}/cart`, x.id), {
-                            quantity: x.data().quantity + 1,
-                            totalPrice: x.data().totalPrice + product.price
-                        });
-                    }
-
-                    updateExistingDoc();
-                })
-
-                Swal.fire({
-                    title: `Successfully added ${product.name} to your Shopping Cart again!`,
-                    icon: 'success',
-                    toast: true,
-                    position: 'top-end',
-                    timer: 1500,
-                    showConfirmButton: false,
-                });
-
-                return;
-            }
-
-            await addDoc(usersCartCollectionRef, {
-                productId: product.id,
-                quantity: 1,
-                totalPrice: product.price,
-                innitialPrice: product.price
-            });
-
-            Swal.fire({
-                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} successfully added to your Shopping Cart!`,
-                icon: 'success',
-                toast: true,
-                position: 'top-end',
-                timer: 1500,
-                showConfirmButton: false,
-            });
-        } catch (err) {
-            Swal.fire({
-                title: `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} couldn't be added to your Shopping Cart!`,
-                icon: 'error',
-                toast: true,
-                position: 'top-end',
-                timer: 1500,
-                showConfirmButton: false,
-            });
-        }
-    }
-
     const addToWishlistHandler = async () => {
         if (auth?.currentUser === null) {
             navigate('/login');
@@ -139,13 +74,12 @@ export const Card = ({
                     >
                         <FontAwesomeIcon className={styles['card-wishlist-btn-icon']} icon={faHeart} size="2x" />
                     </button>
-                    <button
-                        type='button'
-                        onClick={addToCartHandler}
+                    <Link
+                        to={`/catalog/${product.collection}/${product.id}`}
                         className={styles['card-buy-btn']}
                     >
                         <FontAwesomeIcon className={styles['card-buy-btn-icon']} icon={faCartShopping} size="2x" />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

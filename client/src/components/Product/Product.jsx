@@ -58,11 +58,12 @@ export const Product = () => {
 
         const usersCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/cart`);
 
-        const cartQuery = query(usersCartCollectionRef, where('productId', '==', productId))
+        const cartQuery = query(usersCartCollectionRef, 
+            where('productId', '==', productId),
+            where('color', '==', currentColor), 
+            where('size', '==', currentSize));
 
         const queryResultCollection = await getDocs(cartQuery);
-
-        console.log(queryResultCollection);
 
         if (queryResultCollection.docs.length > 0) {
             Swal.fire({
@@ -82,7 +83,9 @@ export const Product = () => {
                 productId: productId,
                 quantity: 1,
                 totalPrice: product.price,
-                innitialPrice: product.price
+                innitialPrice: product.price,
+                size: currentSize,
+                color: currentColor,
             });
 
             Swal.fire({

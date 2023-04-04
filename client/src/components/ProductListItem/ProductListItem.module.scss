@@ -36,6 +36,10 @@ $white-primary: #dbcec3;
         width: 30%;
         padding-left: 3em;
 
+        p:first-of-type {
+            font-size: 14px;
+        }
+
         p {
             width: fit-content;
             color: $dark-color;
