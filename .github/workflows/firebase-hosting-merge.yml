@@ -18,4 +18,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GOLDENGLOW }}'
           channelId: live
           projectId: goldenglow
-          entryPoint: ./client/firebase.json
+          entryPoint: /home/runner/work/GoldenGlow/GoldenGlow/client
