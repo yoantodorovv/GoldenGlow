@@ -2,7 +2,7 @@
 
 GoldenGlow Boutique is an e-commerce single-page application (SPA) built with React and Firebase. It allows users to browse a selection of elegant clothing and add items to their cart.
 
-GoldenGlow Boutique is hosted on **Firebase Hosting**. You can access the hosted application by visiting [https://goldenglow.firebaseapp.com/](https://goldenglow.firebaseapp.com/).
+GoldenGlow Boutique is hosted on **Firebase Hosting**. You can access the hosted application by visiting [https://goldenglow.web.app/](https://goldenglow.web.app/).
 
 ## Table of Contents
 - [Features](https://github.com/yoantodorovv/GoldenGlow#features)
