@@ -6,6 +6,9 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "functions": {
+      "source": "functions"
+    },
     "headers": [
       {
         "source": "https://firestore.googleapis.com",
