@@ -4,7 +4,6 @@ import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 
 import { collection, deleteDoc, getDocs, doc, addDoc } from 'firebase/firestore'
 import { auth, db } from '../../services/firebaseService'
-import { PAYPAL_CLIENT_ID } from '../../secret.js'
 
 import { ProductListItem } from '../ProductListItem/ProductListItem'
 import { CreditCardForm } from './CreditCardForm/CreditCardForm'
@@ -252,7 +251,7 @@ export const ShoppingCart = () => {
                             : (
                                 <PayPalScriptProvider
                                     options={{
-                                        "client-id": PAYPAL_CLIENT_ID,
+                                        "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
                                         currency: "EUR",
                                         components: "buttons",
                                         intent: "capture",

@@ -1,6 +1,4 @@
-import { GOOGLE_MAPS_API_KEY } from '../secret';
-
-export const key = GOOGLE_MAPS_API_KEY;
+export const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 export const zoom = 13;
 export const center = {
     lat: 43.078213, 
