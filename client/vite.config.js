@@ -4,11 +4,11 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: {
-    rollupOptions: {
-      input: {
-        secret: './client/src/secret.js'
-      }
-    }
-  }
+  // build: {
+  //   rollupOptions: {
+  //     input: {
+  //       secret: './client/src/secret.js'
+  //     }
+  //   }
+  // }
 })
