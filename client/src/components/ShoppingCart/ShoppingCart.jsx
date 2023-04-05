@@ -248,23 +248,23 @@ export const ShoppingCart = () => {
                                     Continue to Checkout
                                 </button>
                             )
-                            : (
-                                <PayPalScriptProvider
-                                    options={{
-                                        "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
-                                        currency: "EUR",
-                                        components: "buttons",
-                                        intent: "capture",
-                                        "vault": true,
-                                    }}
-                                >
-                                    <PayPalButtons
-                                        className={styles['payment-btn']}
-                                        createOrder={onCreatePayPalOrder}
-                                        onApprove={onApprovePayPalOrder}
-                                        onError={(error) => console.log(error)}
-                                    />
-                                </PayPalScriptProvider>
+                            : (<></>
+                                // <PayPalScriptProvider
+                                //     options={{
+                                //         "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
+                                //         currency: "EUR",
+                                //         components: "buttons",
+                                //         intent: "capture",
+                                //         "vault": true,
+                                //     }}
+                                // >
+                                //     <PayPalButtons
+                                //         className={styles['payment-btn']}
+                                //         createOrder={onCreatePayPalOrder}
+                                //         onApprove={onApprovePayPalOrder}
+                                //         onError={(error) => console.log(error)}
+                                //     />
+                                // </PayPalScriptProvider>
                             )
                     }
                 </form>
