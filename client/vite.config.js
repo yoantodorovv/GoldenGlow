@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        secret: '/src/secret.js'
+        secret: '/client/src/secret.js'
       }
     }
   }
