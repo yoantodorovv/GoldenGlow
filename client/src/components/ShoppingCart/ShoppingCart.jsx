@@ -246,7 +246,7 @@ export const ShoppingCart = () => {
                                     onClick={onCheckout}
                                     className={styles['payment-btn']}
                                 >
-                                    Checkout now
+                                    Checkout now now
                                 </button>
                             )
                             : (
