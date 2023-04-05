@@ -128,8 +128,12 @@ export const Login = () => {
 
     const signInWithGoogle = async () => {
         try {
+            console.log(auth);
+            
             const res = await signInWithPopup(auth, authGoogleProvider);
-
+            
+            console.log(res);
+            
             Swal.fire({
                 title: 'Sign In successful',
                 text: `Welocome back, ${res.user.email}!`,
