@@ -92,8 +92,6 @@ export const ShoppingCart = () => {
         try {
             const ordersRef = collection(db, "orders");
 
-            console.log(cartProducts);
-
             await addDoc(ordersRef, {
                 userId: auth.currentUser.uid,
                 items: cartProducts,
