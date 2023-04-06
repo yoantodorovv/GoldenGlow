@@ -20,7 +20,8 @@ GoldenGlow Boutique offers the following features:
 - Browse and search for elegant clothing products
 - Filter products by gender, collection and category
 - Add products to a shopping cart and wishlist
-- Order a product
+- Order a product with credit/debit card
+- Order a product using PayPal */Not fully implemented/*
 - View order history and details
 - Sign Up with a Google account or with email and password
 - Manage your profile once you have signed up
@@ -78,6 +79,7 @@ Once GoldenGlow Boutique is running on your machine, you can access it by visiti
 The following technologies and libraries were used to build GoldenGlow Boutique:
 - React
 - Firebase
+- react-paypal-js
 - react-router-dom
 - react-fontAwesome-icons
 - react-slick
@@ -88,7 +90,7 @@ The following technologies and libraries were used to build GoldenGlow Boutique:
 GoldenGlow Boutique uses the following APIs:
 - Google Maps API (to display store location information)
 
-**Note:** You'll need to obtain your own API keys for these services and add them to the appropriate configuration files in the project directory. Reference **Installation**.
+**Note:** You'll need to obtain your own API keys for these services and add them to the appropriate configuration files in the project directory. Reference **[Installation](https://github.com/yoantodorovv/GoldenGlow#installation)**.
 
 ## License
 
