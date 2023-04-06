@@ -1,6 +1,6 @@
 # GoldenGlow Boutique
 
-GoldenGlow Boutique is an e-commerce single-page application (SPA) built with React and Firebase. It allows users to browse a selection of elegant clothing and add items to their cart.
+GoldenGlow Boutique is an e-commerce single-page application (SPA) built with React and Firebase. It allows users to browse a selection of elegant clothing, add items to their wishlist and/or cart and make a secure purchase with credit/debit card or using PayPal.
 
 GoldenGlow Boutique is hosted on **Firebase Hosting**. You can access the hosted application by visiting [GoldenGlow Boutique](https://goldenglow.web.app/).
 
@@ -89,6 +89,7 @@ The following technologies and libraries were used to build GoldenGlow Boutique:
 ## APIs
 GoldenGlow Boutique uses the following APIs:
 - Google Maps API (to display store location information)
+- PayPal Sandbox API (for secure PayPap payments)
 
 **Note:** You'll need to obtain your own API keys for these services and add them to the appropriate configuration files in the project directory. Reference **[Installation](https://github.com/yoantodorovv/GoldenGlow#installation)**.
 
