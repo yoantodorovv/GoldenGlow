@@ -21,6 +21,8 @@ export const ShoppingCart = () => {
         CreditCard: true,
         PayPal: false,
     });
+    const [address, setAddress] = useState('');
+
     const navigate = useNavigate();
 
     if (auth.currentUser === null) {
@@ -42,8 +44,6 @@ export const ShoppingCart = () => {
     }
 
     useEffect(() => {
-        console.log('get');
-
         getProducts();
     }, [totalPrice]);
 
@@ -96,6 +96,7 @@ export const ShoppingCart = () => {
                 userId: auth.currentUser.uid,
                 items: cartProducts,
                 itemsCount: cartProducts.length,
+                deliveryAddress: address,
                 totalPrice: totalPrice,
                 paymentMethod: 'creditCard',
                 orderedAt: new Date(),
@@ -125,6 +126,8 @@ export const ShoppingCart = () => {
             })
         }
     }
+
+    const handleAddressChange = (targetAddress) => setAddress(targetAddress);
 
     const onCreatePayPalOrder = (data, actions) => {
         const value = (totalPrice * 0.511292).toFixed(2);
@@ -226,7 +229,7 @@ export const ShoppingCart = () => {
                         <div className={styles['payment-information']}>
                             {
                                 isChecked.CreditCard
-                                    ? <CreditCardForm />
+                                    ? <CreditCardForm handleAddressChange={handleAddressChange} />
                                     : <></>
                             }
                         </div>
