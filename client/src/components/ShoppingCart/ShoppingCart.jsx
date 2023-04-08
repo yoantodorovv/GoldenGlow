@@ -90,15 +90,15 @@ export const ShoppingCart = () => {
 
     const onCheckout = async () => {
         try {
-            const ordersRef = collection(db, "orders");
+            const ordersRef = collection(db, `users/${auth.currentUser.uid}/orders`);
 
             await addDoc(ordersRef, {
-                userId: auth.currentUser.uid,
                 items: cartProducts,
                 itemsCount: cartProducts.length,
                 deliveryAddress: address,
                 totalPrice: totalPrice,
                 paymentMethod: 'creditCard',
+                isCancelled: false,
                 orderedAt: new Date(),
             });
 

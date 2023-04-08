@@ -1,0 +1,136 @@
+$white-primary-accent: #fff6ec;
+$dark-color: #413d38;
+$brown-primary: #6c3d1f;
+$brown-secondary: #8a5b40;
+$white-primary: #dbcec3;
+
+@mixin order($borderPixels, $borderColor) {
+    display: flex;
+    height: 10vh;
+    margin-top: 1em;
+    border-bottom: $borderPixels solid $borderColor;
+}
+
+@mixin general {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column nowrap;
+    width: 50%;
+}
+
+@mixin additional {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: end;
+    width: 50%;
+}
+
+@mixin status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin delivered {
+    color: #008000;
+}
+
+@mixin inTransit {
+    color: $brown-primary;
+}
+
+@mixin cancelled {
+    color: #ff0000;
+}
+
+.order-wrapper {
+    @include order(1px, $dark-color);
+
+    .general-info {
+        @include general;
+
+        p {
+            color: $dark-color;
+        }
+    }
+
+    .additional-info {
+        @include additional;
+
+        .status.delivered {
+            @include status;
+            @include delivered;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+
+        .status.in-transit {
+            @include status;
+            @include inTransit;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+
+        .status.cancelled {
+            @include status;
+            @include cancelled;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+    }
+}
+
+.order-wrapper-active {
+    @include order(2px, $brown-primary);
+
+
+    .general-info {
+        @include general;
+
+        h3 {
+            color: $brown-primary;
+        }
+
+        p {
+            color: $dark-color;
+        }
+    }
+
+    .additional-info {
+        @include additional;
+
+        .status.delivered {
+            @include status;
+            @include delivered;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+
+        .status.in-transit {
+            @include status;
+            @include inTransit;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+
+        .status.cancelled {
+            @include status;
+            @include cancelled;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+    }
+}
+
