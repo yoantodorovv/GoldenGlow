@@ -4,7 +4,7 @@ GoldenGlow Boutique is an e-commerce single-page application (SPA) built with Re
 
 GoldenGlow Boutique is hosted on **Firebase Hosting**. You can access the hosted application by visiting [GoldenGlow Boutique](https://goldenglow.web.app/).
 
-**Note:** If you're having hard time accessing [GoldenGlow Boutique](https://goldenglow.web.app/), you could alternatively try accessing it from here -> [goldenglow.firebaseapp.com](https://goldenglow.firebaseapp.com).
+**Note:** If you're having hard time accessing [GoldenGlow Boutique](https://goldenglow.web.app/), you could alternatively try accessing it from here -> [https://goldenglow.firebaseapp.com](https://goldenglow.firebaseapp.com).
 
 ## Table of Contents
 - [Features](https://github.com/yoantodorovv/GoldenGlow#features)
