@@ -32,11 +32,11 @@ $white-primary: #dbcec3;
 }
 
 @mixin delivered {
-    color: #008000;
+    color: #005900;
 }
 
 @mixin inTransit {
-    color: $brown-primary;
+    color: #005da9;
 }
 
 @mixin cancelled {
@@ -134,3 +134,10 @@ $white-primary: #dbcec3;
     }
 }
 
+.order-wrapper:hover {
+    cursor: pointer;
+}
+
+.order-wrapper-active:hover {
+    cursor: pointer;
+}

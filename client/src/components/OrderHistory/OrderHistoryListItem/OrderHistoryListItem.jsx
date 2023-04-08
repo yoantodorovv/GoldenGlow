@@ -23,7 +23,7 @@ export const OrderHistoryListItem = ({
         icon: {}
     };
 
-    if (diffInDays > 3) {
+    if (diffInDays > 1) {
         innitialStatus = {
             text: 'Delivered',
             class: 'delivered',
