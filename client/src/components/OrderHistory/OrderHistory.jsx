@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 
 import { db, auth } from '../../services/firebaseService';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
 
 import { OrderHistoryListItem } from './OrderHistoryListItem/OrderHistoryListItem'
+import { OrderDetails } from './OrderDetails/OrderDetails';
 
 import styles from './OrderHistory.module.scss'
+import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { OrderDetails } from './OrderDetails/OrderDetails';
 
 export const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
@@ -19,7 +20,7 @@ export const OrderHistory = () => {
     const getOrders = async () => {
         const data = await getDocs(userCartCollectionRef);
 
-        const managedData = data.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        const managedData = data.docs.map(doc => ({ ...doc.data(), id: doc.id })).sort((a, b) => b.orderedAt - a.orderedAt);
 
         setOrders(managedData)
 
@@ -31,6 +32,36 @@ export const OrderHistory = () => {
     }, []);
 
     const handleCurrentOrderChange = (targetOrder) => setCurrentOrder(targetOrder);
+
+    const cancelOrderHandler = async (orderId) => {
+        const currentDocRef = doc(db, `users/${auth.currentUser.uid}/orders`, orderId);
+
+        try {
+            await updateDoc(currentDocRef, {
+                isCancelled: true,
+            });
+    
+            getOrders();
+
+            Swal.fire({
+                title: `Successfuly cancelled order #${orderId.slice(1, 10)}!`,
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        } catch (err) {
+            Swal.fire({
+                title: `Could not cancel order #${orderId.slice(1, 10)}!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        }
+    }
 
     return (
         <div className={styles['general-wrapper']}>
@@ -64,7 +95,7 @@ export const OrderHistory = () => {
                 </div>
 
                 <div className={styles['order-wrapper']}>
-                    <OrderDetails />
+                    <OrderDetails order={currentOrder} cancelOrderHandler={cancelOrderHandler} />
                 </div>
             </div>
         </div>

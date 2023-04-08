@@ -11,7 +11,7 @@ $white-primary: #dbcec3;
     .general-information-wrapper {
         display: flex;
         align-items: center;
-        padding: 3rem 10rem;
+        padding: 3rem 20rem;
 
         p {
             margin-left: .5em;
@@ -23,9 +23,10 @@ $white-primary: #dbcec3;
     .general-content-wrapper {
         display: flex;
         justify-content: space-between;
-        padding: 0rem 10rem 3rem;
+        padding: 0rem 20rem 3rem;
 
         .order-history-wrapper {
+            height: fit-content;
             width: 30%;
             border-radius: 10px;
             background-color: $white-primary-accent;
@@ -49,10 +50,9 @@ $white-primary: #dbcec3;
         }
 
         .order-wrapper {
+            display: flex;
+            flex-flow: column nowrap;
             width: 69%;
-            padding: 1.5em;
-            border-radius: 10px;
-            background-color: $white-primary-accent;
         }
     }
 }
