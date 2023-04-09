@@ -219,6 +219,7 @@ export const Product = () => {
                             type='button'
                             onClick={onAddToCart}
                             className={styles['add-to-cart-btn']}
+                            disabled={currentColor === 'Select Color' || currentSize === 'Select Size'}
                         >
                             Add to Cart
                             <FontAwesomeIcon className={styles['add-to-cart-btn-icon']} icon={faCartShopping} size="1x" />

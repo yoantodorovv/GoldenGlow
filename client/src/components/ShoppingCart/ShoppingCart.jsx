@@ -22,6 +22,7 @@ export const ShoppingCart = () => {
         PayPal: false,
     });
     const [address, setAddress] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
 
     const navigate = useNavigate();
 
@@ -35,6 +36,10 @@ export const ShoppingCart = () => {
         const data = await getDocs(userCartCollectionRef);
 
         setCartProducts(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+
+        if (data.docs.length === 0) {
+            setIsDisabled(true);
+        }
 
         setTotalPrice(0)
 
@@ -129,6 +134,14 @@ export const ShoppingCart = () => {
     }
 
     const handleAddressChange = (targetAddress) => setAddress(targetAddress);
+
+    const disableButtonHandler = (isFormFilled) => {
+        if (isFormFilled && cartProducts.length !== 0) {
+            return setIsDisabled(false);
+        }
+
+        setIsDisabled(true);
+    }
 
     const onCreatePayPalOrder = (data, actions) => {
         const value = (totalPrice * 0.511292).toFixed(2);
@@ -230,7 +243,7 @@ export const ShoppingCart = () => {
                         <div className={styles['payment-information']}>
                             {
                                 isChecked.CreditCard
-                                    ? <CreditCardForm handleAddressChange={handleAddressChange} />
+                                    ? <CreditCardForm handleAddressChange={handleAddressChange} disableButtonHandler={disableButtonHandler} />
                                     : <></>
                             }
                         </div>
@@ -246,12 +259,13 @@ export const ShoppingCart = () => {
                                     type='button'
                                     onClick={onCheckout}
                                     className={styles['payment-btn']}
+                                    disabled={isDisabled}
                                 >
                                     Continue to Checkout
                                 </button>
                             )
                             : (
-                            <></>
+                                <></>
                                 // <PayPalScriptProvider
                                 //     options={{
                                 //         "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,

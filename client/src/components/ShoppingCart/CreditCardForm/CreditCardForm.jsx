@@ -1,18 +1,26 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import styles from './CreditCardForm.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export const CreditCardForm = ({
-    handleAddressChange
+    handleAddressChange,
+    disableButtonHandler
 }) => {
     const [number, setNumber] = useState('');
     const [name, setName] = useState('');
     const [expiry, setExpiry] = useState('');
     const [cvc, setCvc] = useState('');
     const [address, setAddress] = useState('');
+
+    useEffect(() => {
+        if (number !== '' &&
+            name !== '' &&
+            expiry !== '' &&
+            cvc !== '' &&
+            address !== '') {
+            disableButtonHandler(true);
+        }
+    }, [number, name, expiry, cvc, address]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

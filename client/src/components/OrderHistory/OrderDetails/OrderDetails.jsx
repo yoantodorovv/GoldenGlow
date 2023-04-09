@@ -1,5 +1,3 @@
-import { useState, useRef } from 'react';
-
 import { OrderDetailsListItem } from './OrderDetailsListItem/OrderDetailsListItem';
 
 import styles from './OrderDetails.module.scss'
