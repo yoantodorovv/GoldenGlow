@@ -16,7 +16,6 @@ import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
 import { Product } from "./components/Product/Product"
 
 function App() {
-    //TODO: Attribute the photographers and Unsplash for the photos
     return (
         <div className="App">
             <Routes>
@@ -88,7 +87,6 @@ function App() {
                         </MainWrapper>
                     }
                 />
-                //TODO: Finish
                 <Route
                     path="/user/order-history"
                     element={
