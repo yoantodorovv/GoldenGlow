@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { db, auth } from '../../services/firebaseService';
-import { collection, doc, getDocs, updateDoc, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
 
 import { OrderHistoryListItem } from './OrderHistoryListItem/OrderHistoryListItem'
 import { OrderDetails } from './OrderDetails/OrderDetails';
@@ -16,10 +16,9 @@ export const OrderHistory = () => {
     const [currentOrder, setCurrentOrder] = useState({});
 
     const userCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/orders`);
-    const collectionQuery = query(userCartCollectionRef, where('isRefunded', '==', false));
 
     const getOrders = async () => {
-        const data = await getDocs(collectionQuery);
+        const data = await getDocs(userCartCollectionRef);
 
         console.log(data);
 
@@ -99,10 +98,8 @@ export const OrderHistory = () => {
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['general-information-wrapper']}>
-                <div className={styles['general-information-title-wrapper']}>
-                    <h1>Your Orders</h1>
-                    <p>({orders.length})</p>
-                </div>
+                <h1>Your Orders</h1>
+                <p>({orders.length})</p>
             </div>
             <div className={styles['general-content-wrapper']}>
 

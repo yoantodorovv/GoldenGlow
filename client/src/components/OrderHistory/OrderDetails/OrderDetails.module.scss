@@ -42,6 +42,16 @@ $white-primary: #dbcec3;
                 }
             }
 
+            .refunded-wrapper {
+                display: flex;
+                align-items: center;
+                color: #007c00;
+
+                .refunded {
+                    padding: 1em .5em;
+                }
+            }
+
             .delivered {
                 padding: 1em 1.5em;
                 color: #007c00;

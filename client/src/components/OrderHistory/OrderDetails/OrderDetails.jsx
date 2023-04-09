@@ -2,7 +2,7 @@ import { OrderDetailsListItem } from './OrderDetailsListItem/OrderDetailsListIte
 
 import styles from './OrderDetails.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
 
 export const OrderDetails = ({
     order,
@@ -16,7 +16,9 @@ export const OrderDetails = ({
 
     let status = '';
 
-    if (diffInDays > 1) {
+    if (order?.isRefunded) {
+        status = 'refunded';
+    } else if (diffInDays > 1) {
         status = 'delivered';
     } else if (order?.isCancelled) {
         status = 'cancelled';
@@ -75,7 +77,16 @@ export const OrderDetails = ({
                                                         Cancel Order
                                                     </button>
                                                 )
-                                                : <></>
+                                                : (
+                                                    status === 'refunded'
+                                                        ? (
+                                                            <div className={styles['refunded-wrapper']}>
+                                                                <FontAwesomeIcon icon={faMoneyBillTransfer} size="1x" />
+                                                                <p className={styles['refunded']}>Successfuly Refunded Order</p>
+                                                            </div>
+                                                        )
+                                                        : <></>
+                                                )
                                         )
                                 )
                         }

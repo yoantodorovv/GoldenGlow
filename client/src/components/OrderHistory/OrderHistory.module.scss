@@ -9,22 +9,14 @@ $white-primary: #dbcec3;
     flex-flow: column nowrap;
 
     .general-information-wrapper {
-            padding: 3rem 20rem 0rem;
-            border-bottom: 1px solid $brown-primary;
+        display: flex;
+        align-items: center;
+        padding: 3rem 20rem;
 
-        .general-information-title-wrapper {
-            display: flex;
-            align-items: center;
-
-            p {
-                margin-left: .5em;
-                font-size: 22px;
-                color: $dark-color;
-            }
-        }
-
-        .general-information-buttons-wrapper {
-            
+        p {
+            margin-left: .5em;
+            font-size: 22px;
+            color: $dark-color;
         }
     }
 

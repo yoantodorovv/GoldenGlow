@@ -43,6 +43,10 @@ $white-primary: #dbcec3;
     color: #ff0000;
 }
 
+@mixin refunded {
+    color: #005900;
+}
+
 .order-wrapper {
     @include order(1px, $dark-color);
 
@@ -78,6 +82,15 @@ $white-primary: #dbcec3;
         .status.cancelled {
             @include status;
             @include cancelled;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+
+        .status.refunded {
+            @include status;
+            @include refunded();
 
             h3 {
                 margin-left: .5em;
@@ -126,6 +139,15 @@ $white-primary: #dbcec3;
         .status.cancelled {
             @include status;
             @include cancelled;
+
+            h3 {
+                margin-left: .5em;
+            }
+        }
+
+        .status.refunded {
+            @include status;
+            @include refunded();
 
             h3 {
                 margin-left: .5em;

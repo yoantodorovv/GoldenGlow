@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
-
 import styles from './OrderHistoryListItem.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTruck, faCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faTruck, faCheck, faTriangleExclamation, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
 
 export const OrderHistoryListItem = ({
     order,
@@ -23,7 +21,13 @@ export const OrderHistoryListItem = ({
         icon: {}
     };
 
-    if (diffInDays > 1) {
+    if (order.isRefunded) {
+        innitialStatus = {
+            text: 'Refunded',
+            class: 'refunded',
+            icon: faMoneyBillTransfer
+        };
+    } else if (diffInDays > 1) {
         innitialStatus = {
             text: 'Delivered',
             class: 'delivered',
