@@ -20,8 +20,6 @@ export const OrderHistory = () => {
     const getOrders = async () => {
         const data = await getDocs(userCartCollectionRef);
 
-        console.log(data);
-
         const managedData = data.docs.map(doc => ({ ...doc.data(), id: doc.id })).sort((a, b) => b.orderedAt - a.orderedAt);
 
         setOrders(managedData)

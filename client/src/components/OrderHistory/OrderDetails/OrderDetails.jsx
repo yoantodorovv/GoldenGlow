@@ -1,8 +1,11 @@
+import { useState, useRef } from 'react';
+
 import { OrderDetailsListItem } from './OrderDetailsListItem/OrderDetailsListItem';
 
 import styles from './OrderDetails.module.scss'
+import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation, faMoneyBillTransfer, faClone } from '@fortawesome/free-solid-svg-icons';
 
 export const OrderDetails = ({
     order,
@@ -29,13 +32,50 @@ export const OrderDetails = ({
     const onCancelBtnClick = (e) => {
         e.preventDefault();
 
-        cancelOrderHandler(order.id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel my order!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                cancelOrderHandler(order.id);
+            }
+        })
     }
 
     const onRefundBtnClickHandler = (e) => {
         e.preventDefault();
 
-        onRefundBtnClick(order.id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, refund my order!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                onRefundBtnClick(order.id);
+            }
+        })
+    }
+
+    const handleCopy = (number) => {
+        navigator.clipboard.writeText(Number(number));
+
+        Swal.fire({
+            title: `Successfuly copied ${number}!`,
+            icon: 'success',
+            toast: true,
+            position: 'top-end',
+            timer: 1000,
+            showConfirmButton: false,
+        });
     }
 
     return (
@@ -100,6 +140,23 @@ export const OrderDetails = ({
             </div>
             <div className={styles['order-details-wrapper']}>
                 <h2>Order Details</h2>
+                <div className={styles['order-details-content']}>
+                    <div className={styles['order-details-content-item']}>
+                        <p>Delivery Address</p>
+                        <h3>{order?.deliveryAddress}</h3>
+                    </div>
+                    <div className={styles['order-details-content-item']}>
+                        <p>Declaration Number</p>
+                        <div className={styles['copy']} onClick={() => handleCopy('012345678900000')}>
+                            <FontAwesomeIcon icon={faClone} size="1x" />
+                            <h3>012345678900000</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles['order-details-total']}>
+                    <h3>Total</h3>
+                    <h3>BGN {order?.totalPrice?.toFixed(2)}</h3>
+                </div>
             </div>
         </>
     )
