@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { db, auth } from '../../services/firebaseService';
-import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, updateDoc, query, where } from 'firebase/firestore';
 
 import { OrderHistoryListItem } from './OrderHistoryListItem/OrderHistoryListItem'
 import { OrderDetails } from './OrderDetails/OrderDetails';
@@ -16,9 +16,12 @@ export const OrderHistory = () => {
     const [currentOrder, setCurrentOrder] = useState({});
 
     const userCartCollectionRef = collection(db, `users/${auth.currentUser.uid}/orders`);
+    const collectionQuery = query(userCartCollectionRef, where('isRefunded', '==', false));
 
     const getOrders = async () => {
-        const data = await getDocs(userCartCollectionRef);
+        const data = await getDocs(collectionQuery);
+
+        console.log(data);
 
         const managedData = data.docs.map(doc => ({ ...doc.data(), id: doc.id })).sort((a, b) => b.orderedAt - a.orderedAt);
 
@@ -40,7 +43,7 @@ export const OrderHistory = () => {
             await updateDoc(currentDocRef, {
                 isCancelled: true,
             });
-    
+
             getOrders();
 
             Swal.fire({
@@ -63,11 +66,43 @@ export const OrderHistory = () => {
         }
     }
 
+    const onRefundBtnClick = async (orderId) => {
+        const currentDocRef = doc(db, `users/${auth.currentUser.uid}/orders`, orderId);
+
+        try {
+            await updateDoc(currentDocRef, {
+                isRefunded: true,
+            });
+
+            Swal.fire({
+                title: `Successfuly refunded order #${orderId.slice(1, 10)}!`,
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+
+            getOrders();
+        } catch (err) {
+            Swal.fire({
+                title: `Could not refund order #${orderId.slice(1, 10)}!`,
+                icon: 'error',
+                toast: true,
+                position: 'top-end',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        }
+    }
+
     return (
         <div className={styles['general-wrapper']}>
             <div className={styles['general-information-wrapper']}>
-                <h1>Your Orders</h1>
-                <p>({orders.length})</p>
+                <div className={styles['general-information-title-wrapper']}>
+                    <h1>Your Orders</h1>
+                    <p>({orders.length})</p>
+                </div>
             </div>
             <div className={styles['general-content-wrapper']}>
 
@@ -95,7 +130,7 @@ export const OrderHistory = () => {
                 </div>
 
                 <div className={styles['order-wrapper']}>
-                    <OrderDetails order={currentOrder} cancelOrderHandler={cancelOrderHandler} />
+                    <OrderDetails order={currentOrder} cancelOrderHandler={cancelOrderHandler} onRefundBtnClick={onRefundBtnClick} />
                 </div>
             </div>
         </div>

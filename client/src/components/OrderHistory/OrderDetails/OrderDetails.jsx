@@ -1,10 +1,13 @@
 import { OrderDetailsListItem } from './OrderDetailsListItem/OrderDetailsListItem';
 
 import styles from './OrderDetails.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 export const OrderDetails = ({
     order,
     cancelOrderHandler,
+    onRefundBtnClick
 }) => {
     const orderDate = order?.orderedAt?.toDate();
     const now = new Date();
@@ -15,16 +18,22 @@ export const OrderDetails = ({
 
     if (diffInDays > 1) {
         status = 'delivered';
-    } else if (order.isCancelled) {
+    } else if (order?.isCancelled) {
         status = 'cancelled';
-    } else {
+    } else if (order !== undefined) {
         status = 'inTransit';
     }
 
-    const onCancellBtnClick = (e) => {
+    const onCancelBtnClick = (e) => {
         e.preventDefault();
 
         cancelOrderHandler(order.id);
+    }
+
+    const onRefundBtnClickHandler = (e) => {
+        e.preventDefault();
+
+        onRefundBtnClick(order.id);
     }
 
     return (
@@ -38,18 +47,35 @@ export const OrderDetails = ({
                     <div className={styles['heading-addition']}>
                         {
                             status === 'cancelled'
-                                ? <p className={styles['cancelled']}>Cancelled Order</p>
+                                ? (
+                                    <div className={styles['cancelled-wrapper']}>
+                                        <FontAwesomeIcon icon={faTriangleExclamation} size="1x" />
+                                        <p className={styles['cancelled']}>Cancelled Order</p>
+                                    </div>
+                                )
                                 : (
-                                    status === 'delivered' 
-                                        ? <p className={styles['delivered']}>Delivered Order</p>
-                                        : (
+                                    status === 'delivered'
+                                        ? (
                                             <button
                                                 type='button'
-                                                onClick={onCancellBtnClick}
-                                                className={styles['cancel-btn']}
+                                                onClick={onRefundBtnClickHandler}
+                                                className={styles['refund-btn']}
                                             >
-                                                Cancel Order
+                                                Refund Order
                                             </button>
+                                        )
+                                        : (
+                                            status === 'inTransit'
+                                                ? (
+                                                    <button
+                                                        type='button'
+                                                        onClick={onCancelBtnClick}
+                                                        className={styles['cancel-btn']}
+                                                    >
+                                                        Cancel Order
+                                                    </button>
+                                                )
+                                                : <></>
                                         )
                                 )
                         }

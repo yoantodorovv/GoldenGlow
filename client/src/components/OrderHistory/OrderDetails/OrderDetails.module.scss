@@ -18,7 +18,7 @@ $white-primary: #dbcec3;
         .heading-text {
             display: flex;
             align-items: center;
-            width: 80%;
+            width: 70%;
 
             p {
                 margin-left: .5em;
@@ -30,11 +30,16 @@ $white-primary: #dbcec3;
         .heading-addition {
             display: flex;
             justify-content: flex-end;
-            width: 20%;
+            width: 30%;
 
-            .cancelled {
-                padding: 1em 1.5em;
+            .cancelled-wrapper {
+                display: flex;
+                align-items: center;
                 color: #ff0000;
+
+                .cancelled {
+                    padding: 1em .5em;
+                }
             }
 
             .delivered {
@@ -52,6 +57,18 @@ $white-primary: #dbcec3;
             .cancel-btn:hover {
                 cursor: pointer;
                 background-color: #ff9696;
+            }
+
+            .refund-btn {
+                border: 1px solid #007c00;
+                background-color: #36ff3635;
+                padding: 1em 1.5em;
+                transition: .3s ease-out;
+            }
+
+            .refund-btn:hover {
+                cursor: pointer;
+                background-color: #3eb03eb5;
             }
         }
     }

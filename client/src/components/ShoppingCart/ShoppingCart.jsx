@@ -99,6 +99,7 @@ export const ShoppingCart = () => {
                 totalPrice: totalPrice,
                 paymentMethod: 'creditCard',
                 isCancelled: false,
+                isRefunded: false,
                 orderedAt: new Date(),
             });
 
