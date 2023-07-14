@@ -1,13 +1,14 @@
 # GoldenGlow Boutique
 
-GoldenGlow Boutique is an e-commerce single-page application (SPA) built with React and Firebase. It allows users to browse a selection of elegant clothing, add items to their wishlist and/or cart and make a secure purchase with credit/debit card or using PayPal.
+GoldenGlow Boutique is an e-commerce single-page application (SPA) built with React and Firebase. It allows users to browse a selection of elegant clothing, add items to their wishlist and/or cart and make a secure purchase with a credit/debit card or using PayPal.
 
 GoldenGlow Boutique is hosted on **Firebase Hosting**. You can access the hosted application by visiting [GoldenGlow Boutique](https://goldenglow.web.app/).
 
-**Note:** If you're having hard time accessing [GoldenGlow Boutique](https://goldenglow.web.app/), you could alternatively try accessing it from here -> [https://goldenglow.firebaseapp.com](https://goldenglow.firebaseapp.com).
+**Note:** If you're having hard time accessing [GoldenGlow Boutique](https://goldenglow.web.app/), you could alternatively try accessing it from here -> [https://goldenglow.firebaseapp.com](https://goldenglow.firebaseapp.com). /Beware that by accessing the application through the second link, you may not get the latest version of the application/
 
 ## Table of Contents
 - [Features](https://github.com/yoantodorovv/GoldenGlow#features)
+- [Upgrade Plans](https://github.com/yoantodorovv/GoldenGlow#upgrade-plans)
 - [Installation](https://github.com/yoantodorovv/GoldenGlow#installation)
 - [Usage](https://github.com/yoantodorovv/GoldenGlow#usage)
 - [Technology Used](https://github.com/yoantodorovv/GoldenGlow#technology-used)
@@ -20,12 +21,21 @@ GoldenGlow Boutique offers the following features:
 - Browse and search for elegant clothing products
 - Filter products by gender, collection and category
 - Add products to a shopping cart and wishlist
-- Order a product with credit/debit card
+- Order a product with a credit/debit card
 - Order a product using PayPal */Not fully implemented/*
 - View order history and details
 - Sign Up with a Google account or with email and password
 - Manage your profile once you have signed up
 - Contact GoldenGlow elite support team
+
+## Upgrade Plans
+The application is not fully done yet. These are the upgrades that are planned to be implemented in the near future.
+
+- Make it responsive
+- Implement Stripe for mock payments
+- Develop an admin area
+- Add loading skeleton on all pages
+- Add slight animations
 
 ## Installation
 1. Clone this repository to your machine:
