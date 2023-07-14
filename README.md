@@ -99,10 +99,13 @@ The following technologies and libraries were used to build GoldenGlow Boutique:
 ## APIs
 GoldenGlow Boutique uses the following APIs:
 - Google Maps API (to display store location information)
-- PayPal Sandbox API (for secure PayPap payments)
+- PayPal Sandbox API (for secure PayPal payments)
 
 **Note:** You'll need to obtain your own API keys for these services and add them to the appropriate configuration files in the project directory. Reference **[Installation](https://github.com/yoantodorovv/GoldenGlow#installation)**.
 
 ## License
 
 GoldenGlow Boutique is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
+
+## Disclaimer
+This website serves as an online clothing shop, providing products for purchase. However, it is important to note that the photos and images displayed on this website are solely for illustrative purposes and should not be used for any commercial or financial gain. The photographs featured on this website are intended to showcase the products and enhance the user experience. The website, its creators, and operators explicitly state that the photos will not be utilized for any monetary purposes. Visitors to this website are advised not to reproduce, distribute, or exploit the photos for any commercial use without obtaining proper authorization from the respective copyright holders. The creators and operators of this website do not assume any responsibility for the misuse of the photos by third parties.
